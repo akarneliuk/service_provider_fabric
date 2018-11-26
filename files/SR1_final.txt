@@ -1,0 +1,537 @@
+A:admin@SR1# admin show configuration  
+# TiMOS-B-16.0.R4 both/x86_64 Nokia 7750 SR Copyright (c) 2000-2018 Nokia.
+# All rights reserved. All use subject to applicable license agreements.
+# Built on Mon Nov 5 07:26:36 PST 2018 by builder in /builds/c/160B/R4/panos/main
+
+# Generated SUN NOV 25 12:49:48 2018 UTC
+
+configure {
+    card 1 {
+        admin-state enable
+        card-type iom-1
+        mda 1 {
+            admin-state enable
+            mda-type me6-100gb-qsfp28
+        }
+    }
+    log {
+        filter 1001 {
+            entry 10 {
+                description "Collect only events of major severity or higher"
+                action forward
+                match {
+                    severity {
+                        gte major
+                    }
+                }
+            }
+        }
+        log-id 99 {
+            description "Default System Log"
+            source {
+                main true
+            }
+            destination {
+                memory {
+                    max-entries 500
+                }
+            }
+        }
+        log-id 100 {
+            description "Default Serious Errors Log"
+            filter 1001
+            source {
+                main true
+            }
+            destination {
+                memory {
+                    max-entries 500
+                }
+            }
+        }
+        log-id 101 {
+            destination {
+                netconf {
+                }
+            }
+        }
+    }
+    port 1/1/c1 {
+        admin-state enable
+        connector {
+            breakout c4-10g
+        }
+    }
+    port 1/1/c1/1 {
+        admin-state enable
+        ethernet {
+            mode network
+            encap-type dot1q
+            single-fiber true
+        }
+    }
+    port 1/1/c2 {
+        admin-state enable
+        connector {
+            breakout c4-10g
+        }
+    }
+    port 1/1/c2/1 {
+        admin-state enable
+        ethernet {
+            mode access
+            encap-type dot1q
+        }
+    }
+    router "Base" {
+        autonomous-system 65000
+        router-id 10.0.0.11
+        interface "system" {
+            admin-state enable
+            ipv4 {
+                primary {
+                    address 10.0.0.11
+                    prefix-length 32
+                }
+            }
+        }
+        interface "toEOS2" {
+            admin-state enable
+            port 1/1/c1/1:0
+            ipv4 {
+                primary {
+                    address 10.11.22.11
+                    prefix-length 24
+                }
+            }
+        }
+        interface "toXR3" {
+            port 1/1/c1/1:13
+            ipv4 {
+                primary {
+                    address 10.11.33.11
+                    prefix-length 24
+                }
+            }
+        }
+        mpls-labels {
+            sr-labels {
+                start 500000
+                end 524287
+            }
+        }
+        bgp {
+            admin-state enable
+            rapid-withdrawal true
+            rapid-update {
+                vpn-ipv4 true
+                vpn-ipv6 true
+            }
+            next-hop-resolution {
+                labeled-routes {
+                    transport-tunnel {
+                        family vpn {
+                            resolution any
+                            resolution-filter {
+                                sr-isis true
+                            }
+                        }
+                    }
+                }
+            }
+            group "iBGP_PEERS" {
+                peer-as 65000
+                local-address "10.0.0.11"
+                family {
+                    vpn-ipv4 true
+                    vpn-ipv6 true
+                }
+            }
+            neighbor "10.0.0.22" {
+                group "iBGP_PEERS"
+            }
+            neighbor "10.0.0.33" {
+                group "iBGP_PEERS"
+            }
+        }
+        isis 0 {
+            admin-state enable
+            advertise-passive-only true
+            advertise-router-capability as
+            level-capability 2
+            area-address [49.0000]
+            segment-routing {
+                admin-state enable
+                tunnel-table-pref 8
+                prefix-sid-range {
+                    global
+                }
+            }
+            interface "system" {
+                admin-state enable
+                passive true
+                ipv4-node-sid {
+                    index 11
+                }
+            }
+            interface "toEOS2" {
+                admin-state enable
+                interface-type point-to-point
+            }
+            interface "toXR3" {
+                admin-state enable
+                interface-type point-to-point
+            }
+            level 2 {
+                wide-metrics-only true
+            }
+        }
+    }
+    service {
+        vprn "CUST" {
+            admin-state enable
+            service-id 123
+            customer "1"
+            route-distinguisher "10.0.0.11:123"
+            vrf-target {
+                community "target:65000:123"
+            }
+            auto-bind-tunnel {
+                resolution any
+            }
+            interface "test_lo" {
+                admin-state enable
+                loopback true
+                ipv4 {
+                    primary {
+                        address 192.168.1.11
+                        prefix-length 32
+                    }
+                }
+                ipv6 {
+                    address fc00::192:168:1:11 {
+                        prefix-length 128
+                    }
+                }
+            }
+            interface "toCUST" {
+                admin-state enable
+                ipv4 {
+                    primary {
+                        address 192.168.11.1
+                        prefix-length 24
+                    }
+                }
+                sap 1/1/c2/1:111 {
+                }
+                ipv6 {
+                    address fc00::192:168:11:1 {
+                        prefix-length 112
+                    }
+                }
+            }
+        }
+    }
+    system {
+        name "SR1"
+        dns {
+            address-pref ipv4-only
+        }
+        grpc {
+            admin-state enable
+            allow-unsecure-connection
+            gnmi {
+                admin-state enable
+                auto-config-save true
+            }
+        }
+        management-interface {
+            configuration-mode model-driven
+            cli {
+                md-cli {
+                    auto-config-save true
+                }
+            }
+            netconf {
+                admin-state enable
+                auto-config-save true
+            }
+            yang-modules {
+                base-r13-modules true
+                nokia-modules true
+            }
+        }
+        bluetooth {
+            advertising-timeout 30
+        }
+        security {
+            aaa {
+                local-profiles {
+                    profile "administrative" {
+                        default-action permit-all
+                        netconf {
+                            base-op-authorization {
+                                kill-session true
+                                lock true
+                            }
+                        }
+                        entry 10 {
+                            action permit
+                            match "configure system security"
+                        }
+                        entry 20 {
+                            action permit
+                            match "show system security"
+                        }
+                        entry 30 {
+                            action permit
+                            match "tools perform security"
+                        }
+                        entry 40 {
+                            action permit
+                            match "tools dump security"
+                        }
+                        entry 100 {
+                            action deny
+                            match "configure li"
+                        }
+                        entry 110 {
+                            action deny
+                            match "show li"
+                        }
+                        entry 111 {
+                            action deny
+                            match "clear li"
+                        }
+                        entry 112 {
+                            action deny
+                            match "tools dump li"
+                        }
+                    }
+                    profile "default" {
+                        entry 10 {
+                            action permit
+                            match "exec"
+                        }
+                        entry 20 {
+                            action permit
+                            match "exit"
+                        }
+                        entry 30 {
+                            action permit
+                            match "help"
+                        }
+                        entry 40 {
+                            action permit
+                            match "logout"
+                        }
+                        entry 50 {
+                            action permit
+                            match "password"
+                        }
+                        entry 60 {
+                            action deny
+                            match "show config"
+                        }
+                        entry 65 {
+                            action deny
+                            match "show li"
+                        }
+                        entry 66 {
+                            action deny
+                            match "clear li"
+                        }
+                        entry 67 {
+                            action deny
+                            match "tools dump li"
+                        }
+                        entry 70 {
+                            action permit
+                            match "show"
+                        }
+                        entry 80 {
+                            action permit
+                            match "enable-admin"
+                        }
+                        entry 100 {
+                            action deny
+                            match "configure li"
+                        }
+                    }
+                }
+            }
+            ssh {
+                server-cipher-list-v1 {
+                    cipher 200 {
+                        name 3des
+                    }
+                    cipher 205 {
+                        name blowfish
+                    }
+                }
+                server-cipher-list-v2 {
+                    cipher 190 {
+                        name aes256-ctr
+                    }
+                    cipher 192 {
+                        name aes192-ctr
+                    }
+                    cipher 194 {
+                        name aes128-ctr
+                    }
+                    cipher 200 {
+                        name aes128-cbc
+                    }
+                    cipher 205 {
+                        name 3des-cbc
+                    }
+                    cipher 210 {
+                        name blowfish-cbc
+                    }
+                    cipher 215 {
+                        name cast128-cbc
+                    }
+                    cipher 220 {
+                        name arcfour
+                    }
+                    cipher 225 {
+                        name aes192-cbc
+                    }
+                    cipher 230 {
+                        name aes256-cbc
+                    }
+                    cipher 235 {
+                        name rijndael-cbc
+                    }
+                }
+                client-cipher-list-v1 {
+                    cipher 200 {
+                        name 3des
+                    }
+                    cipher 205 {
+                        name blowfish
+                    }
+                    cipher 210 {
+                        name des
+                    }
+                }
+                client-cipher-list-v2 {
+                    cipher 190 {
+                        name aes256-ctr
+                    }
+                    cipher 192 {
+                        name aes192-ctr
+                    }
+                    cipher 194 {
+                        name aes128-ctr
+                    }
+                    cipher 200 {
+                        name aes128-cbc
+                    }
+                    cipher 205 {
+                        name 3des-cbc
+                    }
+                    cipher 210 {
+                        name blowfish-cbc
+                    }
+                    cipher 215 {
+                        name cast128-cbc
+                    }
+                    cipher 220 {
+                        name arcfour
+                    }
+                    cipher 225 {
+                        name aes192-cbc
+                    }
+                    cipher 230 {
+                        name aes256-cbc
+                    }
+                    cipher 235 {
+                        name rijndael-cbc
+                    }
+                }
+                server-mac-list-v2 {
+                    mac 200 {
+                        name hmac-sha2-512
+                    }
+                    mac 210 {
+                        name hmac-sha2-256
+                    }
+                    mac 215 {
+                        name hmac-sha1
+                    }
+                    mac 220 {
+                        name hmac-sha1-96
+                    }
+                    mac 225 {
+                        name hmac-md5
+                    }
+                    mac 230 {
+                        name hmac-ripemd160
+                    }
+                    mac 235 {
+                        name hmac-ripemd160-openssh-com
+                    }
+                    mac 240 {
+                        name hmac-md5-96
+                    }
+                }
+                client-mac-list-v2 {
+                    mac 200 {
+                        name hmac-sha2-512
+                    }
+                    mac 210 {
+                        name hmac-sha2-256
+                    }
+                    mac 215 {
+                        name hmac-sha1
+                    }
+                    mac 220 {
+                        name hmac-sha1-96
+                    }
+                    mac 225 {
+                        name hmac-md5
+                    }
+                    mac 230 {
+                        name hmac-ripemd160
+                    }
+                    mac 235 {
+                        name hmac-ripemd160-openssh-com
+                    }
+                    mac 240 {
+                        name hmac-md5-96
+                    }
+                }
+            }
+            user-params {
+                local-user {
+                    user "admin" {
+                        password "$2y$10$TQrZlpBDra86.qoexZUzQeBXDY1FcdDhGWdD9lLxMuFyPVSm0OGy6"
+                        access {
+                            console true
+                            netconf true
+                        }
+                        console {
+                            member ["administrative"]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+persistent-indices {
+    description "Persistent system indices are loaded at boot time and cannot be modified."
+    vrtr-id {
+        router-name "CUST" vrtr-id 2
+    }
+    vrtr-if-id {
+        router-name "Base" interface-name "toEOS2" vrtr-id 1 if-index 2
+        router-name "Base" interface-name "toXR3" vrtr-id 1 if-index 3
+        router-name "CUST" interface-name "test_lo" vrtr-id 2 if-index 4
+        router-name "CUST" interface-name "toCUST" vrtr-id 2 if-index 5
+    }
+}
+
+# Finished SUN NOV 25 12:49:54 2018 UTC
