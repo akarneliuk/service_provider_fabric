@@ -1,11 +1,11 @@
-
 # Service Provider meets Segment Routing
 This repository covers demo of Service Provider multi-vendor network running Segment Routing with various services on top.
 
-# Currently tested network operation systems
+# Currently used network operation systems
 1) Arist EOS 4.21.1.1F
 2) Cisco IOS XR 6.5.1
 3) Nokia SR OS 16.0.R4
+4) Cumulus Linux 3.7.1
 
 # Available services
 1) IP VPN between all 3 PE
