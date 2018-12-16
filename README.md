@@ -1,3 +1,4 @@
+
 # Service Provider meets Segment Routing
 This repository covers demo of Service Provider multi-vendor network running Segment Routing with various services on top.
 
@@ -24,6 +25,7 @@ The current version of the repository is `0.2`
 Version `0.1`
 1) Initial topology is created
 2) IP VPN is deployed
+
 Version `0.2`
 1) previous files are stored in `backup` folder in proper version
 2) Underlay topology is updated
