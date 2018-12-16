@@ -23,12 +23,12 @@ The current version of the repository is `0.2`
 
 # Change log
 Version `0.1`
-1) Initial topology is created
-2) IP VPN is deployed
+1) Initial topology is created.
+2) IP VPN is deployed.
 
 Version `0.2`
-1) previous files are stored in `backup` folder in proper version
-2) Underlay topology is updated
-3) New overlay topology for EVPN (E-LAN) is created
-4) Initial configuration files are updated
-5) Final configuration files are updated
+1) previous files are stored in `backup` folder in proper version.
+2) Underlay topology is updated. It starts with `sp_` prefix.
+3) New overlay topology for EVPN (E-LAN) is created. It starts with `evpn_elan_` prefix.
+4) Initial configuration files are updated. Now all of them start with `sp_` prefix.
+5) New final configuration files for EVPN (E-LAN) are created. Their names start with `evpn_elan_` prefix. 
