@@ -1,0 +1,15 @@
+[management_host]
+localhost
+
+[iosxr]
+XR1
+
+[eos]
+EOS1
+EOS2
+
+[sros]
+SR1
+
+[cumulus]
+VX4
