@@ -1,0 +1,5 @@
+---
+ansible_user: cumulus
+ansible_pass: CumulusLinux!
+ansible_ssh_pass: CumulusLinux!
+...

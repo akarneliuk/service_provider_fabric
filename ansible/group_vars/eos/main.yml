@@ -1,0 +1,6 @@
+---
+ansible_user: aaa
+ansible_pass: aaa
+ansible_ssh_pass: aaa
+ansible_network_os: nexus
+...

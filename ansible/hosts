@@ -13,3 +13,8 @@ SR1
 
 [cumulus]
 VX4
+
+[fabric:children]
+iosxr
+eos
+sros

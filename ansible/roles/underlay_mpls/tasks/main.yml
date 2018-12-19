@@ -1,0 +1,8 @@
+---
+- name: IMPORTING VARIABLES
+  include_vars:
+      file: "{{ inventory_hostname }}_underlay.yml"
+  tags:
+      - underlay
+      - underlay_mpls
+...

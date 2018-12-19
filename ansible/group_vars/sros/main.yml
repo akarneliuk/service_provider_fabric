@@ -1,0 +1,6 @@
+---
+ansible_user: admin
+ansible_pass: admin
+ansible_ssh_pass: admin
+ansible_network_os: sros
+...
