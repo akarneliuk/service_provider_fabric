@@ -1,0 +1,329 @@
+{
+    "openconfig-network-instance:network-instances": {
+        "network-instance": [
+            {
+                "name": "{% if ansible_network_os == 'sros' %}Base{% else %}default{% endif %}",
+{% if ansible_network_os != 'iosxr' %}{# 002: 'nexus' and 'sros' relevant, hence excluded for 'iosxr'#}
+                "config": {
+{% if ansible_network_os == 'nexus' %}{# 003: 'nexus' relevant, enabling 'ip routing' and 'ipv6 unicast routing' #}
+                    "enabled-address-families": [ "IPV4", "IPV6" ],
+{% endif %}{# 003: 'nexus' relevant, enabling 'ip routing' and 'ipv6 unicast routing' #}
+{% if ansible_network_os == 'sros' %}{# 004: 'sros' relevant, enabling 'router-id' for whole routing instance #}
+                    "router-id": "{% for iface in interfaces %}{% if 'system' in iface.name %}{{ iface.ipv4.address }}{% endif %}{% endfor %}",
+{% endif %}{# 004: 'sros' relevant, enabling 'router-id' for whole routing instance #}
+                    "name": "{% if ansible_network_os == 'sros' %}Base{% else %}default{% endif %}",
+                    "type": "DEFAULT_INSTANCE"
+                },
+{% endif %}{# 002: 'nexus' and 'sros' relevant, hence excluded for 'iosxr'#}
+{% if ansible_network_os != 'iosxr' %}{# 007: 'iosxr' relevant, here is no necessety to define any label blocks in Cisco IOS XR #}
+                "mpls": {
+{% if platform_defaults.mpls_label_ranges is defined %}
+                    "global": {
+                        "reserved-label-blocks": {
+                            "reserved-label-block": [
+{% for mpls_block in platform_defaults.mpls_label_ranges %}
+{% if mpls_block.id == 'sr' %}{# 005: 'sros' and 'nexus' relevant, creating label block for Segment Routing with ISIS #}
+                                {
+                                    "config": {
+                                        "local-id": "isis-sr",
+                                        "lower-bound": {{ mpls_block.start }},
+                                        "upper-bound": {{ mpls_block.end }}
+                                    },
+                                    "local-id": "isis-sr"
+                                },
+{% if ansible_network_os == 'nexus' %}{# 006: 'nexus' relevant, creating label block for Segment Routing with BGP #}
+                                {
+                                    "config": {
+                                        "local-id": "bgp-sr",
+                                        "lower-bound": {{ mpls_block.start }},
+                                        "upper-bound": {{ mpls_block.end }}
+                                    },
+                                    "local-id": "bgp-sr"
+                                }
+{% elif ansible_network_os == 'sros' %}{# 006: 'nexus' relevant, creating label block for Segment Routing with BGP #}
+                                {
+                                    "config": {
+                                        "local-id": "dynamic",
+                                        "lower-bound": 18432,
+                                        "upper-bound": {{ mpls_block.start - 1 }}
+                                    },
+                                    "local-id": "dynamic"
+                                }
+{% endif %}{# 006: 'nexus' relevant, creating label block for Segment Routing with BGP #}
+{% endif %}{# 005: 'sros' and 'nexus' relevant, creating label block for Segment Routing with ISIS #}
+{% endfor %}{# 007: 'iosxr' relevant, here is no necessety to define any label blocks in Cisco IOS XR #}
+                            ]
+                        }
+                    }
+                },
+{% endif %}
+{% endif %}
+{% if ansible_network_os == 'sros' %}
+                "interfaces": {
+                    "interface": [
+{% for iface in interfaces %}
+{% if loop.index > 1%},{% endif %}
+                        {
+                            "config": {
+                                "associated-address-families": [
+                                    "IPV4", 
+                                    "IPV6"
+                                ], 
+                                "id": "{{ iface.name }}", 
+                                "interface": "{{ iface.name }}", 
+                                "subinterface": 0
+                            }, 
+                            "id": "{{ iface.name }}"
+                        }
+{% endfor %}
+                    ]
+                },
+{% endif %}
+                "protocols": {
+                    "protocol": [
+{% for routing_protocol in routing %}
+{% if loop.index > 1 %},{% endif %}
+                        {
+                            "identifier": "{{ routing_protocol.id }}",
+                            "name": "{{ routing_protocol.tag }}",
+                            "config": {
+{% if ansible_network_os != 'iosxr' %}
+                                "enabled": {% if routing_protocol.enabled %}true{% else %}false{% endif %},
+{% endif %}
+                                "identifier": "{{ routing_protocol.id }}",
+                                "name": "{{ routing_protocol.tag }}"
+                            },
+{% if routing_protocol.id == 'ISIS' %}
+                            "isis": {
+                                "global": {
+                                    "afi-safi": {
+                                        "af": [
+{% for afi_safi in routing_protocol.af %}
+{% if loop.index > 1 %},{% endif %}
+                                            {
+                                                "afi-name": "{{ afi_safi.afi }}",
+                                                "safi-name": "{{ afi_safi.safi }}",
+                                                "config": {
+                                                    "afi-name": "{{ afi_safi.afi }}",
+{% if ansible_network_os != 'iosxr' %}
+                                                    "enabled": true,
+{% endif %}
+                                                    "metric": 10,
+                                                    "safi-name": "{{ afi_safi.safi }}"
+                                                }
+{% if ansible_network_os != 'iosxr' and afi_safi.afi == 'IPV6' %}{# 011: 'sros' and 'nexus' relevant, Cisco IOS XR is running multi-topology by default #}
+                                                ,
+                                                "multi-topology": {
+                                                    "config": {
+                                                        "afi-name": "{{ afi_safi.afi }}",
+                                                        "safi-name": "{{ afi_safi.safi }}"
+                                                    }
+                                                }
+{% endif %}{# 011: 'sros' and 'nexus' relevant, Cisco IOS XR is running multi-topology by default #}
+                                            }
+{% endfor %}
+                                        ]
+                                    },
+                                    "config": {
+{% if ansible_network_os != 'iosxr' %}
+                                        "instance": "{{ routing_protocol.tag }}",
+{% endif %}
+                                        "level-capability": "{{ routing_protocol.is_type }}",
+                                        "net": [ "{{ routing_protocol.area_id }}.{{ routing_protocol.system_id }}.00" ]
+                                    }
+{% if ansible_network_os != 'sros' %}{# 010: 'sros' relevant, temporary disabled as Segment Routing isn't supported in Nokia OpenConfig YANG yet #}
+{% if mpls is defined %}
+{% for mpls_dp in mpls %}
+{% if mpls_dp.protocol == 'isis-sr' %}
+                                    ,
+                                    "segment-routing": {
+                                        "config": {
+                                            "enabled": {% if mpls_dp.enabled %}true{% else %}false{% endif %}
+{% if ansible_network_os != 'iosxr' %}
+                                            ,
+                                            "srgb": "{{ mpls_dp.protocol }}",
+                                            "srlb": "srlb"
+{% endif %}
+                                        }
+                                    }
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}{# 010: 'sros' relevant, temporary disabled as Segment Routing isn't supported in Nokia OpenConfig YANG yet #}
+                                },
+                                "interfaces": {
+                                    "interface": [
+{% for iface in routing_protocol.interfaces %}
+{% if loop.index > 1 %},{% endif %}
+                                        {
+                                            "interface-id": "{{ iface.name }}",
+                                            "config": {
+                                                "circuit-type": "{% if iface.type is defined %}{{ iface.type }}{% else %}BROADCAST{% endif %}",
+                                                "enabled": true,
+                                                "hello-padding": "STRICT",
+                                                "interface-id": "{{ iface.name }}",
+                                                "passive": {% if iface.passive %}true{% else %}false{% endif %}
+
+                                            },
+                                            "interface-ref": {
+                                                "config": {
+                                                    "interface": "{{ iface.name }}"
+{% if ansible_network_os == 'sros' %}{# 012: 'sros' relevant, subinterface is required in 'interface-ref' #}
+                                                    ,"subinterface": 0
+{% endif %}{# 012: 'sros' relevant, subinterface is required in 'interface-ref' #}
+                                                }
+                                            }
+{% if ansible_network_os != 'nexus' %}{# 016: 'sros' and 'iosxr' relevant, afi under interface level must be enabled #}
+                                            ,
+                                            "afi-safi": {
+                                                "af": [
+{% for afi_safi in routing_protocol.af %}
+{% if loop.index > 1 %},{% endif %} 
+                                                    {
+                                                        "afi-name": "{{ afi_safi.afi }}",
+                                                        "safi-name": "{{ afi_safi.safi }}",
+                                                        "config": {
+                                                            "afi-name": "{{ afi_safi.afi }}",
+                                                            "safi-name": "{{ afi_safi.safi }}",
+                                                            "enabled": true
+                                                        }
+                                                    }
+{% endfor %}
+                                                ]
+                                            }
+{% endif %}{# 016: 'sros' and 'iosxr' relevant, afi under interface level must be enabled #}
+                                            ,
+                                            "levels": {
+                                                "level": [
+{% for level_id in ["1","2"] %}
+{% if loop.index > 1 %},{% endif %}
+                                                    {
+                                                        "level-number": {{ level_id }},
+{% if ansible_network_os != 'iosxr' %}
+                                                        "config": {
+                                                            "enabled": true,
+                                                            "level-number": {{ level_id }},
+                                                            "passive": false
+                                                        },
+{% endif %}
+                                                        "afi-safi": {
+                                                            "af": [
+{% for afi_safi in routing_protocol.af %}
+{% if loop.index > 1 %},{% endif %}
+                                                                {       
+                                                                    "afi-name": "{{ afi_safi.afi }}",
+                                                                    "safi-name": "{{ afi_safi.safi }}"
+                                                                    ,
+                                                                    "config": {
+                                                                        "afi-name": "{{ afi_safi.afi }}",
+                                                                        "safi-name": "{{ afi_safi.safi }}",
+                                                                        "metric": {% if iface.metric is defined %}{{ iface.metric }}{% else %}10{% endif %}
+
+{% if ansible_network_os == 'sros' %}{# 015: 'sros' relevant, afi at level in interface config must be enabled #}
+                                                                        ,"enabled": true
+{% endif %}{# 015: 'sros' relevant, afi at level in interface config must be enabled #}
+                                                                    }
+{% if ansible_network_os != 'sros' %}{# 009: 'sros' relevant, temporary disabled as Segment Routing isn't supported in Nokia OpenConfig YANG yet #}
+{% if iface.segment_routing is defined %}
+{% if afi_safi.afi == 'IPV4' %}
+                                                                    ,
+                                                                    "segment-routing": {
+                                                                        "prefix-sids": {
+                                                                            "prefix-sid": [
+                                                                                {
+                                                                                    "prefix": "0.0.0.0/32",
+                                                                                    "config": {
+                                                                                        "prefix": "0.0.0.0/32",
+{% if iface.segment_routing.id_type == 'index' %}
+{% for mpls_block in platform_defaults.mpls_label_ranges %}
+{% if mpls_block.id == 'sr' %}
+                                                                                        "sid-id": {{ iface.segment_routing.id_value + mpls_block.start }}
+{% endif %}
+{% endfor %}
+{% else %}
+                                                                                        "sid-id": {{ iface.segment_routing.id_value }}
+{% endif %}
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    }
+{% endif %}
+{% endif %}
+{% endif %}{# 009: 'sros' relevant, temporary disabled as Segment Routing isn't supported in Nokia OpenConfig YANG yet #}
+                                                                } 
+{% endfor %}   
+                                                            ]
+                                                        }
+                                                    }
+{% endfor %}
+                                                ]
+                                            }
+                                        }
+{% endfor %}
+                                    ]
+                                },
+                                "levels": {
+                                    "level": [
+{% for level_id in ["1","2"] %}
+{% if loop.index > 1 %},{% endif %}
+                                        {
+                                            "level-number": {{ level_id }},
+                                            "config": {
+{% if ansible_network_os != 'iosxr' %}{# 013: 'sros' and 'nexus' relevant, level must be enabled #}
+                                                "enabled": {% if level_id in routing_protocol.is_type %}true{% else %}false{% endif %},
+{% endif %}{# 013: 'sros' and 'nexus' relevant, level must be enabled #}
+{% if ansible_network_os != 'nexus' %}{# 014: 'sros' and 'iosxr' relevant, wide-style metric must be activated #}
+                                                "metric-style": "WIDE_METRIC",
+{% endif %}{# 014: 'sros' and 'iosxr' relevant, wide-style metric must be activated #}
+                                                "level-number": {{ level_id }}
+                                            }
+                                        }
+{% endfor %}
+                                    ]
+                                }
+                            }
+{% endif %}
+                        }
+{% endfor %}
+                    ]
+                }
+{% if ansible_network_os != 'sros' %}{# 001: 'sros' relevant, temporary disabled as Segment Routing isn't supported in Nokia OpenConfig YANG models #}
+{% if ansible_network_os != 'iosxr' %}{# 008: 'iosxr' relevant, disabled for Cisco IOS XR as not needed #}
+                ,
+                "segment-routing": {
+                    "srgbs": {
+                        "srgb": [
+{% for mpls_dp in mpls %}
+{% if 'sr' in mpls_dp.protocol %}
+                            {
+                                "local-id": "{{ mpls_dp.protocol }}",
+                                "config": {
+                                    "dataplane-type": "MPLS",
+                                    "local-id": "{{ mpls_dp.protocol }}",
+                                    "mpls-label-blocks": [ "{{ mpls_dp.protocol }}" ]
+                                }
+                            }
+{% endif %}
+{% endfor %}
+                        ]
+                    },
+                    "srlbs": {
+                        "srlb": [
+                            {
+                                "config": {
+                                    "dataplane-type": "MPLS",
+                                    "local-id": "srlb",
+                                    "mpls-label-block": "{% if ansible_network_os == 'nexus' %}srlb{% else %}dynamic{% endif %}"
+                                },
+                                "local-id": "srlb"
+                            }
+                        ]
+                    }
+                }
+{% endif %}{# 008: 'iosxr' relevant, disabled for Cisco IOS XR as not needed #}
+{% endif %}{# 001: 'sros' relevant, temporary disabled as Segment Routing isn't supported in Nokia OpenConfig YANG models #}
+            }
+        ]
+    }
+}

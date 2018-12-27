@@ -2,5 +2,11 @@
 ansible_user: aaa
 ansible_pass: aaa
 ansible_ssh_pass: aaa
+ansible_become_pass:
 ansible_network_os: nexus
+platform_defaults:
+    mpls_label_ranges:
+        - id: sr
+          start: 900000
+          end: 965535
 ...

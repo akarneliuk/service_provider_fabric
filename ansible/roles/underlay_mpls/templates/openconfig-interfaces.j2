@@ -1,0 +1,68 @@
+{
+    "openconfig-interfaces:interfaces": {
+        "interface": [
+{% for iface in interfaces %}
+{% if loop.index > 1 %},{% endif %}
+            {
+                "name": "{{ iface.name }}", 
+                "config": {
+{% if iface.description is defined %}
+                    "description": "{{ iface.description }}",
+{% endif %}
+                    "enabled": {% if iface.enabled %}true{% else %}false{% endif %},
+                    "name": "{{ iface.name }}",
+{% if ansible_network_os == 'sros' and not 'system' in iface.name %}
+                    "mtu": 1514,
+{% endif %}
+{% if 'Loopback' in iface.name or 'system' in iface.name %}
+                    "type": "softwareLoopback"
+{% else %}
+                    "type": "ethernetCsmacd"
+{% endif %}
+                }
+{% if iface.ipv4 is defined or iface.ipv6 is defined %}
+                ,
+                "subinterfaces": {
+                    "subinterface": [
+                        {
+                            "index": 0,
+{% if iface.ipv4 is defined %}
+                            "openconfig-if-ip:ipv4": {
+                                "addresses": {
+                                    "address": [
+                                        {
+                                            "config": {
+                                                "ip": "{{ iface.ipv4.address }}", 
+                                                "prefix-length": {{ iface.ipv4.prefix }}
+                                            }, 
+                                            "ip": "{{ iface.ipv4.address }}"
+                                        }
+                                    ]
+                                }
+                            }
+{% endif %}
+{% if iface.ipv4 is defined and iface.ipv6 is defined %},{% endif %}
+{% if iface.ipv6 is defined %} 
+                            "openconfig-if-ip:ipv6": {
+                                "addresses": {
+                                    "address": [
+                                        {
+                                            "config": {
+                                                "ip": "{{ iface.ipv6.address }}", 
+                                                "prefix-length": {{ iface.ipv6.prefix }}
+                                            }, 
+                                            "ip": "{{ iface.ipv6.address }}"
+                                        }
+                                    ]
+                                }
+                            }
+{% endif %}
+                        } 
+                    ]
+                }
+{% endif %}
+            }
+{% endfor %}
+        ]
+    }
+}

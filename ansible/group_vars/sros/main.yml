@@ -3,4 +3,9 @@ ansible_user: admin
 ansible_pass: admin
 ansible_ssh_pass: admin
 ansible_network_os: sros
+platform_defaults:
+    mpls_label_ranges:
+        - id: sr
+          start: 500000
+          end: 524287
 ...

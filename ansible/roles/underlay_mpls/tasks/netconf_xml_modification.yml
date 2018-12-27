@@ -1,0 +1,181 @@
+---
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // REMOVING UNNECESSARY FRAMING
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '<\?.+\?>\n'
+      replace: ''
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // OC NI HEADER REWRITE
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '^<nc:config xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0".+?>'
+      replace: '<nc:config xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:oc-netinst="http://openconfig.net/yang/network-instance">'
+  when: item == 'openconfig-network-instance'
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: 'type>oc-if'
+      replace: 'type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx'
+  when: (item == 'openconfig-interfaces' and ansible_network_os == 'iosxr')
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR 
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: 'xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type" '
+      replace: ''
+  when: ansible_network_os == 'iosxr'
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION 
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '>oc-netinst:'
+      replace: '>'
+  when: item == 'openconfig-network-instance'
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '>DEFAULT_INSTANCE'
+      replace: ' xmlns:idx="http://openconfig.net/yang/network-instance-types">idx:DEFAULT_INSTANCE'
+  when: (item == 'openconfig-network-instance' and ansible_network_os == 'iosxr')
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: 'enabled-address-families>IPV'
+      replace: 'enabled-address-families xmlns:idx="http://openconfig.net/yang/openconfig-types">idx:IPV'
+  when: (item == 'openconfig-network-instance' and ansible_network_os == 'iosxr')
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '>ISIS'
+      replace: ' xmlns:idx="http://openconfig.net/yang/policy-types">idx:ISIS'
+  when: (item == 'openconfig-network-instance' and ansible_network_os == 'iosxr')
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: 'afi-name>IPV'
+      replace: 'afi-name xmlns:idx="http://openconfig.net/yang/isis-types">idx:IPV'
+  when: (item == 'openconfig-network-instance' and ansible_network_os == 'iosxr')
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: 'safi-name>UNICAST'
+      replace: 'safi-name xmlns:idx="http://openconfig.net/yang/isis-types">idx:UNICAST'
+  when: (item == 'openconfig-network-instance' and ansible_network_os == 'iosxr')
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // ARISTA EOS 4.21.1.1F
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '<oc-if:interface><oc-if:name>'
+      replace: '<oc-if:interface><oc-if:name nc:operation="replace">'
+  when: (item == 'openconfig-interfaces' and ansible_network_os == "nexus")
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // ARISTA EOS 4.21.1.1F
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '<oc-netinst:multi-topology><oc-netinst:config>'
+      replace: '<oc-netinst:multi-topology><oc-netinst:config><oc-netinst:enabled>true</oc-netinst:enabled>'
+  when: (item == 'openconfig-network-instance' and ansible_network_os == "nexus")
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // NOKIA SR OS 16.0.R1 SPECIFIC
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: 'oc-ip:'
+      replace: 'oc-if:'
+  when: (item == 'openconfig-interfaces' and ansible_network_os == "sros")
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // NOKIA SR OS 16.0.R1 SPECIFIC
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '>oc-if:'
+      replace: '>'
+  when: (item == 'openconfig-interfaces' and ansible_network_os == "sros")
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // NOKIA SR OS 16.0.R1 SPECIFIC
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: 'oc-vlan:'
+      replace: 'oc-if:'
+  when: (item == 'openconfig-interfaces' and ansible_network_os == "sros")
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // NOKIA SR OS 16.0.R1 SPECIFIC
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '<nc:.+">'
+      replace: '<nc:config xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:oc-if="http://openconfig.net/yang/interfaces" xmlns:oc-ip="http://openconfig.net/yang/interfaces/ip" xmlns:oc-vlan="http://openconfig.net/yang/vlan" xmlns:oc-eth="http://openconfig.net/yang/interfaces/ethernet" xmlns:oc-inet="http://openconfig.net/yang/types/inet" xmlns:oc-ip-ext="http://openconfig.net/yang/interfaces/ip-ext" xmlns:oc-lag="http://openconfig.net/yang/interfaces/aggregate" xmlns:oc-types="http://openconfig.net/yang/openconfig-types" xmlns:oc-vlan-types="http://openconfig.net/yang/vlan-types" xmlns:oc-yang="http://openconfig.net/yang/types/yang">'
+  when: (item == 'openconfig-interfaces' and ansible_network_os == 'sros')
+  tags:
+      - underlay
+      - underlay_mpls
+
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // NOKIA SR OS 16.0.R1 SPECIFIC
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '<oc-netinst:config><oc-netinst:identifier>ISIS</oc-netinst:identifier><oc-netinst:enabled>true</oc-netinst:enabled><oc-netinst:name>0</oc-netinst:name></oc-netinst:config>'
+      replace: ''
+  when: (item == 'openconfig-network-instance' and ansible_network_os == "sros")
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // NOKIA SR OS 16.0.R1 SPECIFIC
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '<oc-netinst:name>0</oc-netinst:name><oc-netinst:isis>'
+      replace: '<oc-netinst:name>0</oc-netinst:name><oc-netinst:config><oc-netinst:identifier>ISIS</oc-netinst:identifier><oc-netinst:enabled>true</oc-netinst:enabled><oc-netinst:name>0</oc-netinst:name></oc-netinst:config><oc-netinst:isis>'
+  when: (item == 'openconfig-network-instance' and ansible_network_os == "sros")
+  tags:
+      - underlay
+      - underlay_mpls
+...

@@ -3,4 +3,9 @@ ansible_user: cisco
 ansible_pass: cisco
 ansible_ssh_pass: cisco
 ansible_network_os: iosxr
+platform_defaults:
+    mpls_label_ranges:
+        - id: sr
+          start: 16000
+          end: 23999
 ...

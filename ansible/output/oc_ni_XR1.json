@@ -1,0 +1,2468 @@
+{
+    "network-instances": {
+        "network-instance": [
+            {
+                "afts": {
+                    "ipv4-unicast": {
+                        "ipv4-entry": [
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "0.0.0.0/0",
+                                "state": {
+                                    "prefix": "0.0.0.0/0"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "0.0.0.0/32",
+                                "state": {
+                                    "prefix": "0.0.0.0/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "MgmtEth0/0/CPU0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "192.168.141.51",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "192.168.141.0/24",
+                                "state": {
+                                    "prefix": "192.168.141.0/24"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "MgmtEth0/0/CPU0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "192.168.141.0/32",
+                                "state": {
+                                    "prefix": "192.168.141.0/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "MgmtEth0/0/CPU0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "192.168.141.1",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "192.168.141.1/32",
+                                "state": {
+                                    "prefix": "192.168.141.1/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "MgmtEth0/0/CPU0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "192.168.141.51/32",
+                                "state": {
+                                    "prefix": "192.168.141.51/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "MgmtEth0/0/CPU0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "192.168.141.131",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "192.168.141.131/32",
+                                "state": {
+                                    "prefix": "192.168.141.131/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "MgmtEth0/0/CPU0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "192.168.141.255/32",
+                                "state": {
+                                    "prefix": "192.168.141.255/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "224.0.0.0/4",
+                                "state": {
+                                    "prefix": "224.0.0.0/4"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "224.0.0.0/24",
+                                "state": {
+                                    "prefix": "224.0.0.0/24"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "255.255.255.255/32",
+                                "state": {
+                                    "prefix": "255.255.255.255/32"
+                                }
+                            }
+                        ]
+                    },
+                    "ipv6-unicast": {
+                        "ipv6-entry": [
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "::/0",
+                                "state": {
+                                    "prefix": "::/0"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "fe80::/10",
+                                "state": {
+                                    "prefix": "fe80::/10"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "ff02::/16",
+                                "state": {
+                                    "prefix": "ff02::/16"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "ff02::2/128",
+                                "state": {
+                                    "prefix": "ff02::2/128"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "ff02::1:ff00:0/104",
+                                "state": {
+                                    "prefix": "ff02::1:ff00:0/104"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "ff05::/16",
+                                "state": {
+                                    "prefix": "ff05::/16"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "ff12::/16",
+                                "state": {
+                                    "prefix": "ff12::/16"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "config": {
+                    "enabled-address-families": "idx:IPV4",
+                    "name": "mgmt"
+                },
+                "interfaces": {
+                    "interface": {
+                        "config": {
+                            "id": "MgmtEth0/0/CPU0/0",
+                            "interface": "MgmtEth0/0/CPU0/0",
+                            "subinterface": "0"
+                        },
+                        "id": "MgmtEth0/0/CPU0/0",
+                        "state": {
+                            "associated-address-families": [
+                                "idx:IPV4",
+                                "idx:IPV6"
+                            ],
+                            "id": "MgmtEth0/0/CPU0/0",
+                            "interface": "MgmtEth0/0/CPU0/0",
+                            "subinterface": "0"
+                        }
+                    }
+                },
+                "name": "mgmt",
+                "state": {
+                    "enabled": "true",
+                    "enabled-address-families": [
+                        "idx:IPV4",
+                        "idx:IPV6"
+                    ],
+                    "name": "mgmt",
+                    "type": "idx:L3VRF"
+                }
+            },
+            {
+                "afts": {
+                    "ipv4-unicast": {
+                        "ipv4-entry": [
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "0.0.0.0/0",
+                                "state": {
+                                    "prefix": "0.0.0.0/0"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "0.0.0.0/32",
+                                "state": {
+                                    "prefix": "0.0.0.0/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "GigabitEthernet0/0/0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "10.22.33.22",
+                                            "popped-mpls-label-stack": "16022",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "10.0.0.22/32",
+                                "state": {
+                                    "prefix": "10.0.0.22/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "Loopback0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "10.0.0.33/32",
+                                "state": {
+                                    "prefix": "10.0.0.33/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "GigabitEthernet0/0/0/1",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "10.1.33.33",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "10.1.33.0/24",
+                                "state": {
+                                    "prefix": "10.1.33.0/24"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "GigabitEthernet0/0/0/1",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "10.1.33.0/32",
+                                "state": {
+                                    "prefix": "10.1.33.0/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "GigabitEthernet0/0/0/1",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "10.1.33.33/32",
+                                "state": {
+                                    "prefix": "10.1.33.33/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "GigabitEthernet0/0/0/1",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "10.1.33.255/32",
+                                "state": {
+                                    "prefix": "10.1.33.255/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "GigabitEthernet0/0/0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "10.22.33.33",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "10.22.33.0/24",
+                                "state": {
+                                    "prefix": "10.22.33.0/24"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "GigabitEthernet0/0/0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "10.22.33.0/32",
+                                "state": {
+                                    "prefix": "10.22.33.0/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "GigabitEthernet0/0/0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "10.22.33.22",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "10.22.33.22/32",
+                                "state": {
+                                    "prefix": "10.22.33.22/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "GigabitEthernet0/0/0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "10.22.33.33/32",
+                                "state": {
+                                    "prefix": "10.22.33.33/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "GigabitEthernet0/0/0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "10.22.33.255/32",
+                                "state": {
+                                    "prefix": "10.22.33.255/32"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "224.0.0.0/4",
+                                "state": {
+                                    "prefix": "224.0.0.0/4"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "224.0.0.0/24",
+                                "state": {
+                                    "prefix": "224.0.0.0/24"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "255.255.255.255/32",
+                                "state": {
+                                    "prefix": "255.255.255.255/32"
+                                }
+                            }
+                        ]
+                    },
+                    "ipv6-unicast": {
+                        "ipv6-entry": [
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "::/0",
+                                "state": {
+                                    "prefix": "::/0"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "fe80::/10",
+                                "state": {
+                                    "prefix": "fe80::/10"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "ff02::/16",
+                                "state": {
+                                    "prefix": "ff02::/16"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "ff02::2/128",
+                                "state": {
+                                    "prefix": "ff02::2/128"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "ff02::1:ff00:0/104",
+                                "state": {
+                                    "prefix": "ff02::1:ff00:0/104"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "ff05::/16",
+                                "state": {
+                                    "prefix": "ff05::/16"
+                                }
+                            },
+                            {
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "NO_LABEL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "prefix": "ff12::/16",
+                                "state": {
+                                    "prefix": "ff12::/16"
+                                }
+                            }
+                        ]
+                    },
+                    "mpls": {
+                        "label-entry": [
+                            {
+                                "label": "IPV4_EXPLICIT_NULL",
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "IPV4_EXPLICIT_NULL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "state": {
+                                    "label": "IPV4_EXPLICIT_NULL"
+                                }
+                            },
+                            {
+                                "label": "ROUTER_ALERT",
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "ROUTER_ALERT",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "state": {
+                                    "label": "ROUTER_ALERT"
+                                }
+                            },
+                            {
+                                "label": "IPV6_EXPLICIT_NULL",
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "::",
+                                            "popped-mpls-label-stack": "IPV6_EXPLICIT_NULL",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "state": {
+                                    "label": "IPV6_EXPLICIT_NULL"
+                                }
+                            },
+                            {
+                                "label": "13",
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "13",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "state": {
+                                    "label": "13"
+                                }
+                            },
+                            {
+                                "label": "16022",
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "GigabitEthernet0/0/0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "10.22.33.22",
+                                            "popped-mpls-label-stack": "16022",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "state": {
+                                    "label": "16022"
+                                }
+                            },
+                            {
+                                "label": "24000",
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "GigabitEthernet0/0/0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "10.22.33.22",
+                                            "popped-mpls-label-stack": "24000",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "state": {
+                                    "label": "24000"
+                                }
+                            },
+                            {
+                                "label": "24001",
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "GigabitEthernet0/0/0/0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "10.22.33.22",
+                                            "popped-mpls-label-stack": "24001",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "state": {
+                                    "label": "24001"
+                                }
+                            },
+                            {
+                                "label": "24002",
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "Null0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "24002",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "state": {
+                                    "label": "24002"
+                                }
+                            },
+                            {
+                                "label": "24120",
+                                "next-hops": {
+                                    "next-hop": {
+                                        "index": "0",
+                                        "interface-ref": {
+                                            "state": {
+                                                "interface": "Null0",
+                                                "subinterface": "0"
+                                            }
+                                        },
+                                        "state": {
+                                            "index": "0",
+                                            "ip-address": "0.0.0.0",
+                                            "popped-mpls-label-stack": "24120",
+                                            "pushed-mpls-label-stack": "NO_LABEL",
+                                            "weight": "0"
+                                        }
+                                    }
+                                },
+                                "state": {
+                                    "label": "24120"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "interfaces": {
+                    "interface": [
+                        {
+                            "id": "GigabitEthernet0/0/0/0",
+                            "state": {
+                                "associated-address-families": [
+                                    "idx:IPV4",
+                                    "idx:IPV6"
+                                ],
+                                "id": "GigabitEthernet0/0/0/0",
+                                "interface": "GigabitEthernet0/0/0/0",
+                                "subinterface": "0"
+                            }
+                        },
+                        {
+                            "id": "GigabitEthernet0/0/0/1",
+                            "state": {
+                                "associated-address-families": [
+                                    "idx:IPV4",
+                                    "idx:IPV6"
+                                ],
+                                "id": "GigabitEthernet0/0/0/1",
+                                "interface": "GigabitEthernet0/0/0/1",
+                                "subinterface": "0"
+                            }
+                        }
+                    ]
+                },
+                "name": "default",
+                "protocols": {
+                    "protocol": [
+                        {
+                            "config": {
+                                "identifier": "idx:ISIS",
+                                "name": "CORE"
+                            },
+                            "identifier": "idx:ISIS",
+                            "isis": {
+                                "global": {
+                                    "afi-safi": {
+                                        "af": {
+                                            "afi-name": "idx:IPV4",
+                                            "config": {
+                                                "afi-name": "idx:IPV4",
+                                                "safi-name": "idx:UNICAST"
+                                            },
+                                            "multi-topology": {
+                                                "state": {
+                                                    "afi-name": "idx:IPV4",
+                                                    "enabled": "true",
+                                                    "safi-name": "idx:UNICAST"
+                                                }
+                                            },
+                                            "safi-name": "idx:UNICAST",
+                                            "state": {
+                                                "afi-name": "idx:IPV4",
+                                                "safi-name": "idx:UNICAST"
+                                            }
+                                        }
+                                    },
+                                    "config": {
+                                        "level-capability": "LEVEL_2",
+                                        "net": "49.0000.0100.0000.0033.00"
+                                    },
+                                    "graceful-restart": {
+                                        "config": {
+                                            "enabled": "false"
+                                        },
+                                        "state": {
+                                            "enabled": "false"
+                                        }
+                                    },
+                                    "lsp-bit": {
+                                        "attached-bit": {
+                                            "config": {
+                                                "suppress-bit": "false"
+                                            },
+                                            "state": {
+                                                "ignore-bit": "false",
+                                                "suppress-bit": "false"
+                                            }
+                                        },
+                                        "overload-bit": {
+                                            "state": {
+                                                "advertise-high-metric": "false",
+                                                "set-bit": "false",
+                                                "set-bit-on-boot": "false"
+                                            }
+                                        }
+                                    },
+                                    "nsr": {
+                                        "config": {
+                                            "enabled": "false"
+                                        },
+                                        "state": {
+                                            "enabled": "false"
+                                        }
+                                    },
+                                    "segment-routing": {
+                                        "config": {
+                                            "enabled": "true"
+                                        },
+                                        "state": {
+                                            "enabled": "true"
+                                        }
+                                    },
+                                    "state": {
+                                        "fast-flooding": "false",
+                                        "instance": "0",
+                                        "level-capability": "LEVEL_2",
+                                        "max-ecmp-paths": "8",
+                                        "net": "49.0000.0100.0000.0033.00"
+                                    },
+                                    "timers": {
+                                        "lsp-generation": {
+                                            "state": {
+                                                "adaptive-timer": "EXPONENTIAL",
+                                                "lsp-first-wait-interval": "50",
+                                                "lsp-max-wait-interval": "5000",
+                                                "lsp-second-wait-interval": "200"
+                                            }
+                                        },
+                                        "spf": {
+                                            "state": {
+                                                "adaptive-timer": "EXPONENTIAL",
+                                                "spf-first-interval": "50",
+                                                "spf-hold-interval": "5000",
+                                                "spf-second-interval": "200"
+                                            }
+                                        }
+                                    }
+                                },
+                                "interfaces": {
+                                    "interface": [
+                                        {
+                                            "afi-safi": {
+                                                "af": {
+                                                    "afi-name": "idx:IPV4",
+                                                    "config": {
+                                                        "afi-name": "idx:IPV4",
+                                                        "enabled": "true",
+                                                        "safi-name": "idx:UNICAST"
+                                                    },
+                                                    "safi-name": "idx:UNICAST",
+                                                    "state": {
+                                                        "afi-name": "idx:IPV4",
+                                                        "enabled": "true",
+                                                        "safi-name": "idx:UNICAST"
+                                                    }
+                                                }
+                                            },
+                                            "config": {
+                                                "enabled": "true",
+                                                "hello-padding": "STRICT",
+                                                "interface-id": "Loopback0",
+                                                "passive": "true"
+                                            },
+                                            "interface-id": "Loopback0",
+                                            "interface-ref": {
+                                                "config": {
+                                                    "interface": "Loopback0"
+                                                },
+                                                "state": {
+                                                    "interface": "Loopback0"
+                                                }
+                                            },
+                                            "levels": {
+                                                "level": [
+                                                    {
+                                                        "afi-safi": {
+                                                            "af": {
+                                                                "afi-name": "idx:IPV4",
+                                                                "safi-name": "idx:UNICAST",
+                                                                "state": {
+                                                                    "afi-name": "idx:IPV4",
+                                                                    "metric": "0",
+                                                                    "safi-name": "idx:UNICAST"
+                                                                }
+                                                            }
+                                                        },
+                                                        "level-number": "1"
+                                                    },
+                                                    {
+                                                        "afi-safi": {
+                                                            "af": {
+                                                                "afi-name": "idx:IPV4",
+                                                                "safi-name": "idx:UNICAST",
+                                                                "segment-routing": {
+                                                                    "prefix-sids": {
+                                                                        "prefix-sid": {
+                                                                            "prefix": "0.0.0.0/32",
+                                                                            "state": {
+                                                                                "prefix": "0.0.0.0/32",
+                                                                                "sid-id": "16033"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "afi-name": "idx:IPV4",
+                                                                    "metric": "0",
+                                                                    "safi-name": "idx:UNICAST"
+                                                                }
+                                                            }
+                                                        },
+                                                        "level-number": "2"
+                                                    }
+                                                ]
+                                            },
+                                            "state": {
+                                                "circuit-type": "POINT_TO_POINT",
+                                                "enabled": "true",
+                                                "hello-padding": "STRICT",
+                                                "interface-id": "Loopback0",
+                                                "passive": "true"
+                                            },
+                                            "timers": {
+                                                "state": {
+                                                    "csnp-interval": "0",
+                                                    "lsp-pacing-interval": "33"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "afi-safi": {
+                                                "af": {
+                                                    "afi-name": "idx:IPV4",
+                                                    "config": {
+                                                        "afi-name": "idx:IPV4",
+                                                        "enabled": "true",
+                                                        "safi-name": "idx:UNICAST"
+                                                    },
+                                                    "safi-name": "idx:UNICAST",
+                                                    "state": {
+                                                        "afi-name": "idx:IPV4",
+                                                        "enabled": "true",
+                                                        "safi-name": "idx:UNICAST"
+                                                    }
+                                                }
+                                            },
+                                            "circuit-counters": {
+                                                "state": {
+                                                    "adj-changes": "1",
+                                                    "auth-fails": "0",
+                                                    "id-field-len-mismatches": "0",
+                                                    "lan-dis-changes": "0",
+                                                    "max-area-address-mismatches": "0",
+                                                    "rejected-adj": "0"
+                                                }
+                                            },
+                                            "config": {
+                                                "circuit-type": "POINT_TO_POINT",
+                                                "enabled": "true",
+                                                "hello-padding": "STRICT",
+                                                "interface-id": "GigabitEthernet0/0/0/0",
+                                                "passive": "false"
+                                            },
+                                            "interface-id": "GigabitEthernet0/0/0/0",
+                                            "interface-ref": {
+                                                "config": {
+                                                    "interface": "GigabitEthernet0/0/0/0"
+                                                },
+                                                "state": {
+                                                    "interface": "GigabitEthernet0/0/0/0"
+                                                }
+                                            },
+                                            "levels": {
+                                                "level": [
+                                                    {
+                                                        "afi-safi": {
+                                                            "af": {
+                                                                "afi-name": "idx:IPV4",
+                                                                "safi-name": "idx:UNICAST",
+                                                                "state": {
+                                                                    "afi-name": "idx:IPV4",
+                                                                    "metric": "100",
+                                                                    "safi-name": "idx:UNICAST"
+                                                                }
+                                                            }
+                                                        },
+                                                        "level-number": "1"
+                                                    },
+                                                    {
+                                                        "adjacencies": {
+                                                            "adjacency": {
+                                                                "state": {
+                                                                    "adjacency-state": "UP",
+                                                                    "adjacency-type": "LEVEL_2",
+                                                                    "area-address": "49.0000",
+                                                                    "local-extended-circuit-id": "0",
+                                                                    "neighbor-circuit-type": "LEVEL_2",
+                                                                    "neighbor-extended-circuit-id": "10",
+                                                                    "neighbor-ipv4-address": "10.22.33.22",
+                                                                    "neighbor-ipv6-address": "::",
+                                                                    "neighbor-snpa": "000c.2948.e05d",
+                                                                    "nlpid": [
+                                                                        "IPV4",
+                                                                        "IPV6"
+                                                                    ],
+                                                                    "priority": "0",
+                                                                    "remaining-hold-time": "24",
+                                                                    "restart-status": "false",
+                                                                    "restart-support": "true",
+                                                                    "restart-suppress": "false",
+                                                                    "system-id": "0100.0000.0022",
+                                                                    "topology": "IPV4_UNICAST",
+                                                                    "up-time": "1525"
+                                                                },
+                                                                "system-id": "0100.0000.0022"
+                                                            }
+                                                        },
+                                                        "afi-safi": {
+                                                            "af": {
+                                                                "afi-name": "idx:IPV4",
+                                                                "safi-name": "idx:UNICAST",
+                                                                "state": {
+                                                                    "afi-name": "idx:IPV4",
+                                                                    "metric": "100",
+                                                                    "safi-name": "idx:UNICAST"
+                                                                }
+                                                            }
+                                                        },
+                                                        "level-number": "2",
+                                                        "packet-counters": {
+                                                            "cnsp": {
+                                                                "state": {
+                                                                    "processed": "1",
+                                                                    "received": "1",
+                                                                    "sent": "1"
+                                                                }
+                                                            },
+                                                            "iih": {
+                                                                "state": {
+                                                                    "processed": "177",
+                                                                    "received": "177",
+                                                                    "sent": "177"
+                                                                }
+                                                            },
+                                                            "lsp": {
+                                                                "state": {
+                                                                    "processed": "4",
+                                                                    "received": "4",
+                                                                    "sent": "3"
+                                                                }
+                                                            },
+                                                            "psnp": {
+                                                                "state": {
+                                                                    "processed": "3",
+                                                                    "received": "3",
+                                                                    "sent": "3"
+                                                                }
+                                                            }
+                                                        },
+                                                        "state": {
+                                                            "level-number": "2",
+                                                            "priority": "64"
+                                                        },
+                                                        "timers": {
+                                                            "state": {
+                                                                "hello-interval": "10",
+                                                                "hello-multiplier": "3"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            "state": {
+                                                "circuit-type": "POINT_TO_POINT",
+                                                "enabled": "true",
+                                                "hello-padding": "STRICT",
+                                                "interface-id": "GigabitEthernet0/0/0/0",
+                                                "passive": "false"
+                                            },
+                                            "timers": {
+                                                "state": {
+                                                    "csnp-interval": "0",
+                                                    "lsp-pacing-interval": "33"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "afi-safi": {
+                                                "af": {
+                                                    "afi-name": "idx:IPV4",
+                                                    "config": {
+                                                        "afi-name": "idx:IPV4",
+                                                        "enabled": "true",
+                                                        "safi-name": "idx:UNICAST"
+                                                    },
+                                                    "safi-name": "idx:UNICAST",
+                                                    "state": {
+                                                        "afi-name": "idx:IPV4",
+                                                        "enabled": "true",
+                                                        "safi-name": "idx:UNICAST"
+                                                    }
+                                                }
+                                            },
+                                            "circuit-counters": {
+                                                "state": {
+                                                    "adj-changes": "0",
+                                                    "auth-fails": "0",
+                                                    "id-field-len-mismatches": "0",
+                                                    "lan-dis-changes": "0",
+                                                    "max-area-address-mismatches": "0",
+                                                    "rejected-adj": "0"
+                                                }
+                                            },
+                                            "config": {
+                                                "circuit-type": "POINT_TO_POINT",
+                                                "enabled": "true",
+                                                "hello-padding": "STRICT",
+                                                "interface-id": "GigabitEthernet0/0/0/1",
+                                                "passive": "false"
+                                            },
+                                            "interface-id": "GigabitEthernet0/0/0/1",
+                                            "interface-ref": {
+                                                "config": {
+                                                    "interface": "GigabitEthernet0/0/0/1"
+                                                },
+                                                "state": {
+                                                    "interface": "GigabitEthernet0/0/0/1"
+                                                }
+                                            },
+                                            "levels": {
+                                                "level": [
+                                                    {
+                                                        "afi-safi": {
+                                                            "af": {
+                                                                "afi-name": "idx:IPV4",
+                                                                "safi-name": "idx:UNICAST",
+                                                                "state": {
+                                                                    "afi-name": "idx:IPV4",
+                                                                    "metric": "10",
+                                                                    "safi-name": "idx:UNICAST"
+                                                                }
+                                                            }
+                                                        },
+                                                        "level-number": "1"
+                                                    },
+                                                    {
+                                                        "afi-safi": {
+                                                            "af": {
+                                                                "afi-name": "idx:IPV4",
+                                                                "safi-name": "idx:UNICAST",
+                                                                "state": {
+                                                                    "afi-name": "idx:IPV4",
+                                                                    "metric": "10",
+                                                                    "safi-name": "idx:UNICAST"
+                                                                }
+                                                            }
+                                                        },
+                                                        "level-number": "2",
+                                                        "packet-counters": {
+                                                            "cnsp": {
+                                                                "state": {
+                                                                    "processed": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "iih": {
+                                                                "state": {
+                                                                    "processed": "0",
+                                                                    "received": "0",
+                                                                    "sent": "179"
+                                                                }
+                                                            },
+                                                            "lsp": {
+                                                                "state": {
+                                                                    "processed": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "psnp": {
+                                                                "state": {
+                                                                    "processed": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            }
+                                                        },
+                                                        "state": {
+                                                            "level-number": "2",
+                                                            "priority": "64"
+                                                        },
+                                                        "timers": {
+                                                            "state": {
+                                                                "hello-interval": "10",
+                                                                "hello-multiplier": "3"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            "state": {
+                                                "circuit-type": "POINT_TO_POINT",
+                                                "enabled": "true",
+                                                "hello-padding": "STRICT",
+                                                "interface-id": "GigabitEthernet0/0/0/1",
+                                                "passive": "false"
+                                            },
+                                            "timers": {
+                                                "state": {
+                                                    "csnp-interval": "0",
+                                                    "lsp-pacing-interval": "33"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "levels": {
+                                    "level": {
+                                        "config": {
+                                            "level-number": "2"
+                                        },
+                                        "level-number": "2",
+                                        "link-state-database": {
+                                            "lsp": [
+                                                {
+                                                    "lsp-id": "0100.0000.0022.00-00",
+                                                    "state": {
+                                                        "checksum": "39137",
+                                                        "id-length": "0",
+                                                        "is-type": "2",
+                                                        "lsp-id": "0100.0000.0022.00-00",
+                                                        "maximum-area-addresses": "0",
+                                                        "pdu-length": "126",
+                                                        "pdu-type": "LEVEL_2",
+                                                        "remaining-lifetime": "433",
+                                                        "sequence-number": "4",
+                                                        "version": "1",
+                                                        "version2": "1"
+                                                    },
+                                                    "tlvs": {
+                                                        "tlv": [
+                                                            {
+                                                                "area-address": {
+                                                                    "state": {
+                                                                        "area-address": "49.0000"
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "type": "idx:AREA_ADDRESSES"
+                                                                },
+                                                                "type": "idx:AREA_ADDRESSES"
+                                                            },
+                                                            {
+                                                                "nlpid": {
+                                                                    "state": {
+                                                                        "nlpid": "IPV4"
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "type": "idx:NLPID"
+                                                                },
+                                                                "type": "idx:NLPID"
+                                                            },
+                                                            {
+                                                                "extended-is-reachability": {
+                                                                    "neighbors": {
+                                                                        "neighbors": {
+                                                                            "state": {
+                                                                                "metric": "100",
+                                                                                "system-id": "0100.0000.0033"
+                                                                            },
+                                                                            "system-id": "0100.0000.0033"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "type": "idx:EXTENDED_IS_REACHABILITY"
+                                                                },
+                                                                "subtlvs": {
+                                                                    "subtlv": [
+                                                                        {
+                                                                            "adjacency-sids": {
+                                                                                "adjacency-sid": {
+                                                                                    "state": {
+                                                                                        "flags": [
+                                                                                            "VALUE",
+                                                                                            "LOCAL"
+                                                                                        ],
+                                                                                        "value": "116384",
+                                                                                        "weight": "0"
+                                                                                    },
+                                                                                    "value": "116384"
+                                                                                }
+                                                                            },
+                                                                            "state": {
+                                                                                "type": "idx:IS_REACHABILITY_ADJ_SID"
+                                                                            },
+                                                                            "type": "idx:IS_REACHABILITY_ADJ_SID"
+                                                                        },
+                                                                        {
+                                                                            "ipv4-neighbor-address": {
+                                                                                "state": {
+                                                                                    "ipv4-neighbor-address": "10.22.33.33"
+                                                                                }
+                                                                            },
+                                                                            "state": {
+                                                                                "type": "idx:IS_REACHABILITY_IPV4_NEIGHBOR_ADDRESS"
+                                                                            },
+                                                                            "type": "idx:IS_REACHABILITY_IPV4_NEIGHBOR_ADDRESS"
+                                                                        },
+                                                                        {
+                                                                            "ipv4-interface-address": {
+                                                                                "state": {
+                                                                                    "ipv4-interface-address": "10.22.33.22"
+                                                                                }
+                                                                            },
+                                                                            "state": {
+                                                                                "type": "idx:IS_REACHABILITY_IPV4_INTERFACE_ADDRESS"
+                                                                            },
+                                                                            "type": "idx:IS_REACHABILITY_IPV4_INTERFACE_ADDRESS"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "type": "idx:EXTENDED_IS_REACHABILITY"
+                                                            },
+                                                            {
+                                                                "router-capabilities": {
+                                                                    "router-capability": {
+                                                                        "instance-number": "1",
+                                                                        "state": {
+                                                                            "instance-number": "1",
+                                                                            "router-id": "10.0.0.22"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "type": "idx:ROUTER_CAPABILITY"
+                                                                },
+                                                                "subtlvs": {
+                                                                    "subtlv": {
+                                                                        "segment-routing-capability": {
+                                                                            "srgb-descriptors": {
+                                                                                "srgb-descriptor": {
+                                                                                    "state": {
+                                                                                        "label": "900000",
+                                                                                        "range": "65536"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            "state": {
+                                                                                "flags": "IPV4_MPLS"
+                                                                            }
+                                                                        },
+                                                                        "state": {
+                                                                            "type": "idx:ROUTER_CAPABILITY_SR_CAPABILITY"
+                                                                        },
+                                                                        "type": "idx:ROUTER_CAPABILITY_SR_CAPABILITY"
+                                                                    }
+                                                                },
+                                                                "type": "idx:ROUTER_CAPABILITY"
+                                                            },
+                                                            {
+                                                                "hostname": {
+                                                                    "state": {
+                                                                        "hostname": "EOS1"
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "type": "idx:DYNAMIC_NAME"
+                                                                },
+                                                                "type": "idx:DYNAMIC_NAME"
+                                                            },
+                                                            {
+                                                                "ipv4-interface-addresses": {
+                                                                    "state": {
+                                                                        "ipv4-interface-addresses": [
+                                                                            "10.1.22.22",
+                                                                            "10.22.33.22",
+                                                                            "10.0.0.22"
+                                                                        ]
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "type": "idx:IPV4_INTERFACE_ADDRESSES"
+                                                                },
+                                                                "type": "idx:IPV4_INTERFACE_ADDRESSES"
+                                                            },
+                                                            {
+                                                                "extended-ipv4-reachability": {
+                                                                    "prefixes": {
+                                                                        "prefix": {
+                                                                            "prefix": "10.0.0.22/32",
+                                                                            "state": {
+                                                                                "metric": "10",
+                                                                                "prefix": "10.0.0.22/32",
+                                                                                "s-bit": "true",
+                                                                                "up-down": "false"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "type": "idx:EXTENDED_IPV4_REACHABILITY"
+                                                                },
+                                                                "subtlvs": {
+                                                                    "subtlv": {
+                                                                        "prefix-sids": {
+                                                                            "prefix-sid": {
+                                                                                "state": {
+                                                                                    "algorithm": "0",
+                                                                                    "value": "22"
+                                                                                },
+                                                                                "value": "22"
+                                                                            }
+                                                                        },
+                                                                        "state": {
+                                                                            "type": "idx:IP_REACHABILITY_PREFIX_SID"
+                                                                        },
+                                                                        "type": "idx:IP_REACHABILITY_PREFIX_SID"
+                                                                    }
+                                                                },
+                                                                "type": "idx:EXTENDED_IPV4_REACHABILITY"
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "lsp-id": "0100.0000.0033.00-00",
+                                                    "state": {
+                                                        "checksum": "47668",
+                                                        "id-length": "0",
+                                                        "is-type": "2",
+                                                        "lsp-id": "0100.0000.0033.00-00",
+                                                        "maximum-area-addresses": "0",
+                                                        "pdu-length": "132",
+                                                        "pdu-type": "LEVEL_2",
+                                                        "remaining-lifetime": "464",
+                                                        "sequence-number": "6",
+                                                        "version": "1",
+                                                        "version2": "1"
+                                                    },
+                                                    "tlvs": {
+                                                        "tlv": [
+                                                            {
+                                                                "area-address": {
+                                                                    "state": {
+                                                                        "area-address": "49.0000"
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "type": "idx:AREA_ADDRESSES"
+                                                                },
+                                                                "type": "idx:AREA_ADDRESSES"
+                                                            },
+                                                            {
+                                                                "nlpid": {
+                                                                    "state": {
+                                                                        "nlpid": "IPV4"
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "type": "idx:NLPID"
+                                                                },
+                                                                "type": "idx:NLPID"
+                                                            },
+                                                            {
+                                                                "ipv4-interface-addresses": {
+                                                                    "state": {
+                                                                        "ipv4-interface-addresses": "10.0.0.33"
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "type": "idx:IPV4_INTERFACE_ADDRESSES"
+                                                                },
+                                                                "type": "idx:IPV4_INTERFACE_ADDRESSES"
+                                                            },
+                                                            {
+                                                                "extended-ipv4-reachability": {
+                                                                    "prefixes": {
+                                                                        "prefix": {
+                                                                            "prefix": "10.0.0.33/32",
+                                                                            "state": {
+                                                                                "metric": "0",
+                                                                                "prefix": "10.0.0.33/32",
+                                                                                "s-bit": "true",
+                                                                                "up-down": "false"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "type": "idx:EXTENDED_IPV4_REACHABILITY"
+                                                                },
+                                                                "subtlvs": {
+                                                                    "subtlv": [
+                                                                        {
+                                                                            "prefix-sids": {
+                                                                                "prefix-sid": {
+                                                                                    "state": {
+                                                                                        "algorithm": "0",
+                                                                                        "flags": "NODE",
+                                                                                        "value": "33"
+                                                                                    },
+                                                                                    "value": "33"
+                                                                                }
+                                                                            },
+                                                                            "state": {
+                                                                                "type": "idx:IP_REACHABILITY_PREFIX_SID"
+                                                                            },
+                                                                            "type": "idx:IP_REACHABILITY_PREFIX_SID"
+                                                                        },
+                                                                        {
+                                                                            "flags": {
+                                                                                "state": {
+                                                                                    "flags": "NODE_FLAG",
+                                                                                    "type": "IP_REACHABILITY_PREFIX_FLAGS"
+                                                                                }
+                                                                            },
+                                                                            "state": {
+                                                                                "type": "idx:IP_REACHABILITY_PREFIX_FLAGS"
+                                                                            },
+                                                                            "type": "idx:IP_REACHABILITY_PREFIX_FLAGS"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "type": "idx:EXTENDED_IPV4_REACHABILITY"
+                                                            },
+                                                            {
+                                                                "hostname": {
+                                                                    "state": {
+                                                                        "hostname": "XR1"
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "type": "idx:DYNAMIC_NAME"
+                                                                },
+                                                                "type": "idx:DYNAMIC_NAME"
+                                                            },
+                                                            {
+                                                                "router-capabilities": {
+                                                                    "router-capability": {
+                                                                        "instance-number": "1",
+                                                                        "state": {
+                                                                            "instance-number": "1",
+                                                                            "router-id": "10.0.0.33"
+                                                                        },
+                                                                        "undefined-subtlvs": {
+                                                                            "undefined-subtlv": {
+                                                                                "state": {
+                                                                                    "length": "2",
+                                                                                    "type": "23",
+                                                                                    "value": "AQo="
+                                                                                },
+                                                                                "type": "23"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "type": "idx:ROUTER_CAPABILITY"
+                                                                },
+                                                                "subtlvs": {
+                                                                    "subtlv": [
+                                                                        {
+                                                                            "segment-routing-capability": {
+                                                                                "srgb-descriptors": {
+                                                                                    "srgb-descriptor": {
+                                                                                        "state": {
+                                                                                            "label": "16000",
+                                                                                            "range": "8000"
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                "state": {
+                                                                                    "flags": "IPV4_MPLS"
+                                                                                }
+                                                                            },
+                                                                            "state": {
+                                                                                "type": "idx:ROUTER_CAPABILITY_SR_CAPABILITY"
+                                                                            },
+                                                                            "type": "idx:ROUTER_CAPABILITY_SR_CAPABILITY"
+                                                                        },
+                                                                        {
+                                                                            "segment-routing-algorithms": {
+                                                                                "segment-routing-algorithm": [
+                                                                                    {
+                                                                                        "algorithm": "SPF",
+                                                                                        "state": {
+                                                                                            "algorithm": "SPF"
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "algorithm": "STRICT_SPF",
+                                                                                        "state": {
+                                                                                            "algorithm": "STRICT_SPF"
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            "state": {
+                                                                                "type": "idx:ROUTER_CAPABILITY_SR_ALGORITHM"
+                                                                            },
+                                                                            "type": "idx:ROUTER_CAPABILITY_SR_ALGORITHM"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "type": "idx:ROUTER_CAPABILITY"
+                                                            },
+                                                            {
+                                                                "extended-is-reachability": {
+                                                                    "neighbors": {
+                                                                        "neighbors": {
+                                                                            "state": {
+                                                                                "metric": "100",
+                                                                                "system-id": "0100.0000.0022"
+                                                                            },
+                                                                            "system-id": "0100.0000.0022",
+                                                                            "undefined-subtlvs": {
+                                                                                "undefined-subtlv": {
+                                                                                    "state": {
+                                                                                        "length": "2",
+                                                                                        "type": "15",
+                                                                                        "value": "AQo="
+                                                                                    },
+                                                                                    "type": "15"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "state": {
+                                                                    "type": "idx:EXTENDED_IS_REACHABILITY"
+                                                                },
+                                                                "subtlvs": {
+                                                                    "subtlv": [
+                                                                        {
+                                                                            "ipv4-interface-address": {
+                                                                                "state": {
+                                                                                    "ipv4-interface-address": "10.22.33.33"
+                                                                                }
+                                                                            },
+                                                                            "state": {
+                                                                                "type": "idx:IS_REACHABILITY_IPV4_INTERFACE_ADDRESS"
+                                                                            },
+                                                                            "type": "idx:IS_REACHABILITY_IPV4_INTERFACE_ADDRESS"
+                                                                        },
+                                                                        {
+                                                                            "ipv4-neighbor-address": {
+                                                                                "state": {
+                                                                                    "ipv4-neighbor-address": "10.22.33.22"
+                                                                                }
+                                                                            },
+                                                                            "state": {
+                                                                                "type": "idx:IS_REACHABILITY_IPV4_NEIGHBOR_ADDRESS"
+                                                                            },
+                                                                            "type": "idx:IS_REACHABILITY_IPV4_NEIGHBOR_ADDRESS"
+                                                                        },
+                                                                        {
+                                                                            "adjacency-sids": {
+                                                                                "adjacency-sid": {
+                                                                                    "state": {
+                                                                                        "flags": [
+                                                                                            "VALUE",
+                                                                                            "LOCAL"
+                                                                                        ],
+                                                                                        "value": "24001",
+                                                                                        "weight": "0"
+                                                                                    },
+                                                                                    "value": "24001"
+                                                                                }
+                                                                            },
+                                                                            "state": {
+                                                                                "type": "idx:IS_REACHABILITY_ADJ_SID"
+                                                                            },
+                                                                            "type": "idx:IS_REACHABILITY_ADJ_SID"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "type": "idx:EXTENDED_IS_REACHABILITY"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "route-preference": {
+                                            "state": {
+                                                "external-route-preference": "115",
+                                                "internal-route-preference": "115"
+                                            }
+                                        },
+                                        "state": {
+                                            "level-number": "2",
+                                            "metric-style": "WIDE_METRIC"
+                                        },
+                                        "system-level-counters": {
+                                            "state": {
+                                                "corrupted-lsps": "0",
+                                                "database-overloads": "2",
+                                                "exceed-max-seq-nums": "0",
+                                                "id-len-mismatch": "0",
+                                                "lsp-errors": "0",
+                                                "max-area-address-mismatches": "0",
+                                                "own-lsp-purges": "0",
+                                                "seq-num-skips": "0",
+                                                "spf-runs": "10"
+                                            }
+                                        },
+                                        "traffic-engineering": {
+                                            "state": {
+                                                "enabled": "false"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "name": "CORE",
+                            "state": {
+                                "identifier": "idx:ISIS",
+                                "name": "CORE"
+                            }
+                        },
+                        {
+                            "bgp": {
+                                "global": {
+                                    "afi-safis": {
+                                        "afi-safi": {
+                                            "afi-safi-name": "idx:L2VPN_EVPN",
+                                            "config": {
+                                                "afi-safi-name": "idx:L2VPN_EVPN",
+                                                "enabled": "true"
+                                            },
+                                            "route-selection-options": {
+                                                "state": {
+                                                    "always-compare-med": "false",
+                                                    "enable-aigp": "true",
+                                                    "external-compare-router-id": "false",
+                                                    "ignore-as-path-length": "false",
+                                                    "ignore-next-hop-igp-metric": "false"
+                                                }
+                                            },
+                                            "state": {
+                                                "afi-safi-name": "idx:L2VPN_EVPN",
+                                                "enabled": "true",
+                                                "total-paths": "1",
+                                                "total-prefixes": "1"
+                                            },
+                                            "use-multiple-paths": {
+                                                "ebgp": {
+                                                    "state": {
+                                                        "maximum-paths": "1"
+                                                    }
+                                                },
+                                                "ibgp": {
+                                                    "state": {
+                                                        "maximum-paths": "1"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "confederation": {
+                                        "state": {
+                                            "enabled": "false"
+                                        }
+                                    },
+                                    "config": {
+                                        "as": "65000",
+                                        "router-id": "10.0.0.33"
+                                    },
+                                    "graceful-restart": {
+                                        "state": {
+                                            "enabled": "false",
+                                            "restart-time": "120",
+                                            "stale-routes-time": "360"
+                                        }
+                                    },
+                                    "route-selection-options": {
+                                        "state": {
+                                            "always-compare-med": "false",
+                                            "enable-aigp": "true",
+                                            "external-compare-router-id": "false",
+                                            "ignore-as-path-length": "false"
+                                        }
+                                    },
+                                    "state": {
+                                        "as": "65000",
+                                        "router-id": "10.0.0.33",
+                                        "total-paths": "1",
+                                        "total-prefixes": "1"
+                                    }
+                                },
+                                "neighbors": {
+                                    "neighbor": [
+                                        {
+                                            "add-paths": {
+                                                "state": {
+                                                    "receive": "false"
+                                                }
+                                            },
+                                            "afi-safis": {
+                                                "afi-safi": {
+                                                    "afi-safi-name": "idx:L2VPN_EVPN",
+                                                    "apply-policy": {
+                                                        "state": {
+                                                            "default-export-policy": "REJECT_ROUTE",
+                                                            "default-import-policy": "REJECT_ROUTE"
+                                                        }
+                                                    },
+                                                    "graceful-restart": {
+                                                        "state": {
+                                                            "enabled": "false"
+                                                        }
+                                                    },
+                                                    "l2vpn-evpn": {
+                                                        "prefix-limit": {
+                                                            "state": {
+                                                                "max-prefixes": "2097152",
+                                                                "prevent-teardown": "false",
+                                                                "restart-timer": "0",
+                                                                "shutdown-threshold-pct": "75"
+                                                            }
+                                                        }
+                                                    },
+                                                    "state": {
+                                                        "active": "true",
+                                                        "afi-safi-name": "idx:L2VPN_EVPN",
+                                                        "enabled": "true",
+                                                        "prefixes": {
+                                                            "installed": "1",
+                                                            "received": "1",
+                                                            "sent": "1"
+                                                        }
+                                                    },
+                                                    "use-multiple-paths": {
+                                                        "state": {
+                                                            "enabled": "false"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "config": {
+                                                "neighbor-address": "10.0.0.22",
+                                                "peer-group": "NG_iBGP_PEER"
+                                            },
+                                            "ebgp-multihop": {
+                                                "state": {
+                                                    "multihop-ttl": "1"
+                                                }
+                                            },
+                                            "graceful-restart": {
+                                                "state": {
+                                                    "enabled": "false",
+                                                    "restart-time": "120",
+                                                    "stale-routes-time": "360"
+                                                }
+                                            },
+                                            "neighbor-address": "10.0.0.22",
+                                            "state": {
+                                                "dynamically-configured": "false",
+                                                "enabled": "true",
+                                                "last-established": "1545384447",
+                                                "messages": {
+                                                    "received": {
+                                                        "NOTIFICATION": "0",
+                                                        "UPDATE": "2"
+                                                    },
+                                                    "sent": {
+                                                        "NOTIFICATION": "0",
+                                                        "UPDATE": "2"
+                                                    }
+                                                },
+                                                "neighbor-address": "10.0.0.22",
+                                                "peer-as": "65000",
+                                                "peer-group": "NG_iBGP_PEER",
+                                                "peer-type": "INTERNAL",
+                                                "queues": {
+                                                    "input": "0",
+                                                    "output": "0"
+                                                },
+                                                "session-state": "ESTABLISHED",
+                                                "supported-capabilities": [
+                                                    "GRACEFUL_RESTART",
+                                                    "ROUTE_REFRESH",
+                                                    "ASN32",
+                                                    "MPBGP"
+                                                ]
+                                            },
+                                            "timers": {
+                                                "state": {
+                                                    "connect-retry": "30",
+                                                    "hold-time": "180",
+                                                    "keepalive-interval": "60",
+                                                    "minimum-advertisement-interval": "0.000",
+                                                    "negotiated-hold-time": "180"
+                                                }
+                                            },
+                                            "transport": {
+                                                "state": {
+                                                    "local-port": "179",
+                                                    "passive-mode": "false",
+                                                    "remote-address": "10.0.0.22",
+                                                    "remote-port": "55130",
+                                                    "tcp-mss": "1240"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "add-paths": {
+                                                "state": {
+                                                    "receive": "false"
+                                                }
+                                            },
+                                            "afi-safis": {
+                                                "afi-safi": {
+                                                    "afi-safi-name": "idx:L2VPN_EVPN",
+                                                    "apply-policy": {
+                                                        "state": {
+                                                            "default-export-policy": "REJECT_ROUTE",
+                                                            "default-import-policy": "REJECT_ROUTE"
+                                                        }
+                                                    },
+                                                    "graceful-restart": {
+                                                        "state": {
+                                                            "enabled": "false"
+                                                        }
+                                                    },
+                                                    "l2vpn-evpn": {
+                                                        "prefix-limit": {
+                                                            "state": {
+                                                                "max-prefixes": "2097152",
+                                                                "prevent-teardown": "false",
+                                                                "restart-timer": "0",
+                                                                "shutdown-threshold-pct": "75"
+                                                            }
+                                                        }
+                                                    },
+                                                    "state": {
+                                                        "active": "false",
+                                                        "afi-safi-name": "idx:L2VPN_EVPN",
+                                                        "enabled": "true",
+                                                        "prefixes": {
+                                                            "installed": "0",
+                                                            "received": "0",
+                                                            "sent": "0"
+                                                        }
+                                                    },
+                                                    "use-multiple-paths": {
+                                                        "state": {
+                                                            "enabled": "false"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "config": {
+                                                "neighbor-address": "10.0.0.44",
+                                                "peer-group": "NG_iBGP_PEER"
+                                            },
+                                            "ebgp-multihop": {
+                                                "state": {
+                                                    "multihop-ttl": "1"
+                                                }
+                                            },
+                                            "graceful-restart": {
+                                                "state": {
+                                                    "enabled": "false",
+                                                    "restart-time": "120",
+                                                    "stale-routes-time": "360"
+                                                }
+                                            },
+                                            "neighbor-address": "10.0.0.44",
+                                            "state": {
+                                                "dynamically-configured": "false",
+                                                "enabled": "true",
+                                                "last-established": "0",
+                                                "messages": {
+                                                    "received": {
+                                                        "NOTIFICATION": "0",
+                                                        "UPDATE": "0"
+                                                    },
+                                                    "sent": {
+                                                        "NOTIFICATION": "0",
+                                                        "UPDATE": "0"
+                                                    }
+                                                },
+                                                "neighbor-address": "10.0.0.44",
+                                                "peer-as": "65000",
+                                                "peer-group": "NG_iBGP_PEER",
+                                                "peer-type": "INTERNAL",
+                                                "queues": {
+                                                    "input": "0",
+                                                    "output": "0"
+                                                },
+                                                "session-state": "IDLE"
+                                            },
+                                            "timers": {
+                                                "state": {
+                                                    "connect-retry": "30",
+                                                    "hold-time": "180",
+                                                    "keepalive-interval": "60",
+                                                    "minimum-advertisement-interval": "0.000",
+                                                    "negotiated-hold-time": "180"
+                                                }
+                                            },
+                                            "transport": {
+                                                "state": {
+                                                    "passive-mode": "false",
+                                                    "remote-address": "10.0.0.44"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "peer-groups": {
+                                    "peer-group": [
+                                        {
+                                            "afi-safis": {
+                                                "afi-safi": {
+                                                    "afi-safi-name": "idx:L2VPN_EVPN",
+                                                    "config": {
+                                                        "afi-safi-name": "idx:L2VPN_EVPN",
+                                                        "enabled": "true"
+                                                    },
+                                                    "state": {
+                                                        "afi-safi-name": "idx:L2VPN_EVPN",
+                                                        "enabled": "true"
+                                                    }
+                                                }
+                                            },
+                                            "config": {
+                                                "peer-group-name": "NG_iBGP_PEER"
+                                            },
+                                            "graceful-restart": {
+                                                "state": {
+                                                    "enabled": "true"
+                                                }
+                                            },
+                                            "peer-group-name": "NG_iBGP_PEER",
+                                            "state": {
+                                                "peer-as": "65000",
+                                                "peer-group-name": "NG_iBGP_PEER"
+                                            }
+                                        },
+                                        {
+                                            "peer-group-name": "AG_iBGP_PEER_EVPN"
+                                        },
+                                        {
+                                            "peer-group-name": "SG_iBGP_PEER"
+                                        }
+                                    ]
+                                }
+                            },
+                            "config": {
+                                "identifier": "idx:BGP",
+                                "name": "default"
+                            },
+                            "identifier": "idx:BGP",
+                            "name": "default",
+                            "state": {
+                                "identifier": "idx:BGP",
+                                "name": "default"
+                            }
+                        }
+                    ]
+                },
+                "state": {
+                    "enabled": "true",
+                    "enabled-address-families": [
+                        "idx:IPV4",
+                        "idx:IPV6"
+                    ],
+                    "name": "default",
+                    "type": "idx:DEFAULT_INSTANCE"
+                }
+            }
+        ]
+    }
+}

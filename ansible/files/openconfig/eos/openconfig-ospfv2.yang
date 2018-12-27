@@ -1,0 +1,54 @@
+module "openconfig-ospfv2" {
+	yang-version "1";
+	namespace "http://openconfig.net/yang/ospfv2";
+	prefix "oc-ospfv2";
+	import "openconfig-extensions" {
+		prefix "oc-ext";
+	}
+	include "openconfig-ospfv2-global";
+	include "openconfig-ospfv2-area";
+	include "openconfig-ospfv2-area-interface";
+	include "openconfig-ospfv2-lsdb";
+	include "openconfig-ospfv2-common";
+	organization "OpenConfig working group";
+	contact "OpenConfig working group
+	         www.openconfig.net";
+	description "An OpenConfig model for Open Shortest Path First (OSPF)
+	             version 2";
+	oc-ext:openconfig-version "0.1.1";
+	revision "2017-08-24" {
+		description "Minor formatting fixes.";
+		reference "0.1.1";
+	}
+	revision "2017-02-28" {
+		description "Initial public release of OSPFv2";
+		reference "0.1.0";
+	}
+	revision "2016-06-24" {
+		description "Initial revision";
+		reference "0.0.1";
+	}
+	grouping "ospfv2-top" {
+		description "Top-level OSPF configuration and operational state";
+		container "ospfv2" {
+			description "Top-level configuration and operational state for
+			             Open Shortest Path First (OSPF) v2";
+			uses "ospfv2-global-structural";
+			container "areas" {
+				description "Configuration and operational state relating to an
+				             OSPFv2 area.";
+				list "area" {
+					key "identifier";
+					description "The OSPFv2 areas within which the local system exists";
+					leaf "identifier" {
+						type "leafref" {
+							path "../config/identifier";
+						}
+						description "A reference to the identifier for the area.";
+					}
+					uses "ospfv2-area-structure";
+				}
+			}
+		}
+	}
+}

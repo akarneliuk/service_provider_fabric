@@ -1,3 +1,44 @@
 ---
-hostname: SR1
+interfaces:
+    - name: 1/1/c1/1
+      enabled: true
+      ipv4:
+          address: 10.1.44.44
+          prefix: 24
+      ipv6:
+          address: fc00::10:1:44:44
+          prefix: 112
+    - name: system
+      enabled: true
+      ipv4:
+          address: 10.0.0.44
+          prefix: 32
+      ipv6:
+          address: fc00::10:0:0:44
+          prefix: 128
+routing:
+    - id: ISIS
+      tag: 0
+      enabled: true
+      af:
+          - afi: IPV4
+            safi: UNICAST
+          - afi: IPV6
+            safi: UNICAST
+      area_id: "49.0000"
+      system_id: "0100.0000.0044"
+      is_type: LEVEL_2
+      advertise: passive
+      interfaces:
+          - name: system
+            passive: true
+            segment_routing:
+                id_type: index
+                id_value: 44
+          - name: 1/1/c1/1
+            passive: false
+            type: POINT_TO_POINT
+mpls:
+    - protocol: isis-sr
+      enabled: true
 ...

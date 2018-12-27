@@ -1,3 +1,66 @@
 ---
-hostname: EOS2
+interfaces:
+    - name: Ethernet1
+      enabled: true
+      ipv4:
+          address: 10.1.22.1
+          prefix: 24
+      ipv6:
+          address: fc00::10:1:22:1
+          prefix: 112
+    - name: Ethernet2
+      enabled: true
+      ipv4:
+          address: 10.1.33.1
+          prefix: 24
+      ipv6:
+          address: fc00::10:1:33:1
+          prefix: 112
+    - name: Ethernet3
+      enabled: true
+      ipv4:
+          address: 10.1.44.1
+          prefix: 24
+      ipv6:
+          address: fc00::10:1:44:1
+          prefix: 112
+    - name: Loopback0
+      enabled: true
+      ipv4:
+          address: 10.0.0.1
+          prefix: 32
+      ipv6:
+          address: fc00::10:0:0:1
+          prefix: 128
+routing:
+    - id: ISIS
+      tag: CORE
+      enabled: true
+      af:
+          - afi: IPV4
+            safi: UNICAST
+          - afi: IPV6
+            safi: UNICAST
+      area_id: "49.0000"
+      system_id: "0100.0000.0001"
+      is_type: LEVEL_2
+      advertise: passive
+      interfaces:
+          - name: Loopback0
+            passive: true
+            segment_routing:
+                id_type: index
+                id_value: 1
+          - name: Ethernet1
+            passive: false
+            type: POINT_TO_POINT
+          - name: Ethernet2
+            passive: false
+            type: POINT_TO_POINT
+          - name: Ethernet3
+            passive: false
+            type: POINT_TO_POINT
+mpls:
+    - protocol: isis-sr
+      enabled: true
 ...
