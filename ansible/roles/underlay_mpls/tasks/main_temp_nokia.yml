@@ -1,0 +1,37 @@
+---
+- name: IMPORTING VARIABLES
+  include_vars:
+      file: "{{ inventory_hostname }}_underlay.yml"
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CREATING TEMPORARY OUTPUT FOLDER
+  file:
+      dest: "{{ temp_folder }}"
+      state: directory
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: TEMPORARY NOKIA UNDERLAY MPLS // TEMPLATING CONFIG
+  copy:
+      content: "{{ lookup('template', 'nokia-temp.j2') }}"
+      dest: "{{ temp_folder }}/{{ inventory_hostname }}_temp_nokia_underlay_mpls.xml"
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: TEMPORARY NOKIA UNDERLAY MPLS // PUSHING CONFIG
+  local_action:
+      module: sros_config
+      src: "{{ temp_folder }}/{{ inventory_hostname }}_temp_nokia_underlay_mpls.xml"
+      provider:
+          host: "{{ inventory_hostname }}"
+          username: "{{ ansible_user }}"
+          password: "{{ ansible_pass }}"
+  tags:
+      - underlay
+      - underlay_mpls
+...
+

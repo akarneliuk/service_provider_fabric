@@ -41,3 +41,4 @@ Version `0.3`
 2) Initial configuration files are updated to anticipate minimal requirements for automation.
 3) Underlay topology file `topology/sp_underlay.txt` is updated with link prefixes for IPv4 and IPv6.
 4) Currently only underlay IGP (ISIS) and MPLS data plane (Segment Routing) is automated 
+5) New file with OOB topology is assed in `topology/oob_management.txt`

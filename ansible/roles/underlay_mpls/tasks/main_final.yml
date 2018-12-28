@@ -1,0 +1,25 @@
+---
+- name: IMPORTING VARIABLES
+  include_vars:
+      file: "{{ inventory_hostname }}_underlay.yml"
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: CREATING TEMPORARY OUTPUT FOLDER
+  file:
+      dest: "{{ temp_folder }}"
+      state: directory
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: STARING CONFIGURATION LOOP
+  include_tasks: configuration_loop.yml
+  loop:
+      - openconfig-interfaces
+      - openconfig-network-instance
+  tags:
+      - underlay
+      - underlay_mpls
+...
