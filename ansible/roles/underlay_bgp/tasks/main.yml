@@ -1,17 +1,17 @@
 ---
 - name: ORIGINAL MAIN.YML
   include_tasks: main_final.yml
-  when: (ansible_network_os == 'nexus' or ansible_network_os == 'iosxr')
+  when: ansible_network_os == 'iosxr'
   tags:
       - underlay
-      - underlay_mpls
+      - underlay_bgp
 
 - name: TEMPORARY MAIN.YML
   include_tasks: main_temp.yml
-  when: ansible_network_os == 'sros'
+  when: (ansible_network_os == 'sros' or ansible_network_os == 'nexus')
   tags:
       - underlay
-      - underlay_mpls
+      - underlay_bgp
 
 - name: DELETING TEMPORARY FILES
   file:
@@ -19,5 +19,5 @@
       state: absent
   tags:
       - underlay
-      - underlay_mpls
+      - underlay_bgp
 ...

@@ -1,0 +1,29 @@
+{% for routing_protocol in routing %}
+{% if routing_protocol.id == 'BGP' %}
+<nc:config xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">
+  <instance>
+   <instance-name>default</instance-name>
+   <instance-as>
+    <as>0</as>
+    <four-byte-as>
+     <as>{{ routing_protocol.asn }}</as>
+     <default-vrf>
+      <bgp-entity>
+       <neighbor-groups>
+{% for peer_group in routing_protocol.peer_groups %}
+        <neighbor-group>
+         <neighbor-group-name>{{ peer_group.id }}</neighbor-group-name>
+         <update-source-interface>Loopback0</update-source-interface>
+        </neighbor-group>
+{% endfor %}
+       </neighbor-groups>
+      </bgp-entity>
+     </default-vrf>
+    </four-byte-as>
+   </instance-as>
+  </instance>
+ </bgp>
+</nc:config>
+{% endif %}
+{% endfor %}

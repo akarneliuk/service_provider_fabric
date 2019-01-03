@@ -1,0 +1,125 @@
+{
+    "openconfig-network-instance:network-instances": {
+        "network-instance": [
+            {
+                "name": "{% if ansible_network_os == 'sros' %}Base{% else %}default{% endif %}",
+{% if ansible_network_os != 'iosxr' %}{# 002: 'nexus' and 'sros' relevant, hence excluded for 'iosxr'#}
+                "config": {
+{% if ansible_network_os == 'nexus' %}{# 003: 'nexus' relevant, enabling 'ip routing' and 'ipv6 unicast routing' #}
+                    "enabled-address-families": [ "IPV4", "IPV6" ],
+{% endif %}{# 003: 'nexus' relevant, enabling 'ip routing' and 'ipv6 unicast routing' #}
+{% if ansible_network_os == 'sros' %}{# 004: 'sros' relevant, enabling 'router-id' for whole routing instance #}
+                    "router-id": "{% for iface in interfaces %}{% if 'system' in iface.name %}{{ iface.ipv4.address }}{% endif %}{% endfor %}",
+{% endif %}{# 004: 'sros' relevant, enabling 'router-id' for whole routing instance #}
+                    "name": "{% if ansible_network_os == 'sros' %}Base{% else %}default{% endif %}",
+                    "type": "DEFAULT_INSTANCE"
+                },
+{% endif %}{# 002: 'nexus' and 'sros' relevant, hence excluded for 'iosxr'#}
+                "protocols": {
+                    "protocol": [
+{% for routing_protocol in routing %}
+{% if routing_protocol.id == 'BGP' %}
+                        {
+                            "identifier": "{{ routing_protocol.id }}",
+                            "name": "{% if ansible_network_os == 'nexus' %}BGP{% elif ansible_network_os == 'iosxr' %}default{% endif %}",
+                            "config": {
+{% if ansible_network_os != 'iosxr' %}{# 005 'nexus' and 'sros' relevant, 'iosxr' doesn't have this field #}
+                                "enabled": {% if routing_protocol.enabled %}true{% else %}false{% endif %},
+{% endif %}{# 005 'nexus' and 'sros' relevant, 'iosxr' doesn't have this field #}
+                                "identifier": "{{ routing_protocol.id }}",
+                                "name": "{% if ansible_network_os == 'nexus' %}BGP{% elif ansible_network_os == 'iosxr' %}default{% endif %}"
+                            },
+                            "bgp": {
+                                "global": {
+                                    "config": {
+                                        "as": {{ routing_protocol.asn }},
+                                        "router-id": "{% for iface in interfaces %}{% if iface.name == 'Loopback0' or iface.name == 'system' %}{{ iface.ipv4.address }}{% endif %}{% endfor %}"
+                                    },
+                                    "afi-safis": {
+                                        "afi-safi": [
+{% for afi_safi in routing_protocol.af %}
+{% if loop.index > 1 %},{% endif %}
+                                            {
+                                                "afi-safi-name": "{{ afi_safi.afi }}_{{ afi_safi.safi }}",
+                                                "config": {
+                                                    "afi-safi-name": "{{ afi_safi.afi }}_{{ afi_safi.safi }}"
+{% if ansible_network_os == 'iosxr' %}
+                                                    ,"enabled": true
+{% endif %}
+                                                }
+                                            }
+{% endfor %}
+                                        ]
+                                    }
+{% if ansible_network_os != 'iosxr' %}{# 008: 'nexus' relevant, not existing in Cisco IOS XR context #}
+                                    ,
+                                    "route-selection-options": {
+                                        "config": {
+                                            "always-compare-med": false,
+                                            "enable-aigp": true,
+                                            "external-compare-router-id": false,
+                                            "ignore-as-path-length": false,
+                                            "ignore-next-hop-igp-metric": false
+                                        }
+                                    }
+{% endif %}{# 008: 'nexus' relevant, not existing in Cisco IOS XR context #}
+                                }
+{% if ansible_network_os == 'iosxr' %}{# 009: 'iosxr' relevant, as OC for EVPN and L3VPN is applicavle only for Cisco IOS XR so far #}
+                                ,
+                                "peer-groups": {
+                                    "peer-group": [
+{% for peer_group in routing_protocol.peer_groups %}
+{% if loop.index > 1 %},{% endif %}
+                                        {
+                                            "peer-group-name": "{{ peer_group.id }}",
+                                            "config": {
+                                                "peer-group-name": "{{ peer_group.id }}",
+                                                "peer-as": {{ routing_protocol.asn }}
+                                            },
+                                            "afi-safis": {
+                                                "afi-safi": [
+{% for afi_safi in routing_protocol.af %}
+{% if loop.index > 1 %},{% endif %}
+                                                    {
+                                                        "afi-safi-name": "{{ afi_safi.afi }}_{{ afi_safi.safi }}",
+                                                        "config": {
+                                                            "afi-safi-name": "{{ afi_safi.afi }}_{{ afi_safi.safi }}"
+{% if ansible_network_os == 'iosxr' %}
+                                                            ,"enabled": true
+{% endif %}
+                                                        }
+                                                    }
+{% endfor %}
+
+                                                ]
+                                            }
+                                        }
+{% endfor %}
+                                    ]
+                                }
+                                ,
+                                "neighbors": {
+                                    "neighbor": [
+{% for bgp_neighbor in routing_protocol.neighbors %}
+{% if loop.index > 1%},{% endif %}
+                                        {
+                                            "neighbor-address": "{{ bgp_neighbor.id }}",
+                                            "config": {
+                                                "neighbor-address": "{{ bgp_neighbor.id }}",
+                                                "peer-group": "{{ bgp_neighbor.peer_group }}"
+                                            }
+                                        }
+{% endfor %}                             
+                                    ]
+                                }
+{% endif %}{# 009: 'iosxr' relevant, as OC for EVPN and L3VPN is applicavle only for Cisco IOS XR so far #}
+                            }
+                        }
+{% endif %}
+{% endfor %}
+                    ]
+                }
+            }
+        ]
+    }
+}

@@ -1,5 +1,5 @@
+    /edit-config global
 {% for iface in interfaces %}
-    /configure router "Base" isis 0 level 2 wide-metrics-only true
 {% if 'system' in iface.name %}
     /configure router "Base" router-id {{ iface.ipv4.address }}
 {% else %}
@@ -7,6 +7,16 @@
     /configure port {{ iface.name }} ethernet mode network
     /configure port {{ iface.name }} ethernet encap-type dot1q
     /configure port {{ iface.name }} ethernet single-fiber true
+    /configure port {{ iface.name }} ethernet lldp dest-mac nearest-bridge notification true
+    /configure port {{ iface.name }} ethernet lldp dest-mac nearest-bridge port-id-subtype tx-if-name
+    /configure port {{ iface.name }} ethernet lldp dest-mac nearest-bridge receive true
+    /configure port {{ iface.name }} ethernet lldp dest-mac nearest-bridge transmit true
+    /configure port {{ iface.name }} ethernet lldp dest-mac nearest-bridge tx-tlvs port-desc true
+    /configure port {{ iface.name }} ethernet lldp dest-mac nearest-bridge tx-tlvs sys-name true
+    /configure port {{ iface.name }} ethernet lldp dest-mac nearest-bridge tx-tlvs sys-desc true
+    /configure port {{ iface.name }} ethernet lldp dest-mac nearest-bridge tx-tlvs sys-cap true
+    /configure port {{ iface.name }} ethernet lldp dest-mac nearest-bridge tx-mgmt-address system admin-state enable
+    /configure port {{ iface.name }} ethernet lldp dest-mac nearest-bridge tx-mgmt-address system-ipv6 admin-state enable
     /configure router "Base" interface "noc_{{ iface.name }}" port {{ iface.name }}:0
 {% endif %}
 {% if iface.ipv4 is defined %}{# 001: configuration of IPv4 addresses #}
@@ -14,8 +24,7 @@
     /configure router "Base" interface "{% if 'system' in iface.name %}{{ iface.name }}{% else %}noc_{{ iface.name }}{% endif %}" ipv4 primary prefix-length {{ iface.ipv4.prefix }}
 {% endif %}{# 001: configuration of IPv4 addresses #}
 {% if iface.ipv6 is defined %}{# 002: configuration of IPv6 addresses #}
-    /configure router "Base" interface "{% if 'system' in iface.name %}{{ iface.name }}{% else %}noc_{{ iface.name }}{% endif %}" ipv6 primary address {{ iface.ipv6.address }}
-    /configure router "Base" interface "{% if 'system' in iface.name %}{{ iface.name }}{% else %}noc_{{ iface.name }}{% endif %}" ipv6 primary prefix-length {{ iface.ipv6.prefix }}
+    /configure router "Base" interface "{% if 'system' in iface.name %}{{ iface.name }}{% else %}noc_{{ iface.name }}{% endif %}" ipv6 address {{ iface.ipv6.address }} prefix-length {{ iface.ipv6.prefix }}
 {% endif %}{# 002: configuration of IPv6 addresses #}
 {% endfor %}
 {% if platform_defaults.mpls_label_ranges is defined %}{# 003: in case Segment Routing presents configure labels #}
@@ -38,17 +47,28 @@
     /configure router "Base" isis {{ routing_protocol.tag }} level 1 wide-metrics-only true
 {% endif %}{# 006: limiting level cabaility if needed #}
     /configure router "Base" isis {{ routing_protocol.tag }} area-address [{{ routing_protocol.area_id }}]
+{% for afi_safi in routing_protocol.af %}
+{% if afi_safi.afi == 'IPV6' %}{# 008: enabling IPV6 multi-topology #}
+    /configure router "Base" isis {{ routing_protocol.tag }} multi-topology ipv6-unicast true
+    /configure router "Base" isis {{ routing_protocol.tag }} ipv6-routing mt
+{% endif %}{# 008: enabling IPV6 multi-topology #}
+{% endfor %}
 {% if mpls is defined %}{# 007: enabling segment routing #}
     /configure router "Base" isis {{ routing_protocol.tag }} segment-routing admin-state enable
     /configure router "Base" isis {{ routing_protocol.tag }} segment-routing tunnel-table-pref 8
     /configure router "Base" isis {{ routing_protocol.tag }} segment-routing prefix-sid-range global
 {% for r_iface in routing_protocol.interfaces %}
-    /configure router "Base" isis {{ routing_protocol.tag }} interface "{% if 'system' in r_iface.name %}system{% else %}noc_{{ r_iface.name }}{% endif %}" passive {% r_iface.passive %}true{% else %}false{% endif %}
+    /configure router "Base" isis {{ routing_protocol.tag }} interface "{% if 'system' in r_iface.name %}system{% else %}noc_{{ r_iface.name }}{% endif %}" passive {% if r_iface.passive %}true{% else %}false{% endif %}
+
 {% if r_iface.type is defined %}
     /configure router "Base" isis {{ routing_protocol.tag }} interface "{% if 'system' in r_iface.name %}system{% else %}noc_{{ r_iface.name }}{% endif %}" interface-type point-to-point
 {% endif %}
-    /configure router "Base" isis {{ routing_protocol.tag }} interface "{% if 'system' in r_iface.name %}system{% else %}noc_{{ r_iface.name }}{% endif %}" ipv4-node-sid {{ r_iface.segment_routing.id_type }} {{ r_iface.segment_routing.id_index }}
+{% if r_iface.segment_routing is defined %}
+    /configure router "Base" isis {{ routing_protocol.tag }} interface "{% if 'system' in r_iface.name %}system{% else %}noc_{{ r_iface.name }}{% endif %}" ipv4-node-sid {{ r_iface.segment_routing.id_type }} {{ r_iface.segment_routing.id_value }}
+{% endif %}
 {% endfor %}
 {% endif %}{# 007: enabling segment routing #}
 {% endif %}{# 005: configuration of ISIS routing protocol #}
 {% endfor %}
+    /commit
+    /quit-config

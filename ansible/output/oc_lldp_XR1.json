@@ -1,0 +1,12 @@
+{
+    "lldp": {
+        "config": {
+            "enabled": "false"
+        },
+        "state": {
+            "chassis-id": "0279.d879.a406",
+            "chassis-id-type": "idx:MAC_ADDRESS",
+            "system-name": "XR1"
+        }
+    }
+}

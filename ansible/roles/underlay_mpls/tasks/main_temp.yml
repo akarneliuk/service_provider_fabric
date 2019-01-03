@@ -14,24 +14,25 @@
       - underlay
       - underlay_mpls
 
-- name: TEMPORARY NOKIA UNDERLAY MPLS // TEMPLATING CONFIG
+- name: TEMPORARY UNDERLAY MPLS // TEMPLATING CONFIG
   copy:
-      content: "{{ lookup('template', 'nokia-temp.j2') }}"
-      dest: "{{ temp_folder }}/{{ inventory_hostname }}_temp_nokia_underlay_mpls.xml"
+      content: "{{ lookup('template', '{{ ansible_network_os }}-temp.j2') }}"
+      dest: "{{ temp_folder }}/{{ inventory_hostname }}_temp_underlay_mpls.xml"
   tags:
       - underlay
-      - underlay_mpls
+      - underlay_bgp
 
-- name: TEMPORARY NOKIA UNDERLAY MPLS // PUSHING CONFIG
+- name: TEMPORARY UNDERLAY MPLS // PUSHING CONFIG
   local_action:
-      module: sros_config
-      src: "{{ temp_folder }}/{{ inventory_hostname }}_temp_nokia_underlay_mpls.xml"
+      module: "sros_config"
+      save: true
+      src: "{{ temp_folder }}/{{ inventory_hostname }}_temp_underlay_mpls.xml"
       provider:
           host: "{{ inventory_hostname }}"
           username: "{{ ansible_user }}"
           password: "{{ ansible_pass }}"
+  when: ansible_network_os == 'sros'
   tags:
       - underlay
-      - underlay_mpls
+      - underlay_bgp
 ...
-

@@ -1,0 +1,125 @@
+{
+    "lldp": {
+        "config": {
+            "chassis-id": "00:0c:29:48:e0:5d",
+            "chassis-id-type": "MAC_ADDRESS",
+            "enabled": "true",
+            "hello-timer": "30",
+            "management-address": {
+                "interface": "",
+                "network-instance": "default",
+                "transmit-mode": "BEST"
+            },
+            "system-description": "Arista Networks EOS version 4.21.1.1F running on an Arista Networks vEOS",
+            "system-name": "EOS1"
+        },
+        "interfaces": {
+            "interface": [
+                {
+                    "config": {
+                        "enabled": "true",
+                        "name": "Management1"
+                    },
+                    "name": "Management1",
+                    "state": {
+                        "counters": {
+                            "frame-discard": "0",
+                            "frame-error-in": "0",
+                            "frame-in": "0",
+                            "frame-out": "80",
+                            "tlv-discard": "0",
+                            "tlv-unknown": "0"
+                        },
+                        "enabled": "TRANSMIT",
+                        "name": "Management1"
+                    }
+                },
+                {
+                    "config": {
+                        "enabled": "true",
+                        "name": "Ethernet2"
+                    },
+                    "name": "Ethernet2",
+                    "state": {
+                        "counters": {
+                            "frame-discard": "0",
+                            "frame-error-in": "0",
+                            "frame-in": "0",
+                            "frame-out": "78",
+                            "tlv-discard": "0",
+                            "tlv-unknown": "0"
+                        },
+                        "enabled": "TRANSMIT",
+                        "name": "Ethernet2"
+                    }
+                },
+                {
+                    "config": {
+                        "enabled": "true",
+                        "name": "Ethernet4"
+                    },
+                    "name": "Ethernet4",
+                    "state": {
+                        "counters": {
+                            "frame-discard": "0",
+                            "frame-error-in": "0",
+                            "frame-in": "0",
+                            "frame-out": "78",
+                            "tlv-discard": "0",
+                            "tlv-unknown": "0"
+                        },
+                        "enabled": "TRANSMIT",
+                        "name": "Ethernet4"
+                    }
+                },
+                {
+                    "config": {
+                        "enabled": "true",
+                        "name": "Ethernet1"
+                    },
+                    "name": "Ethernet1",
+                    "neighbors": "",
+                    "state": {
+                        "counters": {
+                            "frame-discard": "0",
+                            "frame-error-in": "0",
+                            "frame-in": "4",
+                            "frame-out": "78",
+                            "tlv-discard": "0",
+                            "tlv-unknown": "0"
+                        },
+                        "enabled": "TRANSMIT",
+                        "name": "Ethernet1"
+                    }
+                },
+                {
+                    "config": {
+                        "enabled": "true",
+                        "name": "Ethernet3"
+                    },
+                    "name": "Ethernet3",
+                    "state": {
+                        "counters": {
+                            "frame-discard": "0",
+                            "frame-error-in": "0",
+                            "frame-in": "0",
+                            "frame-out": "78",
+                            "tlv-discard": "0",
+                            "tlv-unknown": "0"
+                        },
+                        "enabled": "TRANSMIT",
+                        "name": "Ethernet3"
+                    }
+                }
+            ]
+        },
+        "state": {
+            "chassis-id": "00:0c:29:48:e0:5d",
+            "chassis-id-type": "MAC_ADDRESS",
+            "enabled": "true",
+            "hello-timer": "30",
+            "system-description": "Arista Networks EOS version 4.21.1.1F running on an Arista Networks vEOS",
+            "system-name": "EOS1"
+        }
+    }
+}

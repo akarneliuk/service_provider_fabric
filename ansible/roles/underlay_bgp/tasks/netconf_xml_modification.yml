@@ -1,0 +1,60 @@
+---
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // REMOVING UNNECESSARY FRAMING
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '<\?.+\?>\n'
+      replace: ''
+  tags:
+      - underlay
+      - underlay_bgp
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // OC NI HEADER REWRITE
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '^<nc:config xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0".+?>'
+      replace: '<nc:config xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:oc-netinst="http://openconfig.net/yang/network-instance">'
+  when: item == 'openconfig-network-instance'
+  tags:
+      - underlay
+      - underlay_bgp
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION 
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '>oc-netinst:'
+      replace: '>'
+  when: item == 'openconfig-network-instance'
+  tags:
+      - underlay
+      - underlay_bgp
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '>DEFAULT_INSTANCE'
+      replace: ' xmlns:idx="http://openconfig.net/yang/network-instance-types">idx:DEFAULT_INSTANCE'
+  when: (item == 'openconfig-network-instance' and ansible_network_os == 'iosxr')
+  tags:
+      - underlay
+      - underlay_bgp
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '>BGP'
+      replace: ' xmlns:idx="http://openconfig.net/yang/policy-types">idx:BGP'
+  when: (item == 'openconfig-network-instance' and ansible_network_os == 'iosxr')
+  tags:
+      - underlay
+      - underlay_bgp
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml"
+      regexp: '<oc-netinst:afi-safi-name>'
+      replace: '<oc-netinst:afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:'
+  when: (item == 'openconfig-network-instance' and ansible_network_os == 'iosxr')
+  tags:
+      - underlay
+      - underlay_bgp
+...

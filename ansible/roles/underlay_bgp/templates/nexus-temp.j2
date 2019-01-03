@@ -1,0 +1,47 @@
+{% for routing_protocol in routing %}
+{% if routing_protocol.id == 'BGP' %}{# 001: creation of BGP context #}
+!
+router bgp {{ routing_protocol.asn }}
+{% for iface in interfaces %}
+{% if iface.name == 'Loopback0' %}
+   router-id {{ iface.ipv4.address }}
+{% endif %}
+{% endfor %}
+{% for peer_group in routing_protocol.peer_groups %}
+   !
+   neighbor {{ peer_group.id }} peer-group
+   neighbor {{ peer_group.id }} remote-as {{ peer_group.peer_asn }}
+   neighbor {{ peer_group.id }} send-community standard extended
+   neighbor {{ peer_group.id }} update-source Loopback0
+{% endfor %}
+   !
+{% for bgp_neighbor in routing_protocol.neighbors %}
+   neighbor {{ bgp_neighbor.id }} peer-group {{ bgp_neighbor.peer_group }}
+{% endfor %}
+   !
+{% for afi_safi in routing_protocol.af %}
+{% if afi_safi.afi == 'L2VPN' and afi_safi.safi == 'EVPN' %}
+   address-family evpn
+{% for peer_group in routing_protocol.peer_groups %}
+      neighbor {{ peer_group.id }} activate
+{% endfor %}
+      neighbor default encapsulation mpls next-hop-self source-interface Loopback0
+   !
+{% elif afi_safi.afi == 'L3VPN_IPV4' and afi_safi.safi == 'UNICAST' %}
+   address-family vpn-ipv4
+{% for peer_group in routing_protocol.peer_groups %}
+      neighbor {{ peer_group.id }} activate
+{% endfor %}
+   !
+{% elif afi_safi.afi == 'L3VPN_IPV6' and afi_safi.safi == 'UNICAST' %}
+   address-family vpn-ipv6
+{% for peer_group in routing_protocol.peer_groups %}
+      neighbor {{ peer_group.id }} activate
+{% endfor %}
+   !
+{% endif %}
+{% endfor %}
+!
+{% endif %}{# 001: creation of BGP context #}
+{% endfor %}
+

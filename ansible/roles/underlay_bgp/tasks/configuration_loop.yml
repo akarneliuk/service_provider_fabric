@@ -1,0 +1,46 @@
+---
+- name: CONFIGURATION LOOP // TEMPLATING JSON FILE WITH OPENCONFIG YANG
+  template:
+      src: "{{ item }}.j2"
+      dest: "{{ temp_folder }}/{{ inventory_hostname}}_{{ item }}.json"
+  tags:
+      - underlay
+      - underlay_bgp
+
+- name: CONFIGURATION LOOP // CREATING JTOX DRIVER
+  shell: |
+      pyang --lax-quote-checks -f jtox -o {{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.jtox -p files/openconfig/{% if ansible_network_os == 'nexus' and 'EOS' in inventory_hostname %}eos{% else %}{{ ansible_network_os }}{% endif %} files/openconfig/{% if ansible_network_os == 'nexus' and 'EOS' in inventory_hostname %}eos{% else %}{{ ansible_network_os }}{% endif %}/{{ item }}.yang {% if item == 'openconfig-interfaces' %}files/openconfig/{% if ansible_network_os == 'nexus' and 'EOS' in inventory_hostname %}eos{% else %}{{ ansible_network_os }}{% endif %}/openconfig-if*{% endif %}
+  tags:
+      - underlay
+      - underlay_bgp
+
+- name: CONFIGURATION LOOP // CREATING NETCONF XML FILE
+  shell: |
+      json2xml -t config -o {{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml {{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.jtox {{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.json
+  tags:
+      - underlay
+      - underlay_bgp
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION
+  include_tasks: netconf_xml_modification.yml
+  tags:
+      - underlay
+      - underlay_bgp
+
+- name: CONFIGURATION LOOP // NETCONG CONFIG
+  netconf_config:
+      xml: "{{ lookup ('file', '{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml') }}"
+  ignore_errors: yes
+  tags:
+      - underlay
+      - underlay_bgp
+
+- name: CONFIGURATION LOOP // TEMP CISCO // NETCONG CONFIG
+  netconf_config:
+      xml: "{{ lookup ('template', '{{ ansible_network_os }}-temp-yang.j2') }}"
+  ignore_errors: yes
+  when: (ansible_network_os == 'iosxr' and item == 'openconfig-network-instance')
+  tags:
+      - underlay
+      - underlay_bgp
+...

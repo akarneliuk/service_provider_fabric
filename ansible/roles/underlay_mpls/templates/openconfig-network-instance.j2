@@ -82,6 +82,7 @@
                 "protocols": {
                     "protocol": [
 {% for routing_protocol in routing %}
+{% if routing_protocol.id == 'ISIS' %}
 {% if loop.index > 1 %},{% endif %}
                         {
                             "identifier": "{{ routing_protocol.id }}",
@@ -93,7 +94,6 @@
                                 "identifier": "{{ routing_protocol.id }}",
                                 "name": "{{ routing_protocol.tag }}"
                             },
-{% if routing_protocol.id == 'ISIS' %}
                             "isis": {
                                 "global": {
                                     "afi-safi": {
@@ -283,8 +283,8 @@
                                     ]
                                 }
                             }
-{% endif %}
                         }
+{% endif %}
 {% endfor %}
                     ]
                 }

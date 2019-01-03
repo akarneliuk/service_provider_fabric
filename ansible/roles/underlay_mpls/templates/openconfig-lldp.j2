@@ -1,0 +1,26 @@
+{
+    "openconfig-lldp:lldp": {
+        "config": {
+            "enabled": true
+        }
+{% if ansible_network_os != 'nexus' %}{# 003: 'iosxr' and 'sros' relevant: for EOS #}
+        ,
+        "interfaces": {
+            "interface": [
+{% for iface in interfaces %}
+{% if not 'Loopback' in iface.name %}{# 002: not relevant for Loopback or system interface #}
+{% if loop.index > 1 %},{% endif %}{# 001: adding comma between interfaces #}
+                {
+                    "name": "{{ iface.name }}",
+                    "config": {
+                        "name": "{{ iface.name }}",
+                        "enabled": true
+                    }
+                }
+{% endif %}{# 002: not relevant for Loopback or system interface #}
+{% endfor %}
+            ]
+        }
+{% endif %}{# 003: 'iosxr' and 'sros' relevant: for EOS #}
+    }
+}

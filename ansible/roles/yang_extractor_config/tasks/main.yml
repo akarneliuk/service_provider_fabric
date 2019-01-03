@@ -1,0 +1,61 @@
+---
+- name: COLLECT OC NETWORK INSTANCES CONFIG AND STATE
+  netconf_get:
+      filter: <network-instances xmlns="http://openconfig.net/yang/network-instance"/>
+      display: json
+  register: oc_ni
+  tags:
+      - oc-netinst
+
+- name: SAVE OC NETWORK INSTANCES CONFIG AND STATE
+  copy:
+      content: "{{ oc_ni.output.data | to_nice_json }}"
+      dest: output/oc_ni_{{ inventory_hostname }}.json
+  tags:
+          - oc-netinst
+
+- name: COLLECT OC INTERFACES CONFIG AND STATE
+  netconf_get:
+      filter: <interfaces xmlns="http://openconfig.net/yang/interfaces"/>
+      display: json
+  register: oc_if
+  tags:
+      - oc-if
+
+- name: SAVE OC NETWORK INSTANCES CONFIG AND STATE
+  copy:
+      content: "{{ oc_if.output.data | to_nice_json }}"
+      dest: output/oc_if_{{ inventory_hostname }}.json
+  tags:
+      - oc-if
+
+- name: COLLECT OC LLDP CONFIG AND STATE
+  netconf_get:
+      filter: <lldp xmlns="http://openconfig.net/yang/lldp"/>
+      display: json
+  register: oc_lldp
+  tags:
+      - oc-lldp
+
+- name: SAVE OC LLDP CONFIG AND STATE
+  copy:
+      content: "{{ oc_lldp.output.data | to_nice_json }}"
+      dest: output/oc_lldp_{{ inventory_hostname }}.json
+  tags:
+      - oc-lldp
+
+- name: TEMP // COLLECT CISCO BGP CONFIG AND STATE
+  netconf_get:
+      filter: <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg"/>
+      display: json
+  register: bgp
+  tags:
+      - ipv4-bgp-cfg
+
+- name: TEMP // SAVE CISCO BGP CONFIG AND STATE
+  copy:
+      content: "{{ bgp.output.data | to_nice_json }}"
+      dest: output/bgp_{{ inventory_hostname }}.json
+  tags:
+      - ipv4-bgp-cfg
+...

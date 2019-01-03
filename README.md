@@ -2,7 +2,7 @@
 This repository covers demo of Service Provider multi-vendor network running Segment Routing with various services on top.
 
 # ... and OpenConfig
-Whenever possible OpenConfig YANG modules are used to unify the configuration of Service Provider Fabric.
+Whenever possible OpenConfig YANG modules are used to unify the configuration of Service Provider Fabric. Where it isn't possible (where OpenConfig YANG modules aren't created or not implemented by particular vendor), either vendor-native YANG modules or CLI-based Ansible playbooks are used.
 
 # Currently used network operation systems
 1) Arist EOS 4.21.1.1F
@@ -11,18 +11,21 @@ Whenever possible OpenConfig YANG modules are used to unify the configuration of
 4) Cumulus Linux 3.7.1
 
 # Available services
-1) IP VPN between all 3 PE
+1) IP VPN for IPV4 and IPV6 between all 3 PE
 2) EVPN (E-LAN fashion) between all 3 PE
 
 # Development mode
 This repositry is currently being developed, so expect the changes and pull the repository to get the latest version
 
 # To-do list
-1) Add SR/EVPN service
-2) Add Ansible automation
+1) Add automation for EVPNoSR services [done for L2, L3 is coming]
+2) Add automation for IPVPNoSR services automation
+3) Add SR policies (static and dynamic using BGP-SR-TE)
+4) Add Telemtry using Netflux TICK stack + Grafana
+5) Add automatic chose of connection method use by device depending on its capabilities (CLI, NETCONF/YANG(native), NETCONF/YANG(OpenConfig))
 
 # Version
-The current version of the repository is `0.3`
+The current version of the repository is `0.4`
 
 # Change log
 Version `0.1`
@@ -42,3 +45,9 @@ Version `0.3`
 3) Underlay topology file `topology/sp_underlay.txt` is updated with link prefixes for IPv4 and IPv6.
 4) Currently only underlay IGP (ISIS) and MPLS data plane (Segment Routing) is automated 
 5) New file with OOB topology is assed in `topology/oob_management.txt`
+
+Version `0.4`
+1) Added LLDP configuration for `underlay_mpls` role. It's configured automatically on all Ethernet interfaces.
+2) Added BGP configuration for `underla_bgp` role to finalize creation of Service Provider Fabric. More details in `ansible/README.md`.
+3) Some changes in tasks structure in `underlay_mpls` role to unify and simplify the configuration and provide possibility to extend for new vendors.
+4) Added YANG tool `yang_extractor_config.yml` to obtain the configuration/states in particular YANG module from network function. More details in `ansible/README.md`.

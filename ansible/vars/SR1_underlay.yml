@@ -38,6 +38,26 @@ routing:
           - name: 1/1/c1/1
             passive: false
             type: POINT_TO_POINT
+    - id: BGP
+      tag: BGP
+      enabled: true
+      asn: 65000
+      af:
+          - afi: L3VPN_IPV4
+            safi: UNICAST
+          - afi: L3VPN_IPV6
+            safi: UNICAST
+          - afi: L2VPN
+            safi: EVPN
+      multipath: 4
+      peer_groups:
+          - id: IBGP_PEERS
+            peer_asn: 65000
+      neighbors:
+          - id: 10.0.0.22
+            peer_group: IBGP_PEERS
+          - id: 10.0.0.33
+            peer_group: IBGP_PEERS
 mpls:
     - protocol: isis-sr
       enabled: true
