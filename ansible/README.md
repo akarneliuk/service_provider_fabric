@@ -35,4 +35,3 @@ There are some Ansible playbooks, which help a lot for development of automation
 - Tag `oc-netinst` stands for OpenConfig YANG module `openconfig-network-instance.yang` including all its imports.
 - Tag `oc-lldp` stands for OpenConfig YANG module `openconfig-lldp.yang`.
 - Tag `ipv4-bgp-cfg` stands for Cisco native YANG module `Cisco-IOS-XR-ipv4-bgp-cfg.yang`.
-2) Tool `yang_extractor_module.yml`
