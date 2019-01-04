@@ -20,7 +20,7 @@
       dest: "{{ temp_folder }}/{{ inventory_hostname }}_temp_underlay_mpls.xml"
   tags:
       - underlay
-      - underlay_bgp
+      - underlay_mpls
 
 - name: TEMPORARY UNDERLAY MPLS // PUSHING CONFIG
   local_action:
@@ -34,5 +34,5 @@
   when: ansible_network_os == 'sros'
   tags:
       - underlay
-      - underlay_bgp
+      - underlay_mpls
 ...

@@ -23,4 +23,22 @@
   tags:
       - underlay
       - underlay_mpls
+
+- name: ENABLING FOR ARISTA CONFIG NOT AVAILABLE IN OPENCONF YANG
+  local_action:
+      module: "eos_config"
+      authorize: true
+      save: true
+      lines:
+          - mpls ip
+          - service routing protocols model multi-agent
+      provider:
+          host: "{{ inventory_hostname }}"
+          username: "{{ ansible_user }}"
+          password: "{{ ansible_pass }}"
+          auth_pass: "{{ ansible_pass }}"
+  when: ansible_network_os == 'nexus'
+  tags:
+      - underlay
+      - underlay_mpls
 ...

@@ -56,3 +56,6 @@ Version `0.4.1`
 1) New overlay topology for IP VPN (IPv4 and IPv6) is created. It starts with `ip_vpn_` prefixi and located within `topology` folder.
 2) Files for EVPN (E-LAN) toplogies are slightly modified.
 3) Varios updated in `README.md` files across sub-folders.
+4) Underlay topology `sp_underlay.txt` is updated with the metic values of the interfaces.
+5) Template for configuration of Nokia for `underlay_mpls` roles is updated to include metric values.
+6) File `main_final.yml` from `underlay_mpls/tasks` is updated to apply via `eos_config` on Arista EOS network functions configuration commands not available in OpenConfig YANG modules.

@@ -66,6 +66,10 @@
 {% if r_iface.segment_routing is defined %}
     /configure router "Base" isis {{ routing_protocol.tag }} interface "{% if 'system' in r_iface.name %}system{% else %}noc_{{ r_iface.name }}{% endif %}" ipv4-node-sid {{ r_iface.segment_routing.id_type }} {{ r_iface.segment_routing.id_value }}
 {% endif %}
+    /configure router "Base" isis {{ routing_protocol.tag }} interface "{% if 'system' in r_iface.name %}system{% else %}noc_{{ r_iface.name }}{% endif %}" level 2 metric {% if r_iface.metric is defined %}{{ r_iface.metric }}{% else %}10{% endif %}
+
+    /configure router "Base" isis {{ routing_protocol.tag }} interface "{% if 'system' in r_iface.name %}system{% else %}noc_{{ r_iface.name }}{% endif %}" level 2 ipv6-unicast-metric {% if r_iface.metric is defined %}{{ r_iface.metric }}{% else %}10{% endif %}
+
 {% endfor %}
 {% endif %}{# 007: enabling segment routing #}
 {% endif %}{# 005: configuration of ISIS routing protocol #}

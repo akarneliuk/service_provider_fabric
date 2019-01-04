@@ -19,9 +19,9 @@ Important notes:
 # How to use Service Provider Fabric automation
 
 There are several possible options how you can automatically deploy Service Provider Fabric. The prerequisite is copy the initial configuration files called `sp_{{ hostname }}_initial.conf` from `files` folder to the running config of your network functions. Then use the following tags:
-1) To deploy undelay routing (ISIS) and MPLS (Segment Routing) use `ansible-playbook --inventory=hosts --tags=underlay_mpls`.
-2) To deploy undelay BGP signaling use `ansible-playbook --inventory=hosts --tags=underlay_bgp`.
-3) To deploy the whole underlay infrastructure (ISIS + Segment Routing + BGP) use `ansible-playbook --inventory=hosts --tags=underlay`.
+1) To deploy undelay routing (ISIS) and MPLS (Segment Routing) use `ansible-playbook service_provider_fabric.yml --inventory=hosts --tags=underlay_mpls`.
+2) To deploy undelay BGP signaling use `ansible-playbook service_provider_fabric.yml --inventory=hosts --tags=underlay_bgp`.
+3) To deploy the whole underlay infrastructure (ISIS + Segment Routing + BGP) use `ansible-playbook service_provider_fabric.yml --inventory=hosts --tags=underlay`.
 
 # Temporary limitations
 
@@ -34,4 +34,5 @@ There are some Ansible playbooks, which help a lot for development of automation
 - Tag `oc-if` stands for OpenConfig YANG module `openconfig-interfaces.yang` including all `openconfig-if-*.yang` extensions.
 - Tag `oc-netinst` stands for OpenConfig YANG module `openconfig-network-instance.yang` including all its imports.
 - Tag `oc-lldp` stands for OpenConfig YANG module `openconfig-lldp.yang`.
-- Tag `ipv4-bgp-cfg` stands for Cisco native YANG module `Cisco-IOS-XR-ipv4-bgp-cfg.yang`.
+- Tag `cisco-bgp` stands for Cisco native YANG module `Cisco-IOS-XR-ipv4-bgp-cfg.yang`.
+- Tag `nokia-conf` stands for Nokia native YANG module `nokia-conf.yang`.

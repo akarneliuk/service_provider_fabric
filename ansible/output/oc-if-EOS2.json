@@ -1,0 +1,1370 @@
+{
+    "interfaces": {
+        "interface": [
+            {
+                "aggregation": {
+                    "config": {
+                        "fallback-timeout": "90",
+                        "min-links": "0"
+                    }
+                },
+                "config": {
+                    "description": "",
+                    "enabled": "true",
+                    "load-interval": "300",
+                    "loopback-mode": "false",
+                    "mtu": "0",
+                    "name": "Ethernet4",
+                    "tpid": "TPID_0X8100",
+                    "type": "ethernetCsmacd"
+                },
+                "ethernet": {
+                    "config": {
+                        "fec-encoding": {
+                            "disabled": "false",
+                            "fire-code": "false",
+                            "reed-solomon": "false",
+                            "reed-solomon544": "false"
+                        },
+                        "mac-address": "00:00:00:00:00:00",
+                        "port-speed": "SPEED_UNKNOWN",
+                        "sfp-1000base-t": "false"
+                    },
+                    "state": {
+                        "auto-negotiate": "false",
+                        "counters": {
+                            "in-crc-errors": "0",
+                            "in-fragment-frames": "0",
+                            "in-jabber-frames": "0",
+                            "in-mac-control-frames": "0",
+                            "in-mac-pause-frames": "0",
+                            "in-oversize-frames": "0",
+                            "out-mac-control-frames": "0",
+                            "out-mac-pause-frames": "0"
+                        },
+                        "duplex-mode": "FULL",
+                        "enable-flow-control": "false",
+                        "hw-mac-address": "00:50:56:2b:0c:16",
+                        "mac-address": "00:50:56:2b:0c:16",
+                        "negotiated-port-speed": "SPEED_UNKNOWN",
+                        "port-speed": "SPEED_UNKNOWN"
+                    }
+                },
+                "hold-time": {
+                    "config": {
+                        "down": "0",
+                        "up": "0"
+                    },
+                    "state": {
+                        "down": "0",
+                        "up": "0"
+                    }
+                },
+                "name": "Ethernet4",
+                "routed-vlan": {
+                    "ipv4": {
+                        "config": {
+                            "dhcp-client": "false",
+                            "enabled": "true"
+                        },
+                        "proxy-arp": {
+                            "config": {
+                                "mode": "DISABLE"
+                            },
+                            "state": {
+                                "mode": "DISABLE"
+                            }
+                        },
+                        "state": {
+                            "dhcp-client": "false",
+                            "enabled": "true"
+                        },
+                        "unnumbered": {
+                            "config": {
+                                "enabled": "false"
+                            },
+                            "state": {
+                                "enabled": "false"
+                            }
+                        }
+                    },
+                    "ipv6": {
+                        "config": {
+                            "dhcp-client": "false",
+                            "dup-addr-detect-transmits": "1",
+                            "enabled": "true"
+                        },
+                        "router-advertisement": {
+                            "config": {
+                                "suppress": "false"
+                            },
+                            "state": {
+                                "suppress": "false"
+                            }
+                        },
+                        "state": {
+                            "dhcp-client": "false",
+                            "dup-addr-detect-transmits": "1",
+                            "enabled": "true"
+                        },
+                        "unnumbered": {
+                            "config": {
+                                "enabled": "false"
+                            },
+                            "state": {
+                                "enabled": "false"
+                            }
+                        }
+                    }
+                },
+                "state": {
+                    "admin-status": "UP",
+                    "counters": {
+                        "in-broadcast-pkts": "0",
+                        "in-discards": "0",
+                        "in-errors": "0",
+                        "in-multicast-pkts": "47",
+                        "in-octets": "14390",
+                        "in-unicast-pkts": "53",
+                        "out-broadcast-pkts": "0",
+                        "out-discards": "0",
+                        "out-errors": "0",
+                        "out-multicast-pkts": "3647",
+                        "out-octets": "596830",
+                        "out-unicast-pkts": "3"
+                    },
+                    "description": "",
+                    "enabled": "true",
+                    "ifindex": "4",
+                    "inactive": "false",
+                    "last-change": "154664218138",
+                    "loopback-mode": "false",
+                    "mtu": "0",
+                    "name": "Ethernet4",
+                    "oper-status": "UP",
+                    "tpid": "TPID_0X8100",
+                    "type": "ethernetCsmacd"
+                },
+                "subinterfaces": {
+                    "subinterface": {
+                        "config": {
+                            "enabled": "true",
+                            "index": "0"
+                        },
+                        "index": "0",
+                        "ipv4": {
+                            "config": {
+                                "dhcp-client": "false",
+                                "enabled": "false",
+                                "mtu": "1500"
+                            },
+                            "proxy-arp": {
+                                "config": {
+                                    "mode": "DISABLE"
+                                },
+                                "state": {
+                                    "mode": "DISABLE"
+                                }
+                            },
+                            "state": {
+                                "dhcp-client": "false",
+                                "enabled": "false",
+                                "mtu": "1500"
+                            },
+                            "unnumbered": {
+                                "config": {
+                                    "enabled": "false"
+                                },
+                                "state": {
+                                    "enabled": "false"
+                                }
+                            }
+                        },
+                        "ipv6": {
+                            "config": {
+                                "dhcp-client": "false",
+                                "dup-addr-detect-transmits": "1",
+                                "enabled": "false",
+                                "mtu": "1500"
+                            },
+                            "router-advertisement": {
+                                "config": {
+                                    "suppress": "false"
+                                },
+                                "state": {
+                                    "suppress": "false"
+                                }
+                            },
+                            "state": {
+                                "dhcp-client": "false",
+                                "dup-addr-detect-transmits": "1",
+                                "enabled": "false",
+                                "mtu": "1500"
+                            },
+                            "unnumbered": {
+                                "config": {
+                                    "enabled": "false"
+                                },
+                                "state": {
+                                    "enabled": "false"
+                                }
+                            }
+                        },
+                        "state": {
+                            "enabled": "true",
+                            "index": "0"
+                        }
+                    }
+                }
+            },
+            {
+                "aggregation": {
+                    "config": {
+                        "fallback-timeout": "90",
+                        "min-links": "0"
+                    }
+                },
+                "config": {
+                    "description": "",
+                    "enabled": "true",
+                    "load-interval": "300",
+                    "loopback-mode": "false",
+                    "mtu": "0",
+                    "name": "Ethernet3",
+                    "tpid": "TPID_0X8100",
+                    "type": "ethernetCsmacd"
+                },
+                "ethernet": {
+                    "config": {
+                        "fec-encoding": {
+                            "disabled": "false",
+                            "fire-code": "false",
+                            "reed-solomon": "false",
+                            "reed-solomon544": "false"
+                        },
+                        "mac-address": "00:00:00:00:00:00",
+                        "port-speed": "SPEED_UNKNOWN",
+                        "sfp-1000base-t": "false"
+                    },
+                    "state": {
+                        "auto-negotiate": "false",
+                        "counters": {
+                            "in-crc-errors": "0",
+                            "in-fragment-frames": "0",
+                            "in-jabber-frames": "0",
+                            "in-mac-control-frames": "0",
+                            "in-mac-pause-frames": "0",
+                            "in-oversize-frames": "0",
+                            "out-mac-control-frames": "0",
+                            "out-mac-pause-frames": "0"
+                        },
+                        "duplex-mode": "FULL",
+                        "enable-flow-control": "false",
+                        "hw-mac-address": "00:50:56:20:a7:3d",
+                        "mac-address": "00:50:56:20:a7:3d",
+                        "negotiated-port-speed": "SPEED_UNKNOWN",
+                        "port-speed": "SPEED_UNKNOWN"
+                    }
+                },
+                "hold-time": {
+                    "config": {
+                        "down": "0",
+                        "up": "0"
+                    },
+                    "state": {
+                        "down": "0",
+                        "up": "0"
+                    }
+                },
+                "name": "Ethernet3",
+                "routed-vlan": {
+                    "ipv4": {
+                        "config": {
+                            "dhcp-client": "false",
+                            "enabled": "true"
+                        },
+                        "proxy-arp": {
+                            "config": {
+                                "mode": "DISABLE"
+                            },
+                            "state": {
+                                "mode": "DISABLE"
+                            }
+                        },
+                        "state": {
+                            "dhcp-client": "false",
+                            "enabled": "true"
+                        },
+                        "unnumbered": {
+                            "config": {
+                                "enabled": "false"
+                            },
+                            "state": {
+                                "enabled": "false"
+                            }
+                        }
+                    },
+                    "ipv6": {
+                        "config": {
+                            "dhcp-client": "false",
+                            "dup-addr-detect-transmits": "1",
+                            "enabled": "true"
+                        },
+                        "router-advertisement": {
+                            "config": {
+                                "suppress": "false"
+                            },
+                            "state": {
+                                "suppress": "false"
+                            }
+                        },
+                        "state": {
+                            "dhcp-client": "false",
+                            "dup-addr-detect-transmits": "1",
+                            "enabled": "true"
+                        },
+                        "unnumbered": {
+                            "config": {
+                                "enabled": "false"
+                            },
+                            "state": {
+                                "enabled": "false"
+                            }
+                        }
+                    }
+                },
+                "state": {
+                    "admin-status": "UP",
+                    "counters": {
+                        "in-broadcast-pkts": "4",
+                        "in-discards": "0",
+                        "in-errors": "0",
+                        "in-multicast-pkts": "874",
+                        "in-octets": "118341",
+                        "in-unicast-pkts": "313",
+                        "out-broadcast-pkts": "0",
+                        "out-discards": "0",
+                        "out-errors": "0",
+                        "out-multicast-pkts": "2217",
+                        "out-octets": "1041724",
+                        "out-unicast-pkts": "313"
+                    },
+                    "description": "",
+                    "enabled": "true",
+                    "ifindex": "3",
+                    "inactive": "false",
+                    "last-change": "154664218128",
+                    "loopback-mode": "false",
+                    "mtu": "0",
+                    "name": "Ethernet3",
+                    "oper-status": "UP",
+                    "tpid": "TPID_0X8100",
+                    "type": "ethernetCsmacd"
+                },
+                "subinterfaces": {
+                    "subinterface": {
+                        "config": {
+                            "enabled": "true",
+                            "index": "0"
+                        },
+                        "index": "0",
+                        "ipv4": {
+                            "addresses": {
+                                "address": {
+                                    "config": {
+                                        "ip": "10.1.44.1",
+                                        "prefix-length": "24"
+                                    },
+                                    "ip": "10.1.44.1",
+                                    "state": {
+                                        "ip": "10.1.44.1",
+                                        "prefix-length": "24"
+                                    }
+                                }
+                            },
+                            "config": {
+                                "dhcp-client": "false",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "proxy-arp": {
+                                "config": {
+                                    "mode": "DISABLE"
+                                },
+                                "state": {
+                                    "mode": "DISABLE"
+                                }
+                            },
+                            "state": {
+                                "dhcp-client": "false",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "unnumbered": {
+                                "config": {
+                                    "enabled": "false"
+                                },
+                                "state": {
+                                    "enabled": "false"
+                                }
+                            }
+                        },
+                        "ipv6": {
+                            "addresses": {
+                                "address": {
+                                    "config": {
+                                        "ip": "fc00::10:1:44:1",
+                                        "prefix-length": "112"
+                                    },
+                                    "ip": "fc00::10:1:44:1",
+                                    "state": {
+                                        "ip": "fc00::10:1:44:1",
+                                        "prefix-length": "112"
+                                    }
+                                }
+                            },
+                            "config": {
+                                "dhcp-client": "false",
+                                "dup-addr-detect-transmits": "1",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "router-advertisement": {
+                                "config": {
+                                    "suppress": "false"
+                                },
+                                "state": {
+                                    "suppress": "false"
+                                }
+                            },
+                            "state": {
+                                "dhcp-client": "false",
+                                "dup-addr-detect-transmits": "1",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "unnumbered": {
+                                "config": {
+                                    "enabled": "false"
+                                },
+                                "state": {
+                                    "enabled": "false"
+                                }
+                            }
+                        },
+                        "state": {
+                            "enabled": "true",
+                            "index": "0"
+                        }
+                    }
+                }
+            },
+            {
+                "aggregation": {
+                    "config": {
+                        "fallback-timeout": "90",
+                        "min-links": "0"
+                    }
+                },
+                "config": {
+                    "description": "",
+                    "enabled": "true",
+                    "load-interval": "300",
+                    "loopback-mode": "false",
+                    "mtu": "0",
+                    "name": "Ethernet2",
+                    "tpid": "TPID_0X8100",
+                    "type": "ethernetCsmacd"
+                },
+                "ethernet": {
+                    "config": {
+                        "fec-encoding": {
+                            "disabled": "false",
+                            "fire-code": "false",
+                            "reed-solomon": "false",
+                            "reed-solomon544": "false"
+                        },
+                        "mac-address": "00:00:00:00:00:00",
+                        "port-speed": "SPEED_UNKNOWN",
+                        "sfp-1000base-t": "false"
+                    },
+                    "state": {
+                        "auto-negotiate": "false",
+                        "counters": {
+                            "in-crc-errors": "0",
+                            "in-fragment-frames": "0",
+                            "in-jabber-frames": "0",
+                            "in-mac-control-frames": "0",
+                            "in-mac-pause-frames": "0",
+                            "in-oversize-frames": "0",
+                            "out-mac-control-frames": "0",
+                            "out-mac-pause-frames": "0"
+                        },
+                        "duplex-mode": "FULL",
+                        "enable-flow-control": "false",
+                        "hw-mac-address": "00:50:56:3c:a3:e8",
+                        "mac-address": "00:50:56:3c:a3:e8",
+                        "negotiated-port-speed": "SPEED_UNKNOWN",
+                        "port-speed": "SPEED_UNKNOWN"
+                    }
+                },
+                "hold-time": {
+                    "config": {
+                        "down": "0",
+                        "up": "0"
+                    },
+                    "state": {
+                        "down": "0",
+                        "up": "0"
+                    }
+                },
+                "name": "Ethernet2",
+                "routed-vlan": {
+                    "ipv4": {
+                        "config": {
+                            "dhcp-client": "false",
+                            "enabled": "true"
+                        },
+                        "proxy-arp": {
+                            "config": {
+                                "mode": "DISABLE"
+                            },
+                            "state": {
+                                "mode": "DISABLE"
+                            }
+                        },
+                        "state": {
+                            "dhcp-client": "false",
+                            "enabled": "true"
+                        },
+                        "unnumbered": {
+                            "config": {
+                                "enabled": "false"
+                            },
+                            "state": {
+                                "enabled": "false"
+                            }
+                        }
+                    },
+                    "ipv6": {
+                        "config": {
+                            "dhcp-client": "false",
+                            "dup-addr-detect-transmits": "1",
+                            "enabled": "true"
+                        },
+                        "router-advertisement": {
+                            "config": {
+                                "suppress": "false"
+                            },
+                            "state": {
+                                "suppress": "false"
+                            }
+                        },
+                        "state": {
+                            "dhcp-client": "false",
+                            "dup-addr-detect-transmits": "1",
+                            "enabled": "true"
+                        },
+                        "unnumbered": {
+                            "config": {
+                                "enabled": "false"
+                            },
+                            "state": {
+                                "enabled": "false"
+                            }
+                        }
+                    }
+                },
+                "state": {
+                    "admin-status": "UP",
+                    "counters": {
+                        "in-broadcast-pkts": "1",
+                        "in-discards": "0",
+                        "in-errors": "0",
+                        "in-multicast-pkts": "688",
+                        "in-octets": "783685",
+                        "in-unicast-pkts": "239",
+                        "out-broadcast-pkts": "2",
+                        "out-discards": "0",
+                        "out-errors": "0",
+                        "out-multicast-pkts": "2245",
+                        "out-octets": "969017",
+                        "out-unicast-pkts": "242"
+                    },
+                    "description": "",
+                    "enabled": "true",
+                    "ifindex": "2",
+                    "inactive": "false",
+                    "last-change": "154664218118",
+                    "loopback-mode": "false",
+                    "mtu": "0",
+                    "name": "Ethernet2",
+                    "oper-status": "UP",
+                    "tpid": "TPID_0X8100",
+                    "type": "ethernetCsmacd"
+                },
+                "subinterfaces": {
+                    "subinterface": {
+                        "config": {
+                            "enabled": "true",
+                            "index": "0"
+                        },
+                        "index": "0",
+                        "ipv4": {
+                            "addresses": {
+                                "address": {
+                                    "config": {
+                                        "ip": "10.1.33.1",
+                                        "prefix-length": "24"
+                                    },
+                                    "ip": "10.1.33.1",
+                                    "state": {
+                                        "ip": "10.1.33.1",
+                                        "prefix-length": "24"
+                                    }
+                                }
+                            },
+                            "config": {
+                                "dhcp-client": "false",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "proxy-arp": {
+                                "config": {
+                                    "mode": "DISABLE"
+                                },
+                                "state": {
+                                    "mode": "DISABLE"
+                                }
+                            },
+                            "state": {
+                                "dhcp-client": "false",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "unnumbered": {
+                                "config": {
+                                    "enabled": "false"
+                                },
+                                "state": {
+                                    "enabled": "false"
+                                }
+                            }
+                        },
+                        "ipv6": {
+                            "addresses": {
+                                "address": {
+                                    "config": {
+                                        "ip": "fc00::10:1:33:1",
+                                        "prefix-length": "112"
+                                    },
+                                    "ip": "fc00::10:1:33:1",
+                                    "state": {
+                                        "ip": "fc00::10:1:33:1",
+                                        "prefix-length": "112"
+                                    }
+                                }
+                            },
+                            "config": {
+                                "dhcp-client": "false",
+                                "dup-addr-detect-transmits": "1",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "router-advertisement": {
+                                "config": {
+                                    "suppress": "false"
+                                },
+                                "state": {
+                                    "suppress": "false"
+                                }
+                            },
+                            "state": {
+                                "dhcp-client": "false",
+                                "dup-addr-detect-transmits": "1",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "unnumbered": {
+                                "config": {
+                                    "enabled": "false"
+                                },
+                                "state": {
+                                    "enabled": "false"
+                                }
+                            }
+                        },
+                        "state": {
+                            "enabled": "true",
+                            "index": "0"
+                        }
+                    }
+                }
+            },
+            {
+                "aggregation": {
+                    "config": {
+                        "fallback-timeout": "90",
+                        "min-links": "0"
+                    }
+                },
+                "config": {
+                    "description": "",
+                    "enabled": "true",
+                    "load-interval": "300",
+                    "loopback-mode": "false",
+                    "mtu": "0",
+                    "name": "Ethernet1",
+                    "tpid": "TPID_0X8100",
+                    "type": "ethernetCsmacd"
+                },
+                "ethernet": {
+                    "config": {
+                        "fec-encoding": {
+                            "disabled": "false",
+                            "fire-code": "false",
+                            "reed-solomon": "false",
+                            "reed-solomon544": "false"
+                        },
+                        "mac-address": "00:00:00:00:00:00",
+                        "port-speed": "SPEED_UNKNOWN",
+                        "sfp-1000base-t": "false"
+                    },
+                    "state": {
+                        "auto-negotiate": "false",
+                        "counters": {
+                            "in-crc-errors": "0",
+                            "in-fragment-frames": "0",
+                            "in-jabber-frames": "0",
+                            "in-mac-control-frames": "0",
+                            "in-mac-pause-frames": "0",
+                            "in-oversize-frames": "0",
+                            "out-mac-control-frames": "0",
+                            "out-mac-pause-frames": "0"
+                        },
+                        "duplex-mode": "FULL",
+                        "enable-flow-control": "false",
+                        "hw-mac-address": "00:50:56:2a:f2:7e",
+                        "mac-address": "00:50:56:2a:f2:7e",
+                        "negotiated-port-speed": "SPEED_UNKNOWN",
+                        "port-speed": "SPEED_UNKNOWN"
+                    }
+                },
+                "hold-time": {
+                    "config": {
+                        "down": "0",
+                        "up": "0"
+                    },
+                    "state": {
+                        "down": "0",
+                        "up": "0"
+                    }
+                },
+                "name": "Ethernet1",
+                "routed-vlan": {
+                    "ipv4": {
+                        "config": {
+                            "dhcp-client": "false",
+                            "enabled": "true"
+                        },
+                        "proxy-arp": {
+                            "config": {
+                                "mode": "DISABLE"
+                            },
+                            "state": {
+                                "mode": "DISABLE"
+                            }
+                        },
+                        "state": {
+                            "dhcp-client": "false",
+                            "enabled": "true"
+                        },
+                        "unnumbered": {
+                            "config": {
+                                "enabled": "false"
+                            },
+                            "state": {
+                                "enabled": "false"
+                            }
+                        }
+                    },
+                    "ipv6": {
+                        "config": {
+                            "dhcp-client": "false",
+                            "dup-addr-detect-transmits": "1",
+                            "enabled": "true"
+                        },
+                        "router-advertisement": {
+                            "config": {
+                                "suppress": "false"
+                            },
+                            "state": {
+                                "suppress": "false"
+                            }
+                        },
+                        "state": {
+                            "dhcp-client": "false",
+                            "dup-addr-detect-transmits": "1",
+                            "enabled": "true"
+                        },
+                        "unnumbered": {
+                            "config": {
+                                "enabled": "false"
+                            },
+                            "state": {
+                                "enabled": "false"
+                            }
+                        }
+                    }
+                },
+                "state": {
+                    "admin-status": "UP",
+                    "counters": {
+                        "in-broadcast-pkts": "1",
+                        "in-discards": "0",
+                        "in-errors": "0",
+                        "in-multicast-pkts": "2177",
+                        "in-octets": "965088",
+                        "in-unicast-pkts": "253",
+                        "out-broadcast-pkts": "1",
+                        "out-discards": "0",
+                        "out-errors": "0",
+                        "out-multicast-pkts": "844",
+                        "out-octets": "799484",
+                        "out-unicast-pkts": "253"
+                    },
+                    "description": "",
+                    "enabled": "true",
+                    "ifindex": "1",
+                    "inactive": "false",
+                    "last-change": "154664218109",
+                    "loopback-mode": "false",
+                    "mtu": "0",
+                    "name": "Ethernet1",
+                    "oper-status": "UP",
+                    "tpid": "TPID_0X8100",
+                    "type": "ethernetCsmacd"
+                },
+                "subinterfaces": {
+                    "subinterface": {
+                        "config": {
+                            "enabled": "true",
+                            "index": "0"
+                        },
+                        "index": "0",
+                        "ipv4": {
+                            "addresses": {
+                                "address": {
+                                    "config": {
+                                        "ip": "10.1.22.1",
+                                        "prefix-length": "24"
+                                    },
+                                    "ip": "10.1.22.1",
+                                    "state": {
+                                        "ip": "10.1.22.1",
+                                        "prefix-length": "24"
+                                    }
+                                }
+                            },
+                            "config": {
+                                "dhcp-client": "false",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "proxy-arp": {
+                                "config": {
+                                    "mode": "DISABLE"
+                                },
+                                "state": {
+                                    "mode": "DISABLE"
+                                }
+                            },
+                            "state": {
+                                "dhcp-client": "false",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "unnumbered": {
+                                "config": {
+                                    "enabled": "false"
+                                },
+                                "state": {
+                                    "enabled": "false"
+                                }
+                            }
+                        },
+                        "ipv6": {
+                            "addresses": {
+                                "address": {
+                                    "config": {
+                                        "ip": "fc00::10:1:22:1",
+                                        "prefix-length": "112"
+                                    },
+                                    "ip": "fc00::10:1:22:1",
+                                    "state": {
+                                        "ip": "fc00::10:1:22:1",
+                                        "prefix-length": "112"
+                                    }
+                                }
+                            },
+                            "config": {
+                                "dhcp-client": "false",
+                                "dup-addr-detect-transmits": "1",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "router-advertisement": {
+                                "config": {
+                                    "suppress": "false"
+                                },
+                                "state": {
+                                    "suppress": "false"
+                                }
+                            },
+                            "state": {
+                                "dhcp-client": "false",
+                                "dup-addr-detect-transmits": "1",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "unnumbered": {
+                                "config": {
+                                    "enabled": "false"
+                                },
+                                "state": {
+                                    "enabled": "false"
+                                }
+                            }
+                        },
+                        "state": {
+                            "enabled": "true",
+                            "index": "0"
+                        }
+                    }
+                }
+            },
+            {
+                "aggregation": {
+                    "config": {
+                        "fallback-timeout": "90",
+                        "min-links": "0"
+                    }
+                },
+                "config": {
+                    "description": "",
+                    "enabled": "true",
+                    "load-interval": "300",
+                    "loopback-mode": "false",
+                    "mtu": "0",
+                    "name": "Management1",
+                    "tpid": "TPID_0X8100",
+                    "type": "ethernetCsmacd"
+                },
+                "ethernet": {
+                    "config": {
+                        "fec-encoding": {
+                            "disabled": "false",
+                            "fire-code": "false",
+                            "reed-solomon": "false",
+                            "reed-solomon544": "false"
+                        },
+                        "mac-address": "00:00:00:00:00:00",
+                        "port-speed": "SPEED_UNKNOWN",
+                        "sfp-1000base-t": "false"
+                    },
+                    "state": {
+                        "auto-negotiate": "true",
+                        "counters": {
+                            "in-crc-errors": "0",
+                            "in-fragment-frames": "0",
+                            "in-jabber-frames": "0",
+                            "in-mac-control-frames": "0",
+                            "in-mac-pause-frames": "0",
+                            "in-oversize-frames": "0",
+                            "out-mac-control-frames": "0",
+                            "out-mac-pause-frames": "0"
+                        },
+                        "duplex-mode": "FULL",
+                        "enable-flow-control": "true",
+                        "hw-mac-address": "00:50:56:31:b5:a2",
+                        "mac-address": "00:50:56:31:b5:a2",
+                        "negotiated-duplex-mode": "FULL",
+                        "negotiated-port-speed": "SPEED_1GB",
+                        "port-speed": "SPEED_1GB"
+                    }
+                },
+                "hold-time": {
+                    "config": {
+                        "down": "0",
+                        "up": "0"
+                    },
+                    "state": {
+                        "down": "0",
+                        "up": "0"
+                    }
+                },
+                "name": "Management1",
+                "routed-vlan": {
+                    "ipv4": {
+                        "config": {
+                            "dhcp-client": "false",
+                            "enabled": "true"
+                        },
+                        "proxy-arp": {
+                            "config": {
+                                "mode": "DISABLE"
+                            },
+                            "state": {
+                                "mode": "DISABLE"
+                            }
+                        },
+                        "state": {
+                            "dhcp-client": "false",
+                            "enabled": "true"
+                        },
+                        "unnumbered": {
+                            "config": {
+                                "enabled": "false"
+                            },
+                            "state": {
+                                "enabled": "false"
+                            }
+                        }
+                    },
+                    "ipv6": {
+                        "config": {
+                            "dhcp-client": "false",
+                            "dup-addr-detect-transmits": "1",
+                            "enabled": "true"
+                        },
+                        "router-advertisement": {
+                            "config": {
+                                "suppress": "false"
+                            },
+                            "state": {
+                                "suppress": "false"
+                            }
+                        },
+                        "state": {
+                            "dhcp-client": "false",
+                            "dup-addr-detect-transmits": "1",
+                            "enabled": "true"
+                        },
+                        "unnumbered": {
+                            "config": {
+                                "enabled": "false"
+                            },
+                            "state": {
+                                "enabled": "false"
+                            }
+                        }
+                    }
+                },
+                "state": {
+                    "admin-status": "UP",
+                    "counters": {
+                        "in-broadcast-pkts": "0",
+                        "in-discards": "0",
+                        "in-errors": "0",
+                        "in-multicast-pkts": "0",
+                        "in-octets": "150574",
+                        "in-unicast-pkts": "1021",
+                        "out-broadcast-pkts": "0",
+                        "out-discards": "0",
+                        "out-errors": "0",
+                        "out-multicast-pkts": "0",
+                        "out-octets": "1163475",
+                        "out-unicast-pkts": "2542"
+                    },
+                    "description": "",
+                    "enabled": "true",
+                    "ifindex": "999001",
+                    "inactive": "false",
+                    "last-change": "154664217863",
+                    "loopback-mode": "false",
+                    "mtu": "0",
+                    "name": "Management1",
+                    "oper-status": "UP",
+                    "tpid": "TPID_0X8100",
+                    "type": "ethernetCsmacd"
+                },
+                "subinterfaces": {
+                    "subinterface": {
+                        "config": {
+                            "enabled": "true",
+                            "index": "0"
+                        },
+                        "index": "0",
+                        "ipv4": {
+                            "addresses": {
+                                "address": {
+                                    "config": {
+                                        "ip": "192.168.141.72",
+                                        "prefix-length": "24"
+                                    },
+                                    "ip": "192.168.141.72",
+                                    "state": {
+                                        "ip": "192.168.141.72",
+                                        "prefix-length": "24"
+                                    }
+                                }
+                            },
+                            "config": {
+                                "dhcp-client": "false",
+                                "enabled": "false",
+                                "mtu": "1500"
+                            },
+                            "proxy-arp": {
+                                "config": {
+                                    "mode": "DISABLE"
+                                },
+                                "state": {
+                                    "mode": "DISABLE"
+                                }
+                            },
+                            "state": {
+                                "dhcp-client": "false",
+                                "enabled": "false",
+                                "mtu": "1500"
+                            },
+                            "unnumbered": {
+                                "config": {
+                                    "enabled": "false"
+                                },
+                                "state": {
+                                    "enabled": "false"
+                                }
+                            }
+                        },
+                        "ipv6": {
+                            "config": {
+                                "dhcp-client": "false",
+                                "dup-addr-detect-transmits": "1",
+                                "enabled": "false",
+                                "mtu": "1500"
+                            },
+                            "router-advertisement": {
+                                "config": {
+                                    "suppress": "false"
+                                },
+                                "state": {
+                                    "suppress": "false"
+                                }
+                            },
+                            "state": {
+                                "dhcp-client": "false",
+                                "dup-addr-detect-transmits": "1",
+                                "enabled": "false",
+                                "mtu": "1500"
+                            },
+                            "unnumbered": {
+                                "config": {
+                                    "enabled": "false"
+                                },
+                                "state": {
+                                    "enabled": "false"
+                                }
+                            }
+                        },
+                        "state": {
+                            "enabled": "true",
+                            "index": "0"
+                        }
+                    }
+                }
+            },
+            {
+                "aggregation": {
+                    "config": {
+                        "fallback-timeout": "90",
+                        "min-links": "0"
+                    }
+                },
+                "config": {
+                    "description": "",
+                    "enabled": "true",
+                    "load-interval": "300",
+                    "loopback-mode": "true",
+                    "name": "Loopback0",
+                    "tpid": "TPID_0X8100",
+                    "type": "softwareLoopback"
+                },
+                "ethernet": {
+                    "state": {
+                        "auto-negotiate": "true",
+                        "enable-flow-control": "false"
+                    }
+                },
+                "hold-time": {
+                    "config": {
+                        "down": "0",
+                        "up": "0"
+                    },
+                    "state": {
+                        "down": "0",
+                        "up": "0"
+                    }
+                },
+                "name": "Loopback0",
+                "routed-vlan": {
+                    "ipv4": {
+                        "config": {
+                            "dhcp-client": "false",
+                            "enabled": "true"
+                        },
+                        "proxy-arp": {
+                            "config": {
+                                "mode": "DISABLE"
+                            },
+                            "state": {
+                                "mode": "DISABLE"
+                            }
+                        },
+                        "state": {
+                            "dhcp-client": "false",
+                            "enabled": "true"
+                        },
+                        "unnumbered": {
+                            "config": {
+                                "enabled": "false"
+                            },
+                            "state": {
+                                "enabled": "false"
+                            }
+                        }
+                    },
+                    "ipv6": {
+                        "config": {
+                            "dhcp-client": "false",
+                            "dup-addr-detect-transmits": "1",
+                            "enabled": "true"
+                        },
+                        "router-advertisement": {
+                            "config": {
+                                "suppress": "false"
+                            },
+                            "state": {
+                                "suppress": "false"
+                            }
+                        },
+                        "state": {
+                            "dhcp-client": "false",
+                            "dup-addr-detect-transmits": "1",
+                            "enabled": "true"
+                        },
+                        "unnumbered": {
+                            "config": {
+                                "enabled": "false"
+                            },
+                            "state": {
+                                "enabled": "false"
+                            }
+                        }
+                    }
+                },
+                "state": {
+                    "enabled": "true",
+                    "loopback-mode": "false",
+                    "tpid": "TPID_0X8100"
+                },
+                "subinterfaces": {
+                    "subinterface": {
+                        "config": {
+                            "enabled": "true",
+                            "index": "0"
+                        },
+                        "index": "0",
+                        "ipv4": {
+                            "addresses": {
+                                "address": {
+                                    "config": {
+                                        "ip": "10.0.0.1",
+                                        "prefix-length": "32"
+                                    },
+                                    "ip": "10.0.0.1",
+                                    "state": {
+                                        "ip": "10.0.0.1",
+                                        "prefix-length": "32"
+                                    }
+                                }
+                            },
+                            "config": {
+                                "dhcp-client": "false",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "proxy-arp": {
+                                "config": {
+                                    "mode": "DISABLE"
+                                },
+                                "state": {
+                                    "mode": "DISABLE"
+                                }
+                            },
+                            "state": {
+                                "dhcp-client": "false",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "unnumbered": {
+                                "config": {
+                                    "enabled": "false"
+                                },
+                                "state": {
+                                    "enabled": "false"
+                                }
+                            }
+                        },
+                        "ipv6": {
+                            "addresses": {
+                                "address": {
+                                    "config": {
+                                        "ip": "fc00::10:0:0:1",
+                                        "prefix-length": "128"
+                                    },
+                                    "ip": "fc00::10:0:0:1",
+                                    "state": {
+                                        "ip": "fc00::10:0:0:1",
+                                        "prefix-length": "128"
+                                    }
+                                }
+                            },
+                            "config": {
+                                "dhcp-client": "false",
+                                "dup-addr-detect-transmits": "1",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "router-advertisement": {
+                                "config": {
+                                    "suppress": "false"
+                                },
+                                "state": {
+                                    "suppress": "false"
+                                }
+                            },
+                            "state": {
+                                "dhcp-client": "false",
+                                "dup-addr-detect-transmits": "1",
+                                "enabled": "true",
+                                "mtu": "1500"
+                            },
+                            "unnumbered": {
+                                "config": {
+                                    "enabled": "false"
+                                },
+                                "state": {
+                                    "enabled": "false"
+                                }
+                            }
+                        },
+                        "state": {
+                            "enabled": "true",
+                            "index": "0"
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
