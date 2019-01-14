@@ -1,0 +1,93 @@
+<config>
+    <configure xmlns="urn:nokia.com:sros:ns:yang:sr:conf">
+        <router>
+            <router-name>Base</router-name>
+{% if platform_defaults.mpls_label_ranges is defined %}{# 001: in case Segment Routing presents configure labels #}
+{% for mpls_block in platform_defaults.mpls_label_ranges %}
+{% if mpls_block.id == 'sr' %}{# 002: updating MPLS label ranges if necessary #}
+            <mpls-labels>
+                <sr-labels>
+                    <start>{{ mpls_block.start }}</start>
+                    <end>{{ mpls_block.end }}</end>
+                </sr-labels>
+            </mpls-labels>
+{% endif %}{# 002: updating MPLS label ranges if necessary #}
+{% endfor %}
+{% endif %}{# 001: in case Segment Routing presents configure labels #}
+{% for routing_protocol in routing %}
+{% if routing_protocol.id == 'ISIS' %}{# 003: configuration of ISIS routing protocol #}
+            <isis>
+                <isis-instance>{{ routing_protocol.tag }}</isis-instance>
+{% if routing_protocol.enabled %}{# 004: putting protocol to admin up state #}
+                <admin-state>enable</admin-state>
+{% endif %}{# 004: putting protocol to admin up state #}
+                <area-address>{{ routing_protocol.area_id }}</area-address>
+{% for afi_safi in routing_protocol.af %}
+{% if afi_safi.afi == 'IPV6' %}{# 005: enabling IPV6 multi-topology #}
+                <ipv6-routing>mt</ipv6-routing>
+                <multi-topology>
+                    <ipv6-unicast>true</ipv6-unicast>
+                </multi-topology>
+{% endif %}{# 005: enabling IPV6 multi-topology #}
+{% endfor %}
+{% if routing_protocol.is_type == 'LEVEL_2' %}{# 006: limiting level cabaility if needed #}
+                <level-capability>2</level-capability>
+                <level>
+                    <level-number>2</level-number>
+                    <wide-metrics-only>true</wide-metrics-only>
+                </level>
+{% elif routing_protocol.is_type == 'LEVEL_1' %}{# 006: limiting level cabaility if needed #}
+                <level-capability>1</level-capability>
+                <level>
+                    <level-number>1</level-number>
+                    <wide-metrics-only>true</wide-metrics-only>
+                </level>
+{% endif %}{# 006: limiting level cabaility if needed #}
+{% if mpls is defined %}{# 007: enabling segment routing #}
+                <advertise-router-capability>as</advertise-router-capability>
+                <segment-routing>
+                    <admin-state>enable</admin-state>
+                    <prefix-sid-range>
+                        <global/>
+                    </prefix-sid-range>
+                    <tunnel-table-pref>8</tunnel-table-pref>
+                </segment-routing>
+{% for r_iface in routing_protocol.interfaces %}
+{% if r_iface.segment_routing is defined %}{# 008: adding SID to interface system #}
+                <interface>
+                    <interface-name>{% if 'system' in r_iface.name %}system{% else %}noc_{{ r_iface.name }}{% endif %}</interface-name>
+                    <ipv4-node-sid>
+                        <{{ r_iface.segment_routing.id_type }}>{{ r_iface.segment_routing.id_value }}</{{ r_iface.segment_routing.id_type }}>
+                    </ipv4-node-sid>
+                </interface>
+{% endif %}{# 008: adding SID to interface system #}
+{% endfor %}
+{% endif %}{# 007: enabling segment routing #}
+{% for r_iface in routing_protocol.interfaces %}
+                <interface>
+                    <interface-name>{% if 'system' in r_iface.name %}system{% else %}noc_{{ r_iface.name }}{% endif %}</interface-name>
+                    <passive>{% if r_iface.passive %}true{% else %}false{% endif %}</passive>
+{% if r_iface.type is defined and r_iface.type == 'POINT_TO_POINT' %}{# 009: updating interface type #}
+                    <interface-type>point-to-point</interface-type>
+{% endif %}{# 009: updating interface type #}
+{% if routing_protocol.is_type == 'LEVEL_2' %}{# 010: limiting level cabaility if needed #}
+                    <level>
+                        <level-number>2</level-number>
+                        <metric>{% if r_iface.metric is defined %}{{ r_iface.metric }}{% else %}10{% endif %}</metric>
+                        <ipv6-unicast-metric>{% if r_iface.metric is defined %}{{ r_iface.metric }}{% else %}10{% endif %}</ipv6-unicast-metric>
+                    </level>
+{% elif routing_protocol.is_type == 'LEVEL_1' %}{# 010: limiting level cabaility if needed #}
+                    <level>
+                        <level-number>1</level-number>
+                        <metric>{% if r_iface.metric is defined %}{{ r_iface.metric }}{% else %}10{% endif %}</metric>
+                        <ipv6-unicast-metric>{% if r_iface.metric is defined %}{{ r_iface.metric }}{% else %}10{% endif %}</ipv6-unicast-metric>
+                    </level>
+{% endif %}{# 010: limiting level cabaility if needed #}
+                </interface>
+{% endfor %}
+            </isis>
+{% endif %}{# 003: configuration of ISIS routing protocol #}
+{% endfor %}
+        </router>
+    </configure>
+</config>

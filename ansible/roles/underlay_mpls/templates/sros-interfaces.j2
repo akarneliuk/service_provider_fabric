@@ -1,0 +1,51 @@
+<config>
+    <configure xmlns="urn:nokia.com:sros:ns:yang:sr:conf">
+{% for iface in interfaces %}
+{% if 'system' in iface.name %}
+        <router>
+            <router-name>Base</router-name>
+            <router-id>{{ iface.ipv4.address }}</router-id>
+        </router>
+{% else %}
+        <port>
+            <port-id>{{ iface.name }}</port-id>
+{% if iface.enabled %}
+            <admin-state>enable</admin-state>
+{% else %}
+            <admin-state>disable</admin-state>
+{% endif %}
+            <ethernet>
+                <encap-type>dot1q</encap-type>
+                <mode>network</mode>
+                <single-fiber>true</single-fiber>
+            </ethernet>
+        </port>
+{% endif %}
+        <router>
+            <router-name>Base</router-name>
+            <interface>
+                <interface-name>{% if 'system' in iface.name %}{{ iface.name }}{% else %}noc_{{ iface.name }}{% endif %}</interface-name>
+{% if iface.ipv4 is defined %}{# 001: configuration of IPv4 addresses #}
+                <ipv4>
+                    <primary>
+                        <address>{{ iface.ipv4.address }}</address>
+                        <prefix-length>{{ iface.ipv4.prefix }}</prefix-length>
+                    </primary>
+                </ipv4>
+{% endif %}{# 001: configuration of IPv4 addresses #}
+{% if iface.ipv6 is defined %}{# 002: configuration of IPv6 addresses #}
+                <ipv6>
+                    <address>
+                        <ipv6-address>{{ iface.ipv6.address }}</ipv6-address>
+                        <prefix-length>{{ iface.ipv6.prefix }}</prefix-length>
+                    </address>
+                </ipv6>
+{% endif %}{# 002: configuration of IPv6 addresses #}
+{% if 'system' not in iface.name %}
+                <port>{{ iface.name }}:0</port>
+{% endif %}
+            </interface>
+        </router>
+{% endfor %}
+    </configure>
+</config>

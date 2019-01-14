@@ -1,0 +1,36 @@
+<config>
+    <configure xmlns="urn:nokia.com:sros:ns:yang:sr:conf">
+{% for iface in interfaces %}
+{% if 'system' not in iface.name %}{# 001: creating LLDP config for physical ports #}
+        <port>
+            <port-id>{{ iface.name }}</port-id>
+            <ethernet>
+                <lldp>
+                    <dest-mac>
+                        <mac-type>nearest-bridge</mac-type>
+                        <notification>true</notification>
+                        <port-id-subtype>tx-if-name</port-id-subtype>
+                        <receive>true</receive>
+                        <transmit>true</transmit>
+                        <tx-mgmt-address>
+                            <admin-state>enable</admin-state>
+                            <mgmt-address-system-type>system</mgmt-address-system-type>
+                        </tx-mgmt-address>
+                        <tx-mgmt-address>
+                            <admin-state>enable</admin-state>
+                            <mgmt-address-system-type>system-ipv6</mgmt-address-system-type>
+                        </tx-mgmt-address>
+                        <tx-tlvs>
+                            <port-desc>true</port-desc>
+                            <sys-cap>true</sys-cap>
+                            <sys-desc>true</sys-desc>
+                            <sys-name>true</sys-name>
+                        </tx-tlvs>
+                    </dest-mac>
+                </lldp>
+            </ethernet>
+        </port>
+{% endif %}{# 001: creating LLDP config for physical ports #}
+{% endfor %}
+    </configure>
+</config>

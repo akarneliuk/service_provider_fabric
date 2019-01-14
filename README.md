@@ -19,13 +19,14 @@ This repositry is currently being developed, so expect the changes and pull the 
 
 # To-do list
 1) Add automation for EVPNoSR services
-2) Add automation for IPVPNoSR services automation
+2) Add automation for IPVPNoSR services
 3) Add SR policies (static and dynamic using BGP-SR-TE)
 4) Add Telemtry using Netflux TICK stack + Grafana
 5) Add automatic chose of connection method use by device depending on its capabilities (CLI, NETCONF/YANG(native), NETCONF/YANG(OpenConfig))
+6) Add GRT routing service (BGP-LU for IPv4/IPv6) for Internet traffic
 
 # Version
-The current version of the repository is `0.4.1`
+The current version of the repository is `0.4.2`
 
 # Change log
 Version `0.1`
@@ -59,3 +60,6 @@ Version `0.4.1`
 4) Underlay topology `sp_underlay.txt` is updated with the metic values of the interfaces.
 5) Template for configuration of Nokia for `underlay_mpls` roles is updated to include metric values.
 6) File `main_final.yml` from `underlay_mpls/tasks` is updated to apply via `eos_config` on Arista EOS network functions configuration commands not available in OpenConfig YANG modules.
+
+Version `0.4.2`
+1) Configuration of Nokia SR OS for `underlay_mpls` role is converted to NETCONF/YANG using Nokia native YANG modules.

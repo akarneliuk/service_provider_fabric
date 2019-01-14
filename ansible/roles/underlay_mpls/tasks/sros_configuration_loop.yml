@@ -1,0 +1,17 @@
+---
+- name: NOKIA // CONFIGURATION LOOP // TEMPLATING XML FILE WITH NOKIA NATIVE YANG
+  template:
+      src: "{{ ansible_network_os }}-{{ item }}.j2"
+      dest: "{{ temp_folder }}/{{ inventory_hostname}}_{{ item }}.xml"
+  tags:
+      - underlay
+      - underlay_mpls
+
+- name: NOKIA // CONFIGURATION LOOP // NETCONG CONFIG
+  netconf_config:
+      content: "{{ lookup ('file', '{{ temp_folder }}/{{ inventory_hostname }}_{{ item }}.xml') }}"
+  ignore_errors: yes
+  tags:
+      - underlay
+      - underlay_mpls
+...
