@@ -63,3 +63,4 @@ Version `0.4.1`
 
 Version `0.4.2`
 1) Configuration of Nokia SR OS for `underlay_mpls` role is converted to NETCONF/YANG using Nokia native YANG modules.
+2) Configuration of Nokia SR OS for `underlay_bgp` role is converted to NETCONF/YANG using Nokia native YANG modules.

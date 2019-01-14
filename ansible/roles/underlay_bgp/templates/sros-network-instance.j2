@@ -1,0 +1,61 @@
+<config>
+    <configure xmlns="urn:nokia.com:sros:ns:yang:sr:conf">
+        <router>
+            <router-name>Base</router-name>
+{% for routing_protocol in routing %}
+{% if routing_protocol.id == 'BGP' %}{# 001: configuration of BGP process #}
+            <autonomous-system>{{ routing_protocol.asn }}</autonomous-system>
+            <bgp>
+{% for iface in interfaces %}
+{% if iface.name == 'system' %}{# 002: configuring BGP RID #}
+                <router-id>{{ iface.ipv4.address }}</router-id>
+{% endif %}{# 002: configuring BGP RID #}
+{% endfor %}
+                <next-hop-resolution>
+                    <labeled-routes>
+                        <transport-tunnel>
+                            <family>
+                                <family-type>vpn</family-type>
+                                <resolution>filter</resolution>
+                                <resolution-filter>
+                                    <sr-isis>true</sr-isis>
+                                </resolution-filter>
+                            </family>
+                        </transport-tunnel>
+                    </labeled-routes>
+                </next-hop-resolution>
+{% for peer_group in routing_protocol.peer_groups %}
+                <group>
+                    <group-name>{{ peer_group.id }}</group-name>
+                    <peer-as>{{ peer_group.peer_asn }}</peer-as>
+{% for iface in interfaces %}
+{% if iface.name == 'system' %}{# 003: setting source interface to system ipv4@ #}
+                    <local-address>{{ iface.ipv4.address }}</local-address>
+{% endif %}{# 003: setting source interface to system ipv4@ #}
+{% endfor %}
+{% for afi_safi in routing_protocol.af %}
+                    <family>
+{% if afi_safi.afi == 'L2VPN' and afi_safi.safi == 'EVPN' %}{# 004: setting proper AFI/SAFI #}
+                        <evpn>true</evpn>
+{% elif afi_safi.afi == 'L3VPN_IPV4' and afi_safi.safi == 'UNICAST' %}{# 004: setting proper AFI/SAFI #}
+                        <vpn-ipv4>true</vpn-ipv4>
+{% elif afi_safi.afi == 'L3VPN_IPV6' and afi_safi.safi == 'UNICAST' %}{# 004: setting proper AFI/SAFI #}
+                        <vpn-ipv6>true</vpn-ipv6>
+{% endif %}{# 004: setting proper AFI/SAFI #}
+                    </family>
+{% endfor %}
+                </group>
+{% endfor %}
+
+{% for bgp_neighbor in routing_protocol.neighbors %}
+                <neighbor>
+                    <ip-address>{{ bgp_neighbor.id }}</ip-address>
+                    <group>{{ bgp_neighbor.peer_group }}</group>
+                </neighbor>
+{% endfor %}
+            </bgp>
+{% endif %}{# 001: configuration of BGP process #}
+{% endfor %}
+        </router>
+    </configure>
+</config>

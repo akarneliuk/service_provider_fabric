@@ -14,24 +14,20 @@
       - underlay
       - underlay_bgp
 
-- name: TEMPORARY UNDERLAY BGP // TEMPLATING CONFIG
-  copy:
-      content: "{{ lookup('template', '{{ ansible_network_os }}-temp.j2') }}"
-      dest: "{{ temp_folder }}/{{ inventory_hostname }}_temp_underlay_bgp.xml"
+- name: STARING NOKIA CONFIGURATION LOOP
+  include_tasks: "{{ ansible_network_os }}_configuration_loop.yml"
+  when: ansible_network_os == 'sros'
+  loop:
+      - network-instance
   tags:
       - underlay
       - underlay_bgp
 
-- name: TEMPORARY UNDERLAY BGP // PUSHING CONFIG
-  local_action:
-      module: "sros_config"
-      save: true
-      src: "{{ temp_folder }}/{{ inventory_hostname }}_temp_underlay_bgp.xml"
-      provider:
-          host: "{{ inventory_hostname }}"
-          username: "{{ ansible_user }}"
-          password: "{{ ansible_pass }}"
-  when: ansible_network_os == 'sros'
+- name: TEMPORARY UNDERLAY BGP // TEMPLATING CONFIG
+  copy:
+      content: "{{ lookup('template', '{{ ansible_network_os }}-temp.j2') }}"
+      dest: "{{ temp_folder }}/{{ inventory_hostname }}_temp_underlay_bgp.xml"
+  when: ansible_network_os == 'nexus'
   tags:
       - underlay
       - underlay_bgp
