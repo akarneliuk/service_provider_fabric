@@ -1,0 +1,3171 @@
+{
+    "network-instances": {
+        "network-instance": [
+            {
+                "config": {
+                    "enabled-address-families": [
+                        "IPV4",
+                        "IPV6"
+                    ],
+                    "name": "default",
+                    "type": "DEFAULT_INSTANCE"
+                },
+                "inter-instance-policies": {
+                    "apply-policy": {
+                        "config": {
+                            "default-export-policy": "REJECT_ROUTE",
+                            "default-import-policy": "REJECT_ROUTE"
+                        },
+                        "state": {
+                            "default-export-policy": "REJECT_ROUTE",
+                            "default-import-policy": "REJECT_ROUTE"
+                        }
+                    }
+                },
+                "mpls": {
+                    "global": {
+                        "config": {
+                            "null-label": "IMPLICIT"
+                        },
+                        "reserved-label-blocks": {
+                            "reserved-label-block": [
+                                {
+                                    "config": {
+                                        "local-id": "isis-sr",
+                                        "lower-bound": "900000",
+                                        "upper-bound": "965535"
+                                    },
+                                    "local-id": "isis-sr"
+                                },
+                                {
+                                    "config": {
+                                        "local-id": "bgp-sr",
+                                        "lower-bound": "900000",
+                                        "upper-bound": "965535"
+                                    },
+                                    "local-id": "bgp-sr"
+                                },
+                                {
+                                    "config": {
+                                        "local-id": "srlb",
+                                        "lower-bound": "965536",
+                                        "upper-bound": "1031071"
+                                    },
+                                    "local-id": "srlb"
+                                },
+                                {
+                                    "config": {
+                                        "local-id": "l2evpn",
+                                        "lower-bound": "1036288",
+                                        "upper-bound": "1048575"
+                                    },
+                                    "local-id": "l2evpn"
+                                },
+                                {
+                                    "config": {
+                                        "local-id": "dynamic",
+                                        "lower-bound": "100000",
+                                        "upper-bound": "362143"
+                                    },
+                                    "local-id": "dynamic"
+                                },
+                                {
+                                    "config": {
+                                        "local-id": "static",
+                                        "lower-bound": "16",
+                                        "upper-bound": "99999"
+                                    },
+                                    "local-id": "static"
+                                }
+                            ]
+                        },
+                        "state": {
+                            "null-label": "IMPLICIT"
+                        }
+                    },
+                    "signaling-protocols": {
+                        "rsvp-te": {
+                            "global": {
+                                "graceful-restart": {
+                                    "config": {
+                                        "enable": "false"
+                                    },
+                                    "state": {
+                                        "enable": "false"
+                                    }
+                                },
+                                "hellos": {
+                                    "config": {
+                                        "hello-interval": "9000",
+                                        "refresh-reduction": "true"
+                                    },
+                                    "state": {
+                                        "hello-interval": "9000",
+                                        "refresh-reduction": "true"
+                                    }
+                                },
+                                "soft-preemption": {
+                                    "config": {
+                                        "enable": "false",
+                                        "soft-preemption-timeout": "30"
+                                    },
+                                    "state": {
+                                        "enable": "false",
+                                        "soft-preemption-timeout": "30"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "name": "default",
+                "protocols": {
+                    "protocol": [
+                        {
+                            "bgp": {
+                                "global": {
+                                    "afi-safis": {
+                                        "afi-safi": [
+                                            {
+                                                "add-paths": {
+                                                    "config": {
+                                                        "receive": "false",
+                                                        "send": "false"
+                                                    },
+                                                    "state": {
+                                                        "receive": "false",
+                                                        "send": "false"
+                                                    }
+                                                },
+                                                "afi-safi-name": "IPV4_UNICAST",
+                                                "config": {
+                                                    "afi-safi-name": "IPV4_UNICAST"
+                                                },
+                                                "graceful-restart": {
+                                                    "config": {
+                                                        "enabled": "false"
+                                                    },
+                                                    "state": {
+                                                        "enabled": "false"
+                                                    }
+                                                },
+                                                "route-selection-options": {
+                                                    "config": {
+                                                        "advertise-inactive-routes": "false",
+                                                        "always-compare-med": "false",
+                                                        "enable-aigp": "false",
+                                                        "external-compare-router-id": "true",
+                                                        "ignore-as-path-length": "false",
+                                                        "ignore-next-hop-igp-metric": "false"
+                                                    },
+                                                    "state": {
+                                                        "advertise-inactive-routes": "false",
+                                                        "always-compare-med": "false",
+                                                        "enable-aigp": "false",
+                                                        "external-compare-router-id": "true",
+                                                        "ignore-as-path-length": "false",
+                                                        "ignore-next-hop-igp-metric": "false"
+                                                    }
+                                                },
+                                                "state": {
+                                                    "afi-safi-name": "IPV4_UNICAST"
+                                                }
+                                            },
+                                            {
+                                                "add-paths": {
+                                                    "config": {
+                                                        "receive": "false",
+                                                        "send": "false"
+                                                    },
+                                                    "state": {
+                                                        "receive": "false",
+                                                        "send": "false"
+                                                    }
+                                                },
+                                                "afi-safi-name": "IPV6_UNICAST",
+                                                "config": {
+                                                    "afi-safi-name": "IPV6_UNICAST"
+                                                },
+                                                "graceful-restart": {
+                                                    "config": {
+                                                        "enabled": "false"
+                                                    },
+                                                    "state": {
+                                                        "enabled": "false"
+                                                    }
+                                                },
+                                                "route-selection-options": {
+                                                    "config": {
+                                                        "advertise-inactive-routes": "false",
+                                                        "always-compare-med": "false",
+                                                        "enable-aigp": "false",
+                                                        "external-compare-router-id": "true",
+                                                        "ignore-as-path-length": "false",
+                                                        "ignore-next-hop-igp-metric": "false"
+                                                    },
+                                                    "state": {
+                                                        "advertise-inactive-routes": "false",
+                                                        "always-compare-med": "false",
+                                                        "enable-aigp": "false",
+                                                        "external-compare-router-id": "true",
+                                                        "ignore-as-path-length": "false",
+                                                        "ignore-next-hop-igp-metric": "false"
+                                                    }
+                                                },
+                                                "state": {
+                                                    "afi-safi-name": "IPV6_UNICAST"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "confederation": {
+                                        "config": {
+                                            "identifier": "0"
+                                        },
+                                        "state": {
+                                            "identifier": "0"
+                                        }
+                                    },
+                                    "config": {
+                                        "as": "65000",
+                                        "router-id": "10.0.0.22"
+                                    },
+                                    "default-route-distance": {
+                                        "config": "",
+                                        "state": ""
+                                    },
+                                    "graceful-restart": {
+                                        "config": "",
+                                        "state": ""
+                                    },
+                                    "route-selection-options": {
+                                        "config": {
+                                            "enable-aigp": "false",
+                                            "ignore-next-hop-igp-metric": "false"
+                                        },
+                                        "state": {
+                                            "enable-aigp": "false",
+                                            "ignore-next-hop-igp-metric": "false"
+                                        }
+                                    },
+                                    "state": {
+                                        "as": "65000",
+                                        "router-id": "10.0.0.22"
+                                    },
+                                    "use-multiple-paths": {
+                                        "config": {
+                                            "enabled": "true"
+                                        },
+                                        "ebgp": {
+                                            "config": {
+                                                "allow-multiple-as": "false"
+                                            },
+                                            "state": {
+                                                "allow-multiple-as": "false"
+                                            }
+                                        },
+                                        "ibgp": {
+                                            "state": {
+                                                "maximum-paths": "1"
+                                            }
+                                        },
+                                        "state": {
+                                            "enabled": "true"
+                                        }
+                                    }
+                                },
+                                "neighbors": {
+                                    "neighbor": [
+                                        {
+                                            "afi-safis": {
+                                                "afi-safi": [
+                                                    {
+                                                        "add-paths": {
+                                                            "config": {
+                                                                "send": "false"
+                                                            },
+                                                            "state": {
+                                                                "send": "false"
+                                                            }
+                                                        },
+                                                        "afi-safi-name": "IPV6_UNICAST",
+                                                        "apply-policy": {
+                                                            "config": {
+                                                                "default-export-policy": "REJECT_ROUTE",
+                                                                "default-import-policy": "REJECT_ROUTE"
+                                                            },
+                                                            "state": {
+                                                                "default-export-policy": "REJECT_ROUTE",
+                                                                "default-import-policy": "REJECT_ROUTE"
+                                                            }
+                                                        },
+                                                        "config": {
+                                                            "afi-safi-name": "IPV6_UNICAST"
+                                                        },
+                                                        "graceful-restart": {
+                                                            "config": "",
+                                                            "state": ""
+                                                        },
+                                                        "state": {
+                                                            "afi-safi-name": "IPV6_UNICAST",
+                                                            "prefixes": {
+                                                                "installed": "0",
+                                                                "received": "0",
+                                                                "sent": "0"
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "add-paths": {
+                                                            "config": {
+                                                                "send": "false"
+                                                            },
+                                                            "state": {
+                                                                "send": "false"
+                                                            }
+                                                        },
+                                                        "afi-safi-name": "IPV4_UNICAST",
+                                                        "apply-policy": {
+                                                            "config": {
+                                                                "default-export-policy": "REJECT_ROUTE",
+                                                                "default-import-policy": "REJECT_ROUTE"
+                                                            },
+                                                            "state": {
+                                                                "default-export-policy": "REJECT_ROUTE",
+                                                                "default-import-policy": "REJECT_ROUTE"
+                                                            }
+                                                        },
+                                                        "config": {
+                                                            "afi-safi-name": "IPV4_UNICAST"
+                                                        },
+                                                        "graceful-restart": {
+                                                            "config": "",
+                                                            "state": ""
+                                                        },
+                                                        "state": {
+                                                            "afi-safi-name": "IPV4_UNICAST",
+                                                            "prefixes": {
+                                                                "installed": "0",
+                                                                "received": "0",
+                                                                "sent": "0"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            "apply-policy": {
+                                                "config": {
+                                                    "default-export-policy": "REJECT_ROUTE",
+                                                    "default-import-policy": "REJECT_ROUTE"
+                                                },
+                                                "state": {
+                                                    "default-export-policy": "REJECT_ROUTE",
+                                                    "default-import-policy": "REJECT_ROUTE"
+                                                }
+                                            },
+                                            "as-path-options": {
+                                                "config": {
+                                                    "disable-peer-as-filter": "false",
+                                                    "replace-peer-as": "false"
+                                                },
+                                                "state": {
+                                                    "disable-peer-as-filter": "false",
+                                                    "replace-peer-as": "false"
+                                                }
+                                            },
+                                            "config": {
+                                                "auth-password": "",
+                                                "description": "",
+                                                "enabled": "true",
+                                                "local-as": "0",
+                                                "neighbor-address": "10.0.0.33",
+                                                "peer-as": "0",
+                                                "peer-group": "IBGP_PEERS",
+                                                "route-flap-damping": "false",
+                                                "send-community": "NONE"
+                                            },
+                                            "ebgp-multihop": {
+                                                "config": {
+                                                    "enabled": "false",
+                                                    "multihop-ttl": "0"
+                                                },
+                                                "state": {
+                                                    "enabled": "false",
+                                                    "multihop-ttl": "0"
+                                                }
+                                            },
+                                            "error-handling": {
+                                                "config": {
+                                                    "treat-as-withdraw": "false"
+                                                },
+                                                "state": {
+                                                    "treat-as-withdraw": "false"
+                                                }
+                                            },
+                                            "neighbor-address": "10.0.0.33",
+                                            "route-reflector": {
+                                                "config": "",
+                                                "state": ""
+                                            },
+                                            "state": {
+                                                "auth-password": "",
+                                                "description": "",
+                                                "dynamically-configured": "false",
+                                                "enabled": "true",
+                                                "established-transitions": "1",
+                                                "last-established": "154811980132",
+                                                "local-as": "0",
+                                                "messages": {
+                                                    "received": {
+                                                        "UPDATE": "3"
+                                                    },
+                                                    "sent": {
+                                                        "UPDATE": "8"
+                                                    }
+                                                },
+                                                "neighbor-address": "10.0.0.33",
+                                                "peer-as": "0",
+                                                "peer-group": "IBGP_PEERS",
+                                                "route-flap-damping": "false",
+                                                "send-community": "NONE",
+                                                "session-state": "ESTABLISHED"
+                                            },
+                                            "timers": {
+                                                "config": {
+                                                    "connect-retry": "30",
+                                                    "minimum-advertisement-interval": "30"
+                                                },
+                                                "state": {
+                                                    "connect-retry": "30",
+                                                    "minimum-advertisement-interval": "30"
+                                                }
+                                            },
+                                            "transport": {
+                                                "config": {
+                                                    "mtu-discovery": "true"
+                                                },
+                                                "state": {
+                                                    "mtu-discovery": "false",
+                                                    "remote-address": "10.0.0.33"
+                                                }
+                                            },
+                                            "use-multiple-paths": {
+                                                "config": {
+                                                    "enabled": "false"
+                                                },
+                                                "ebgp": {
+                                                    "config": {
+                                                        "allow-multiple-as": "false"
+                                                    },
+                                                    "state": {
+                                                        "allow-multiple-as": "false"
+                                                    }
+                                                },
+                                                "state": {
+                                                    "enabled": "false"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "afi-safis": {
+                                                "afi-safi": [
+                                                    {
+                                                        "add-paths": {
+                                                            "config": {
+                                                                "send": "false"
+                                                            },
+                                                            "state": {
+                                                                "send": "false"
+                                                            }
+                                                        },
+                                                        "afi-safi-name": "IPV4_UNICAST",
+                                                        "apply-policy": {
+                                                            "config": {
+                                                                "default-export-policy": "REJECT_ROUTE",
+                                                                "default-import-policy": "REJECT_ROUTE"
+                                                            },
+                                                            "state": {
+                                                                "default-export-policy": "REJECT_ROUTE",
+                                                                "default-import-policy": "REJECT_ROUTE"
+                                                            }
+                                                        },
+                                                        "config": {
+                                                            "afi-safi-name": "IPV4_UNICAST"
+                                                        },
+                                                        "graceful-restart": {
+                                                            "config": "",
+                                                            "state": ""
+                                                        },
+                                                        "state": {
+                                                            "afi-safi-name": "IPV4_UNICAST",
+                                                            "prefixes": {
+                                                                "installed": "0",
+                                                                "received": "0",
+                                                                "sent": "0"
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "add-paths": {
+                                                            "config": {
+                                                                "send": "false"
+                                                            },
+                                                            "state": {
+                                                                "send": "false"
+                                                            }
+                                                        },
+                                                        "afi-safi-name": "IPV6_UNICAST",
+                                                        "apply-policy": {
+                                                            "config": {
+                                                                "default-export-policy": "REJECT_ROUTE",
+                                                                "default-import-policy": "REJECT_ROUTE"
+                                                            },
+                                                            "state": {
+                                                                "default-export-policy": "REJECT_ROUTE",
+                                                                "default-import-policy": "REJECT_ROUTE"
+                                                            }
+                                                        },
+                                                        "config": {
+                                                            "afi-safi-name": "IPV6_UNICAST"
+                                                        },
+                                                        "graceful-restart": {
+                                                            "config": "",
+                                                            "state": ""
+                                                        },
+                                                        "state": {
+                                                            "afi-safi-name": "IPV6_UNICAST",
+                                                            "prefixes": {
+                                                                "installed": "0",
+                                                                "received": "0",
+                                                                "sent": "0"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            "apply-policy": {
+                                                "config": {
+                                                    "default-export-policy": "REJECT_ROUTE",
+                                                    "default-import-policy": "REJECT_ROUTE"
+                                                },
+                                                "state": {
+                                                    "default-export-policy": "REJECT_ROUTE",
+                                                    "default-import-policy": "REJECT_ROUTE"
+                                                }
+                                            },
+                                            "as-path-options": {
+                                                "config": {
+                                                    "disable-peer-as-filter": "false",
+                                                    "replace-peer-as": "false"
+                                                },
+                                                "state": {
+                                                    "disable-peer-as-filter": "false",
+                                                    "replace-peer-as": "false"
+                                                }
+                                            },
+                                            "config": {
+                                                "auth-password": "",
+                                                "description": "",
+                                                "enabled": "true",
+                                                "local-as": "0",
+                                                "neighbor-address": "10.0.0.44",
+                                                "peer-as": "0",
+                                                "peer-group": "IBGP_PEERS",
+                                                "route-flap-damping": "false",
+                                                "send-community": "NONE"
+                                            },
+                                            "ebgp-multihop": {
+                                                "config": {
+                                                    "enabled": "false",
+                                                    "multihop-ttl": "0"
+                                                },
+                                                "state": {
+                                                    "enabled": "false",
+                                                    "multihop-ttl": "0"
+                                                }
+                                            },
+                                            "error-handling": {
+                                                "config": {
+                                                    "treat-as-withdraw": "false"
+                                                },
+                                                "state": {
+                                                    "treat-as-withdraw": "false"
+                                                }
+                                            },
+                                            "neighbor-address": "10.0.0.44",
+                                            "route-reflector": {
+                                                "config": "",
+                                                "state": ""
+                                            },
+                                            "state": {
+                                                "auth-password": "",
+                                                "description": "",
+                                                "dynamically-configured": "false",
+                                                "enabled": "true",
+                                                "established-transitions": "0",
+                                                "last-established": "154811980006",
+                                                "local-as": "0",
+                                                "messages": {
+                                                    "received": {
+                                                        "UPDATE": "0"
+                                                    },
+                                                    "sent": {
+                                                        "UPDATE": "0"
+                                                    }
+                                                },
+                                                "neighbor-address": "10.0.0.44",
+                                                "peer-as": "0",
+                                                "peer-group": "IBGP_PEERS",
+                                                "route-flap-damping": "false",
+                                                "send-community": "NONE",
+                                                "session-state": "ACTIVE"
+                                            },
+                                            "timers": {
+                                                "config": {
+                                                    "connect-retry": "30",
+                                                    "minimum-advertisement-interval": "30"
+                                                },
+                                                "state": {
+                                                    "connect-retry": "30",
+                                                    "minimum-advertisement-interval": "30"
+                                                }
+                                            },
+                                            "transport": {
+                                                "config": {
+                                                    "mtu-discovery": "true"
+                                                },
+                                                "state": {
+                                                    "mtu-discovery": "false",
+                                                    "remote-address": "10.0.0.44"
+                                                }
+                                            },
+                                            "use-multiple-paths": {
+                                                "config": {
+                                                    "enabled": "false"
+                                                },
+                                                "ebgp": {
+                                                    "config": {
+                                                        "allow-multiple-as": "false"
+                                                    },
+                                                    "state": {
+                                                        "allow-multiple-as": "false"
+                                                    }
+                                                },
+                                                "state": {
+                                                    "enabled": "false"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "peer-groups": {
+                                    "peer-group": {
+                                        "afi-safis": {
+                                            "afi-safi": [
+                                                {
+                                                    "add-paths": {
+                                                        "config": {
+                                                            "send": "false"
+                                                        },
+                                                        "state": {
+                                                            "send": "false"
+                                                        }
+                                                    },
+                                                    "afi-safi-name": "IPV6_UNICAST",
+                                                    "apply-policy": {
+                                                        "config": {
+                                                            "default-export-policy": "REJECT_ROUTE",
+                                                            "default-import-policy": "REJECT_ROUTE"
+                                                        },
+                                                        "state": {
+                                                            "default-export-policy": "REJECT_ROUTE",
+                                                            "default-import-policy": "REJECT_ROUTE"
+                                                        }
+                                                    },
+                                                    "config": {
+                                                        "afi-safi-name": "IPV6_UNICAST"
+                                                    },
+                                                    "graceful-restart": {
+                                                        "config": "",
+                                                        "state": ""
+                                                    },
+                                                    "state": {
+                                                        "afi-safi-name": "IPV6_UNICAST"
+                                                    }
+                                                },
+                                                {
+                                                    "add-paths": {
+                                                        "config": {
+                                                            "send": "false"
+                                                        },
+                                                        "state": {
+                                                            "send": "false"
+                                                        }
+                                                    },
+                                                    "afi-safi-name": "IPV4_UNICAST",
+                                                    "apply-policy": {
+                                                        "config": {
+                                                            "default-export-policy": "REJECT_ROUTE",
+                                                            "default-import-policy": "REJECT_ROUTE"
+                                                        },
+                                                        "state": {
+                                                            "default-export-policy": "REJECT_ROUTE",
+                                                            "default-import-policy": "REJECT_ROUTE"
+                                                        }
+                                                    },
+                                                    "config": {
+                                                        "afi-safi-name": "IPV4_UNICAST"
+                                                    },
+                                                    "graceful-restart": {
+                                                        "config": "",
+                                                        "state": ""
+                                                    },
+                                                    "state": {
+                                                        "afi-safi-name": "IPV4_UNICAST"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "apply-policy": {
+                                            "config": {
+                                                "default-export-policy": "REJECT_ROUTE",
+                                                "default-import-policy": "REJECT_ROUTE"
+                                            },
+                                            "state": {
+                                                "default-export-policy": "REJECT_ROUTE",
+                                                "default-import-policy": "REJECT_ROUTE"
+                                            }
+                                        },
+                                        "as-path-options": {
+                                            "config": {
+                                                "disable-peer-as-filter": "false",
+                                                "replace-peer-as": "false"
+                                            },
+                                            "state": {
+                                                "disable-peer-as-filter": "false",
+                                                "replace-peer-as": "false"
+                                            }
+                                        },
+                                        "config": {
+                                            "auth-password": "",
+                                            "description": "",
+                                            "local-as": "0",
+                                            "peer-as": "65000",
+                                            "peer-group-name": "IBGP_PEERS",
+                                            "route-flap-damping": "false",
+                                            "send-community": "BOTH"
+                                        },
+                                        "ebgp-multihop": {
+                                            "config": {
+                                                "enabled": "false",
+                                                "multihop-ttl": "0"
+                                            },
+                                            "state": {
+                                                "enabled": "false",
+                                                "multihop-ttl": "0"
+                                            }
+                                        },
+                                        "error-handling": {
+                                            "config": {
+                                                "treat-as-withdraw": "false"
+                                            },
+                                            "state": {
+                                                "treat-as-withdraw": "false"
+                                            }
+                                        },
+                                        "peer-group-name": "IBGP_PEERS",
+                                        "route-reflector": {
+                                            "config": "",
+                                            "state": ""
+                                        },
+                                        "state": {
+                                            "auth-password": "",
+                                            "description": "",
+                                            "local-as": "0",
+                                            "peer-as": "65000",
+                                            "peer-group-name": "IBGP_PEERS",
+                                            "route-flap-damping": "false",
+                                            "send-community": "BOTH"
+                                        },
+                                        "timers": {
+                                            "config": {
+                                                "connect-retry": "30",
+                                                "minimum-advertisement-interval": "30"
+                                            },
+                                            "state": {
+                                                "connect-retry": "30",
+                                                "minimum-advertisement-interval": "30"
+                                            }
+                                        },
+                                        "transport": {
+                                            "config": {
+                                                "mtu-discovery": "true"
+                                            },
+                                            "state": {
+                                                "mtu-discovery": "false"
+                                            }
+                                        },
+                                        "use-multiple-paths": {
+                                            "config": {
+                                                "enabled": "false"
+                                            },
+                                            "ebgp": {
+                                                "config": {
+                                                    "allow-multiple-as": "false",
+                                                    "maximum-paths": "1"
+                                                },
+                                                "state": {
+                                                    "allow-multiple-as": "false",
+                                                    "maximum-paths": "1"
+                                                }
+                                            },
+                                            "ibgp": {
+                                                "config": {
+                                                    "maximum-paths": "1"
+                                                },
+                                                "state": {
+                                                    "maximum-paths": "1"
+                                                }
+                                            },
+                                            "state": {
+                                                "enabled": "false"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "config": {
+                                "identifier": "BGP",
+                                "name": "BGP"
+                            },
+                            "identifier": "BGP",
+                            "isis": {
+                                "global": {
+                                    "config": {
+                                        "authentication-check": "true",
+                                        "iid-tlv": "false",
+                                        "instance": "0",
+                                        "level-capability": "LEVEL_1_2",
+                                        "poi-tlv": "false"
+                                    },
+                                    "graceful-restart": {
+                                        "config": {
+                                            "enabled": "false",
+                                            "helper-only": "true"
+                                        },
+                                        "state": {
+                                            "enabled": "false"
+                                        }
+                                    },
+                                    "inter-level-propagation-policies": {
+                                        "level1-to-level2": {
+                                            "config": {
+                                                "default-import-policy": "REJECT_ROUTE"
+                                            },
+                                            "state": {
+                                                "default-import-policy": "REJECT_ROUTE"
+                                            }
+                                        },
+                                        "level2-to-level1": {
+                                            "config": {
+                                                "default-import-policy": "REJECT_ROUTE"
+                                            },
+                                            "state": {
+                                                "default-import-policy": "REJECT_ROUTE"
+                                            }
+                                        }
+                                    },
+                                    "lsp-bit": {
+                                        "attached-bit": {
+                                            "config": {
+                                                "ignore-bit": "false",
+                                                "suppress-bit": "false"
+                                            },
+                                            "state": {
+                                                "ignore-bit": "false",
+                                                "suppress-bit": "false"
+                                            }
+                                        },
+                                        "overload-bit": {
+                                            "config": {
+                                                "advertise-high-metric": "false",
+                                                "set-bit": "false",
+                                                "set-bit-on-boot": "false"
+                                            },
+                                            "state": {
+                                                "advertise-high-metric": "false",
+                                                "set-bit": "false",
+                                                "set-bit-on-boot": "false"
+                                            }
+                                        }
+                                    },
+                                    "mpls": {
+                                        "igp-ldp-sync": {
+                                            "config": {
+                                                "enabled": "false",
+                                                "post-session-up-delay": "5"
+                                            },
+                                            "state": {
+                                                "enabled": "true"
+                                            }
+                                        }
+                                    },
+                                    "state": {
+                                        "authentication-check": "true",
+                                        "fast-flooding": "true",
+                                        "iid-tlv": "false",
+                                        "instance": "0",
+                                        "level-capability": "LEVEL_1_2",
+                                        "maximum-area-addresses": "3",
+                                        "poi-tlv": "false"
+                                    },
+                                    "timers": {
+                                        "config": {
+                                            "lsp-lifetime-interval": "1200"
+                                        },
+                                        "lsp-generation": {
+                                            "config": {
+                                                "lsp-first-wait-interval": "50",
+                                                "lsp-max-wait-interval": "5000",
+                                                "lsp-second-wait-interval": "50"
+                                            }
+                                        },
+                                        "spf": {
+                                            "config": {
+                                                "spf-first-interval": "1000",
+                                                "spf-hold-interval": "2000",
+                                                "spf-second-interval": "1000"
+                                            },
+                                            "state": {
+                                                "spf-hold-interval": "5000"
+                                            }
+                                        },
+                                        "state": {
+                                            "lsp-lifetime-interval": "1200"
+                                        }
+                                    }
+                                }
+                            },
+                            "name": "BGP",
+                            "ospfv2": {
+                                "global": {
+                                    "config": {
+                                        "summary-route-cost-mode": "RFC2328_COMPATIBLE"
+                                    },
+                                    "state": {
+                                        "summary-route-cost-mode": "RFC2328_COMPATIBLE"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "bgp": {
+                                "global": {
+                                    "route-selection-options": {
+                                        "config": {
+                                            "enable-aigp": "false",
+                                            "ignore-next-hop-igp-metric": "false"
+                                        },
+                                        "state": {
+                                            "enable-aigp": "false",
+                                            "ignore-next-hop-igp-metric": "false"
+                                        }
+                                    },
+                                    "use-multiple-paths": {
+                                        "config": {
+                                            "enabled": "true"
+                                        },
+                                        "ebgp": {
+                                            "config": {
+                                                "allow-multiple-as": "false"
+                                            },
+                                            "state": {
+                                                "allow-multiple-as": "false"
+                                            }
+                                        },
+                                        "ibgp": {
+                                            "state": {
+                                                "maximum-paths": "1"
+                                            }
+                                        },
+                                        "state": {
+                                            "enabled": "true"
+                                        }
+                                    }
+                                }
+                            },
+                            "config": {
+                                "enabled": "true",
+                                "identifier": "ISIS",
+                                "name": "CORE"
+                            },
+                            "identifier": "ISIS",
+                            "isis": {
+                                "global": {
+                                    "afi-safi": {
+                                        "af": [
+                                            {
+                                                "afi-name": "IPV6",
+                                                "config": {
+                                                    "afi-name": "IPV6",
+                                                    "enabled": "true",
+                                                    "max-ecmp-paths": "0",
+                                                    "metric": "10",
+                                                    "safi-name": "UNICAST"
+                                                },
+                                                "multi-topology": {
+                                                    "config": {
+                                                        "enabled": "true"
+                                                    },
+                                                    "state": {
+                                                        "enabled": "true"
+                                                    }
+                                                },
+                                                "safi-name": "UNICAST",
+                                                "state": {
+                                                    "afi-name": "IPV6",
+                                                    "enabled": "true",
+                                                    "max-ecmp-paths": "0",
+                                                    "metric": "10",
+                                                    "safi-name": "UNICAST"
+                                                }
+                                            },
+                                            {
+                                                "afi-name": "IPV4",
+                                                "config": {
+                                                    "afi-name": "IPV4",
+                                                    "enabled": "true",
+                                                    "max-ecmp-paths": "0",
+                                                    "metric": "10",
+                                                    "safi-name": "UNICAST"
+                                                },
+                                                "safi-name": "UNICAST",
+                                                "state": {
+                                                    "afi-name": "IPV4",
+                                                    "enabled": "true",
+                                                    "max-ecmp-paths": "0",
+                                                    "metric": "10",
+                                                    "safi-name": "UNICAST"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "config": {
+                                        "authentication-check": "true",
+                                        "iid-tlv": "false",
+                                        "instance": "CORE",
+                                        "level-capability": "LEVEL_2",
+                                        "net": "49.0000.0100.0000.0022.00",
+                                        "poi-tlv": "false"
+                                    },
+                                    "graceful-restart": {
+                                        "config": {
+                                            "enabled": "false",
+                                            "helper-only": "true"
+                                        },
+                                        "state": {
+                                            "enabled": "false",
+                                            "helper-only": "true"
+                                        }
+                                    },
+                                    "inter-level-propagation-policies": {
+                                        "level1-to-level2": {
+                                            "config": {
+                                                "default-import-policy": "REJECT_ROUTE"
+                                            },
+                                            "state": {
+                                                "default-import-policy": "REJECT_ROUTE"
+                                            }
+                                        },
+                                        "level2-to-level1": {
+                                            "config": {
+                                                "default-import-policy": "REJECT_ROUTE"
+                                            },
+                                            "state": {
+                                                "default-import-policy": "REJECT_ROUTE"
+                                            }
+                                        }
+                                    },
+                                    "lsp-bit": {
+                                        "attached-bit": {
+                                            "config": {
+                                                "ignore-bit": "false",
+                                                "suppress-bit": "false"
+                                            },
+                                            "state": {
+                                                "ignore-bit": "false",
+                                                "suppress-bit": "false"
+                                            }
+                                        },
+                                        "overload-bit": {
+                                            "config": {
+                                                "advertise-high-metric": "false",
+                                                "set-bit": "false",
+                                                "set-bit-on-boot": "false"
+                                            },
+                                            "state": {
+                                                "advertise-high-metric": "false",
+                                                "set-bit": "false",
+                                                "set-bit-on-boot": "false"
+                                            }
+                                        }
+                                    },
+                                    "mpls": {
+                                        "igp-ldp-sync": {
+                                            "config": {
+                                                "enabled": "false",
+                                                "post-session-up-delay": "5"
+                                            },
+                                            "state": {
+                                                "enabled": "false",
+                                                "post-session-up-delay": "5"
+                                            }
+                                        }
+                                    },
+                                    "segment-routing": {
+                                        "config": {
+                                            "enabled": "true",
+                                            "srgb": "isis-sr",
+                                            "srlb": "srlb"
+                                        },
+                                        "state": {
+                                            "enabled": "true",
+                                            "srgb": "isis-sr",
+                                            "srlb": "srlb"
+                                        }
+                                    },
+                                    "state": {
+                                        "authentication-check": "true",
+                                        "fast-flooding": "true",
+                                        "iid-tlv": "false",
+                                        "instance": "CORE",
+                                        "level-capability": "LEVEL_2",
+                                        "maximum-area-addresses": "3",
+                                        "net": "49.0000.0100.0000.0022.00",
+                                        "poi-tlv": "false"
+                                    },
+                                    "timers": {
+                                        "config": {
+                                            "lsp-lifetime-interval": "1200"
+                                        },
+                                        "lsp-generation": {
+                                            "config": {
+                                                "lsp-first-wait-interval": "50",
+                                                "lsp-max-wait-interval": "5000",
+                                                "lsp-second-wait-interval": "50"
+                                            },
+                                            "state": {
+                                                "lsp-first-wait-interval": "50",
+                                                "lsp-max-wait-interval": "5000",
+                                                "lsp-second-wait-interval": "50"
+                                            }
+                                        },
+                                        "spf": {
+                                            "config": {
+                                                "spf-first-interval": "1000",
+                                                "spf-hold-interval": "2000",
+                                                "spf-second-interval": "1000"
+                                            },
+                                            "state": {
+                                                "spf-first-interval": "1000",
+                                                "spf-hold-interval": "2000",
+                                                "spf-second-interval": "1000"
+                                            }
+                                        },
+                                        "state": {
+                                            "lsp-lifetime-interval": "1200"
+                                        }
+                                    }
+                                },
+                                "interfaces": {
+                                    "interface": [
+                                        {
+                                            "authentication": {
+                                                "config": {
+                                                    "hello-authentication": "false"
+                                                },
+                                                "state": {
+                                                    "hello-authentication": "false"
+                                                }
+                                            },
+                                            "config": {
+                                                "circuit-type": "POINT_TO_POINT",
+                                                "enabled": "true",
+                                                "hello-padding": "STRICT",
+                                                "interface-id": "Ethernet1",
+                                                "passive": "false"
+                                            },
+                                            "interface-id": "Ethernet1",
+                                            "interface-ref": {
+                                                "config": {
+                                                    "interface": "Ethernet1"
+                                                },
+                                                "state": {
+                                                    "interface": "Ethernet1"
+                                                }
+                                            },
+                                            "levels": {
+                                                "level": [
+                                                    {
+                                                        "afi-safi": {
+                                                            "af": [
+                                                                {
+                                                                    "afi-name": "IPV6",
+                                                                    "config": {
+                                                                        "afi-name": "IPV6",
+                                                                        "metric": "100",
+                                                                        "safi-name": "UNICAST"
+                                                                    },
+                                                                    "safi-name": "UNICAST",
+                                                                    "state": {
+                                                                        "afi-name": "IPV6",
+                                                                        "metric": "100",
+                                                                        "safi-name": "UNICAST"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "afi-name": "IPV4",
+                                                                    "config": {
+                                                                        "afi-name": "IPV4",
+                                                                        "metric": "100",
+                                                                        "safi-name": "UNICAST"
+                                                                    },
+                                                                    "safi-name": "UNICAST",
+                                                                    "state": {
+                                                                        "afi-name": "IPV4",
+                                                                        "metric": "100",
+                                                                        "safi-name": "UNICAST"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        "config": {
+                                                            "enabled": "true",
+                                                            "level-number": "1",
+                                                            "passive": "false",
+                                                            "priority": "64"
+                                                        },
+                                                        "hello-authentication": {
+                                                            "config": {
+                                                                "hello-authentication": "false"
+                                                            },
+                                                            "state": {
+                                                                "hello-authentication": "false"
+                                                            }
+                                                        },
+                                                        "level-number": "1",
+                                                        "packet-counters": {
+                                                            "csnp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "iih": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "lsp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "psnp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            }
+                                                        },
+                                                        "state": {
+                                                            "enabled": "false",
+                                                            "level-number": "1",
+                                                            "passive": "false",
+                                                            "priority": "64"
+                                                        },
+                                                        "timers": {
+                                                            "config": {
+                                                                "hello-interval": "10",
+                                                                "hello-multiplier": "3"
+                                                            },
+                                                            "state": {
+                                                                "hello-interval": "10",
+                                                                "hello-multiplier": "3"
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "adjacencies": {
+                                                            "adjacency": {
+                                                                "state": {
+                                                                    "restart-support": "true",
+                                                                    "system-id": "0100.0000.0033"
+                                                                },
+                                                                "system-id": "0100.0000.0033"
+                                                            }
+                                                        },
+                                                        "afi-safi": {
+                                                            "af": [
+                                                                {
+                                                                    "afi-name": "IPV6",
+                                                                    "config": {
+                                                                        "afi-name": "IPV6",
+                                                                        "metric": "100",
+                                                                        "safi-name": "UNICAST"
+                                                                    },
+                                                                    "safi-name": "UNICAST",
+                                                                    "state": {
+                                                                        "afi-name": "IPV6",
+                                                                        "metric": "100",
+                                                                        "safi-name": "UNICAST"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "afi-name": "IPV4",
+                                                                    "config": {
+                                                                        "afi-name": "IPV4",
+                                                                        "metric": "100",
+                                                                        "safi-name": "UNICAST"
+                                                                    },
+                                                                    "safi-name": "UNICAST",
+                                                                    "state": {
+                                                                        "afi-name": "IPV4",
+                                                                        "metric": "100",
+                                                                        "safi-name": "UNICAST"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        "config": {
+                                                            "enabled": "true",
+                                                            "level-number": "2",
+                                                            "passive": "false",
+                                                            "priority": "64"
+                                                        },
+                                                        "hello-authentication": {
+                                                            "config": {
+                                                                "hello-authentication": "false"
+                                                            },
+                                                            "state": {
+                                                                "hello-authentication": "false"
+                                                            }
+                                                        },
+                                                        "level-number": "2",
+                                                        "packet-counters": {
+                                                            "csnp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "1",
+                                                                    "sent": "1"
+                                                                }
+                                                            },
+                                                            "iih": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "496",
+                                                                    "sent": "568"
+                                                                }
+                                                            },
+                                                            "lsp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "10",
+                                                                    "sent": "8"
+                                                                }
+                                                            },
+                                                            "psnp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "8",
+                                                                    "sent": "8"
+                                                                }
+                                                            }
+                                                        },
+                                                        "state": {
+                                                            "enabled": "true",
+                                                            "level-number": "2",
+                                                            "passive": "false",
+                                                            "priority": "64"
+                                                        },
+                                                        "timers": {
+                                                            "config": {
+                                                                "hello-interval": "10",
+                                                                "hello-multiplier": "3"
+                                                            },
+                                                            "state": {
+                                                                "hello-interval": "10",
+                                                                "hello-multiplier": "3"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            "state": {
+                                                "circuit-type": "POINT_TO_POINT",
+                                                "enabled": "true",
+                                                "hello-padding": "STRICT",
+                                                "interface-id": "Ethernet1",
+                                                "passive": "false"
+                                            }
+                                        },
+                                        {
+                                            "authentication": {
+                                                "config": {
+                                                    "hello-authentication": "false"
+                                                },
+                                                "state": {
+                                                    "hello-authentication": "false"
+                                                }
+                                            },
+                                            "config": {
+                                                "circuit-type": "BROADCAST",
+                                                "enabled": "true",
+                                                "hello-padding": "STRICT",
+                                                "interface-id": "Loopback0",
+                                                "passive": "true"
+                                            },
+                                            "interface-id": "Loopback0",
+                                            "levels": {
+                                                "level": [
+                                                    {
+                                                        "afi-safi": {
+                                                            "af": [
+                                                                {
+                                                                    "afi-name": "IPV6",
+                                                                    "config": {
+                                                                        "afi-name": "IPV6",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    },
+                                                                    "safi-name": "UNICAST",
+                                                                    "state": {
+                                                                        "afi-name": "IPV6",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "afi-name": "IPV4",
+                                                                    "config": {
+                                                                        "afi-name": "IPV4",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    },
+                                                                    "safi-name": "UNICAST",
+                                                                    "segment-routing": {
+                                                                        "prefix-sids": {
+                                                                            "prefix-sid": {
+                                                                                "config": {
+                                                                                    "prefix": "10.0.0.22/32",
+                                                                                    "sid-id": "900022"
+                                                                                },
+                                                                                "prefix": "10.0.0.22/32"
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "state": {
+                                                                        "afi-name": "IPV4",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        "config": {
+                                                            "enabled": "true",
+                                                            "level-number": "1",
+                                                            "passive": "false",
+                                                            "priority": "64"
+                                                        },
+                                                        "hello-authentication": {
+                                                            "config": {
+                                                                "hello-authentication": "false"
+                                                            },
+                                                            "state": {
+                                                                "hello-authentication": "false"
+                                                            }
+                                                        },
+                                                        "level-number": "1",
+                                                        "packet-counters": {
+                                                            "csnp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "iih": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "lsp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "psnp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            }
+                                                        },
+                                                        "state": {
+                                                            "enabled": "false",
+                                                            "level-number": "1",
+                                                            "passive": "false",
+                                                            "priority": "64"
+                                                        },
+                                                        "timers": {
+                                                            "config": {
+                                                                "hello-interval": "10",
+                                                                "hello-multiplier": "3"
+                                                            },
+                                                            "state": {
+                                                                "hello-interval": "10",
+                                                                "hello-multiplier": "3"
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "afi-safi": {
+                                                            "af": [
+                                                                {
+                                                                    "afi-name": "IPV6",
+                                                                    "config": {
+                                                                        "afi-name": "IPV6",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    },
+                                                                    "safi-name": "UNICAST",
+                                                                    "state": {
+                                                                        "afi-name": "IPV6",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "afi-name": "IPV4",
+                                                                    "config": {
+                                                                        "afi-name": "IPV4",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    },
+                                                                    "safi-name": "UNICAST",
+                                                                    "segment-routing": {
+                                                                        "prefix-sids": {
+                                                                            "prefix-sid": {
+                                                                                "config": {
+                                                                                    "prefix": "10.0.0.22/32",
+                                                                                    "sid-id": "900022"
+                                                                                },
+                                                                                "prefix": "10.0.0.22/32"
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "state": {
+                                                                        "afi-name": "IPV4",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        "config": {
+                                                            "enabled": "true",
+                                                            "level-number": "2",
+                                                            "passive": "false",
+                                                            "priority": "64"
+                                                        },
+                                                        "hello-authentication": {
+                                                            "config": {
+                                                                "hello-authentication": "false"
+                                                            },
+                                                            "state": {
+                                                                "hello-authentication": "false"
+                                                            }
+                                                        },
+                                                        "level-number": "2",
+                                                        "packet-counters": {
+                                                            "csnp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "iih": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "lsp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "psnp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            }
+                                                        },
+                                                        "state": {
+                                                            "enabled": "true",
+                                                            "level-number": "2",
+                                                            "passive": "false",
+                                                            "priority": "64"
+                                                        },
+                                                        "timers": {
+                                                            "config": {
+                                                                "hello-interval": "10",
+                                                                "hello-multiplier": "3"
+                                                            },
+                                                            "state": {
+                                                                "hello-interval": "10",
+                                                                "hello-multiplier": "3"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            "state": {
+                                                "circuit-type": "BROADCAST",
+                                                "enabled": "true",
+                                                "hello-padding": "STRICT",
+                                                "interface-id": "Loopback0",
+                                                "passive": "true"
+                                            }
+                                        },
+                                        {
+                                            "authentication": {
+                                                "config": {
+                                                    "hello-authentication": "false"
+                                                },
+                                                "state": {
+                                                    "hello-authentication": "false"
+                                                }
+                                            },
+                                            "config": {
+                                                "circuit-type": "POINT_TO_POINT",
+                                                "enabled": "true",
+                                                "hello-padding": "STRICT",
+                                                "interface-id": "Ethernet2",
+                                                "passive": "false"
+                                            },
+                                            "interface-id": "Ethernet2",
+                                            "interface-ref": {
+                                                "config": {
+                                                    "interface": "Ethernet2"
+                                                },
+                                                "state": {
+                                                    "interface": "Ethernet2"
+                                                }
+                                            },
+                                            "levels": {
+                                                "level": [
+                                                    {
+                                                        "afi-safi": {
+                                                            "af": [
+                                                                {
+                                                                    "afi-name": "IPV6",
+                                                                    "config": {
+                                                                        "afi-name": "IPV6",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    },
+                                                                    "safi-name": "UNICAST",
+                                                                    "state": {
+                                                                        "afi-name": "IPV6",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "afi-name": "IPV4",
+                                                                    "config": {
+                                                                        "afi-name": "IPV4",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    },
+                                                                    "safi-name": "UNICAST",
+                                                                    "state": {
+                                                                        "afi-name": "IPV4",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        "config": {
+                                                            "enabled": "true",
+                                                            "level-number": "1",
+                                                            "passive": "false",
+                                                            "priority": "64"
+                                                        },
+                                                        "hello-authentication": {
+                                                            "config": {
+                                                                "hello-authentication": "false"
+                                                            },
+                                                            "state": {
+                                                                "hello-authentication": "false"
+                                                            }
+                                                        },
+                                                        "level-number": "1",
+                                                        "packet-counters": {
+                                                            "csnp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "iih": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "lsp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "psnp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            }
+                                                        },
+                                                        "state": {
+                                                            "enabled": "false",
+                                                            "level-number": "1",
+                                                            "passive": "false",
+                                                            "priority": "64"
+                                                        },
+                                                        "timers": {
+                                                            "config": {
+                                                                "hello-interval": "10",
+                                                                "hello-multiplier": "3"
+                                                            },
+                                                            "state": {
+                                                                "hello-interval": "10",
+                                                                "hello-multiplier": "3"
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "afi-safi": {
+                                                            "af": [
+                                                                {
+                                                                    "afi-name": "IPV6",
+                                                                    "config": {
+                                                                        "afi-name": "IPV6",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    },
+                                                                    "safi-name": "UNICAST",
+                                                                    "state": {
+                                                                        "afi-name": "IPV6",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "afi-name": "IPV4",
+                                                                    "config": {
+                                                                        "afi-name": "IPV4",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    },
+                                                                    "safi-name": "UNICAST",
+                                                                    "state": {
+                                                                        "afi-name": "IPV4",
+                                                                        "metric": "10",
+                                                                        "safi-name": "UNICAST"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        "config": {
+                                                            "enabled": "true",
+                                                            "level-number": "2",
+                                                            "passive": "false",
+                                                            "priority": "64"
+                                                        },
+                                                        "hello-authentication": {
+                                                            "config": {
+                                                                "hello-authentication": "false"
+                                                            },
+                                                            "state": {
+                                                                "hello-authentication": "false"
+                                                            }
+                                                        },
+                                                        "level-number": "2",
+                                                        "packet-counters": {
+                                                            "csnp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "iih": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "566"
+                                                                }
+                                                            },
+                                                            "lsp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            },
+                                                            "psnp": {
+                                                                "state": {
+                                                                    "dropped": "0",
+                                                                    "received": "0",
+                                                                    "sent": "0"
+                                                                }
+                                                            }
+                                                        },
+                                                        "state": {
+                                                            "enabled": "true",
+                                                            "level-number": "2",
+                                                            "passive": "false",
+                                                            "priority": "64"
+                                                        },
+                                                        "timers": {
+                                                            "config": {
+                                                                "hello-interval": "10",
+                                                                "hello-multiplier": "3"
+                                                            },
+                                                            "state": {
+                                                                "hello-interval": "10",
+                                                                "hello-multiplier": "3"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            "state": {
+                                                "circuit-type": "POINT_TO_POINT",
+                                                "enabled": "true",
+                                                "hello-padding": "STRICT",
+                                                "interface-id": "Ethernet2",
+                                                "passive": "false"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "levels": {
+                                    "level": [
+                                        {
+                                            "authentication": {
+                                                "config": {
+                                                    "csnp-authentication": "false",
+                                                    "lsp-authentication": "false",
+                                                    "psnp-authentication": "false"
+                                                },
+                                                "state": {
+                                                    "csnp-authentication": "false",
+                                                    "lsp-authentication": "false",
+                                                    "psnp-authentication": "false"
+                                                }
+                                            },
+                                            "config": {
+                                                "authentication-check": "true",
+                                                "enabled": "false",
+                                                "level-number": "1"
+                                            },
+                                            "level-number": "1",
+                                            "route-preference": {
+                                                "config": {
+                                                    "external-route-preference": "115",
+                                                    "internal-route-preference": "115"
+                                                },
+                                                "state": {
+                                                    "external-route-preference": "115",
+                                                    "internal-route-preference": "115"
+                                                }
+                                            },
+                                            "state": {
+                                                "authentication-check": "true",
+                                                "enabled": "false",
+                                                "level-number": "1"
+                                            },
+                                            "traffic-engineering": {
+                                                "config": {
+                                                    "enabled": "false",
+                                                    "ipv4-router-id": "0.0.0.0"
+                                                },
+                                                "state": {
+                                                    "enabled": "false"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "authentication": {
+                                                "config": {
+                                                    "csnp-authentication": "false",
+                                                    "lsp-authentication": "false",
+                                                    "psnp-authentication": "false"
+                                                },
+                                                "state": {
+                                                    "csnp-authentication": "false",
+                                                    "lsp-authentication": "false",
+                                                    "psnp-authentication": "false"
+                                                }
+                                            },
+                                            "config": {
+                                                "authentication-check": "true",
+                                                "enabled": "true",
+                                                "level-number": "2"
+                                            },
+                                            "level-number": "2",
+                                            "route-preference": {
+                                                "config": {
+                                                    "external-route-preference": "115",
+                                                    "internal-route-preference": "115"
+                                                },
+                                                "state": {
+                                                    "external-route-preference": "115",
+                                                    "internal-route-preference": "115"
+                                                }
+                                            },
+                                            "state": {
+                                                "authentication-check": "true",
+                                                "enabled": "true",
+                                                "level-number": "2"
+                                            },
+                                            "traffic-engineering": {
+                                                "config": {
+                                                    "enabled": "false",
+                                                    "ipv4-router-id": "0.0.0.0"
+                                                },
+                                                "state": {
+                                                    "enabled": "false"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "name": "CORE",
+                            "ospfv2": {
+                                "global": {
+                                    "config": {
+                                        "summary-route-cost-mode": "RFC2328_COMPATIBLE"
+                                    },
+                                    "state": {
+                                        "summary-route-cost-mode": "RFC2328_COMPATIBLE"
+                                    }
+                                }
+                            },
+                            "state": {
+                                "enabled": "true",
+                                "identifier": "ISIS",
+                                "name": "CORE"
+                            }
+                        }
+                    ]
+                },
+                "segment-routing": {
+                    "srgbs": {
+                        "srgb": {
+                            "config": {
+                                "dataplane-type": "MPLS",
+                                "local-id": "isis-sr",
+                                "mpls-label-blocks": "isis-sr"
+                            },
+                            "local-id": "isis-sr"
+                        }
+                    },
+                    "srlbs": {
+                        "srlb": {
+                            "config": {
+                                "dataplane-type": "MPLS",
+                                "local-id": "srlb",
+                                "mpls-label-block": "srlb"
+                            },
+                            "local-id": "srlb"
+                        }
+                    }
+                },
+                "tables": {
+                    "table": [
+                        {
+                            "address-family": "IPV4",
+                            "config": {
+                                "address-family": "IPV4",
+                                "protocol": "BGP"
+                            },
+                            "protocol": "BGP"
+                        },
+                        {
+                            "address-family": "IPV6",
+                            "config": {
+                                "address-family": "IPV6",
+                                "protocol": "BGP"
+                            },
+                            "protocol": "BGP"
+                        },
+                        {
+                            "address-family": "IPV4",
+                            "config": {
+                                "address-family": "IPV4",
+                                "protocol": "ISIS"
+                            },
+                            "protocol": "ISIS"
+                        },
+                        {
+                            "address-family": "IPV6",
+                            "config": {
+                                "address-family": "IPV6",
+                                "protocol": "ISIS"
+                            },
+                            "protocol": "ISIS"
+                        }
+                    ]
+                },
+                "vlans": {
+                    "vlan": {
+                        "config": {
+                            "mac-learning": "true",
+                            "name": "default",
+                            "status": "ACTIVE",
+                            "vlan-id": "1"
+                        },
+                        "members": {
+                            "member": [
+                                {
+                                    "state": {
+                                        "interface": "MplsTrunk1"
+                                    }
+                                },
+                                {
+                                    "state": {
+                                        "interface": "Ethernet4"
+                                    }
+                                }
+                            ]
+                        },
+                        "state": {
+                            "mac-learning": "true",
+                            "name": "default",
+                            "status": "ACTIVE",
+                            "vlan-id": "1"
+                        },
+                        "vlan-id": "1"
+                    }
+                }
+            },
+            {
+                "config": {
+                    "enabled-address-families": [
+                        "IPV4",
+                        "IPV6"
+                    ],
+                    "name": "EVPN_L3",
+                    "type": "L3VRF"
+                },
+                "inter-instance-policies": {
+                    "apply-policy": {
+                        "config": {
+                            "default-export-policy": "REJECT_ROUTE",
+                            "default-import-policy": "REJECT_ROUTE"
+                        },
+                        "state": {
+                            "default-export-policy": "REJECT_ROUTE",
+                            "default-import-policy": "REJECT_ROUTE"
+                        }
+                    }
+                },
+                "mpls": {
+                    "global": {
+                        "config": {
+                            "null-label": "IMPLICIT"
+                        },
+                        "state": {
+                            "null-label": "IMPLICIT"
+                        }
+                    },
+                    "signaling-protocols": {
+                        "rsvp-te": {
+                            "global": {
+                                "graceful-restart": {
+                                    "config": {
+                                        "enable": "false"
+                                    },
+                                    "state": {
+                                        "enable": "false"
+                                    }
+                                },
+                                "hellos": {
+                                    "config": {
+                                        "hello-interval": "9000",
+                                        "refresh-reduction": "true"
+                                    },
+                                    "state": {
+                                        "hello-interval": "9000",
+                                        "refresh-reduction": "true"
+                                    }
+                                },
+                                "soft-preemption": {
+                                    "config": {
+                                        "enable": "false",
+                                        "soft-preemption-timeout": "30"
+                                    },
+                                    "state": {
+                                        "enable": "false",
+                                        "soft-preemption-timeout": "30"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "name": "EVPN_L3",
+                "protocols": {
+                    "protocol": {
+                        "bgp": {
+                            "global": {
+                                "afi-safis": {
+                                    "afi-safi": [
+                                        {
+                                            "add-paths": {
+                                                "config": {
+                                                    "receive": "false",
+                                                    "send": "false"
+                                                },
+                                                "state": {
+                                                    "receive": "false",
+                                                    "send": "false"
+                                                }
+                                            },
+                                            "afi-safi-name": "IPV4_UNICAST",
+                                            "config": {
+                                                "afi-safi-name": "IPV4_UNICAST"
+                                            },
+                                            "graceful-restart": {
+                                                "config": {
+                                                    "enabled": "false"
+                                                },
+                                                "state": {
+                                                    "enabled": "false"
+                                                }
+                                            },
+                                            "route-selection-options": {
+                                                "config": {
+                                                    "advertise-inactive-routes": "false",
+                                                    "always-compare-med": "false",
+                                                    "enable-aigp": "false",
+                                                    "external-compare-router-id": "true",
+                                                    "ignore-as-path-length": "false",
+                                                    "ignore-next-hop-igp-metric": "false"
+                                                },
+                                                "state": {
+                                                    "advertise-inactive-routes": "false",
+                                                    "always-compare-med": "false",
+                                                    "enable-aigp": "false",
+                                                    "external-compare-router-id": "true",
+                                                    "ignore-as-path-length": "false",
+                                                    "ignore-next-hop-igp-metric": "false"
+                                                }
+                                            },
+                                            "state": {
+                                                "afi-safi-name": "IPV4_UNICAST"
+                                            }
+                                        },
+                                        {
+                                            "add-paths": {
+                                                "config": {
+                                                    "receive": "false",
+                                                    "send": "false"
+                                                },
+                                                "state": {
+                                                    "receive": "false",
+                                                    "send": "false"
+                                                }
+                                            },
+                                            "afi-safi-name": "IPV6_UNICAST",
+                                            "config": {
+                                                "afi-safi-name": "IPV6_UNICAST"
+                                            },
+                                            "graceful-restart": {
+                                                "config": {
+                                                    "enabled": "false"
+                                                },
+                                                "state": {
+                                                    "enabled": "false"
+                                                }
+                                            },
+                                            "route-selection-options": {
+                                                "config": {
+                                                    "advertise-inactive-routes": "false",
+                                                    "always-compare-med": "false",
+                                                    "enable-aigp": "false",
+                                                    "external-compare-router-id": "true",
+                                                    "ignore-as-path-length": "false",
+                                                    "ignore-next-hop-igp-metric": "false"
+                                                },
+                                                "state": {
+                                                    "advertise-inactive-routes": "false",
+                                                    "always-compare-med": "false",
+                                                    "enable-aigp": "false",
+                                                    "external-compare-router-id": "true",
+                                                    "ignore-as-path-length": "false",
+                                                    "ignore-next-hop-igp-metric": "false"
+                                                }
+                                            },
+                                            "state": {
+                                                "afi-safi-name": "IPV6_UNICAST"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "confederation": {
+                                    "config": {
+                                        "identifier": "0"
+                                    },
+                                    "state": {
+                                        "identifier": "0"
+                                    }
+                                },
+                                "config": {
+                                    "as": "65000",
+                                    "router-id": "0.0.0.0"
+                                },
+                                "default-route-distance": {
+                                    "config": "",
+                                    "state": ""
+                                },
+                                "graceful-restart": {
+                                    "config": "",
+                                    "state": ""
+                                },
+                                "route-selection-options": {
+                                    "config": {
+                                        "enable-aigp": "false",
+                                        "ignore-next-hop-igp-metric": "false"
+                                    },
+                                    "state": {
+                                        "enable-aigp": "false",
+                                        "ignore-next-hop-igp-metric": "false"
+                                    }
+                                },
+                                "state": {
+                                    "as": "65000",
+                                    "router-id": "0.0.0.0"
+                                },
+                                "use-multiple-paths": {
+                                    "config": {
+                                        "enabled": "true"
+                                    },
+                                    "ebgp": {
+                                        "config": {
+                                            "allow-multiple-as": "false"
+                                        },
+                                        "state": {
+                                            "allow-multiple-as": "false"
+                                        }
+                                    },
+                                    "ibgp": {
+                                        "state": {
+                                            "maximum-paths": "1"
+                                        }
+                                    },
+                                    "state": {
+                                        "enabled": "true"
+                                    }
+                                }
+                            }
+                        },
+                        "config": {
+                            "identifier": "BGP",
+                            "name": "BGP"
+                        },
+                        "identifier": "BGP",
+                        "isis": {
+                            "global": {
+                                "config": {
+                                    "authentication-check": "true",
+                                    "iid-tlv": "false",
+                                    "instance": "0",
+                                    "level-capability": "LEVEL_1_2",
+                                    "poi-tlv": "false"
+                                },
+                                "graceful-restart": {
+                                    "config": {
+                                        "enabled": "false",
+                                        "helper-only": "true"
+                                    },
+                                    "state": {
+                                        "enabled": "false"
+                                    }
+                                },
+                                "inter-level-propagation-policies": {
+                                    "level1-to-level2": {
+                                        "config": {
+                                            "default-import-policy": "REJECT_ROUTE"
+                                        },
+                                        "state": {
+                                            "default-import-policy": "REJECT_ROUTE"
+                                        }
+                                    },
+                                    "level2-to-level1": {
+                                        "config": {
+                                            "default-import-policy": "REJECT_ROUTE"
+                                        },
+                                        "state": {
+                                            "default-import-policy": "REJECT_ROUTE"
+                                        }
+                                    }
+                                },
+                                "lsp-bit": {
+                                    "attached-bit": {
+                                        "config": {
+                                            "ignore-bit": "false",
+                                            "suppress-bit": "false"
+                                        },
+                                        "state": {
+                                            "ignore-bit": "false",
+                                            "suppress-bit": "false"
+                                        }
+                                    },
+                                    "overload-bit": {
+                                        "config": {
+                                            "advertise-high-metric": "false",
+                                            "set-bit": "false",
+                                            "set-bit-on-boot": "false"
+                                        },
+                                        "state": {
+                                            "advertise-high-metric": "false",
+                                            "set-bit": "false",
+                                            "set-bit-on-boot": "false"
+                                        }
+                                    }
+                                },
+                                "mpls": {
+                                    "igp-ldp-sync": {
+                                        "config": {
+                                            "enabled": "false",
+                                            "post-session-up-delay": "5"
+                                        },
+                                        "state": {
+                                            "enabled": "true"
+                                        }
+                                    }
+                                },
+                                "state": {
+                                    "authentication-check": "true",
+                                    "fast-flooding": "true",
+                                    "iid-tlv": "false",
+                                    "instance": "0",
+                                    "level-capability": "LEVEL_1_2",
+                                    "maximum-area-addresses": "3",
+                                    "poi-tlv": "false"
+                                },
+                                "timers": {
+                                    "config": {
+                                        "lsp-lifetime-interval": "1200"
+                                    },
+                                    "lsp-generation": {
+                                        "config": {
+                                            "lsp-first-wait-interval": "50",
+                                            "lsp-max-wait-interval": "5000",
+                                            "lsp-second-wait-interval": "50"
+                                        }
+                                    },
+                                    "spf": {
+                                        "config": {
+                                            "spf-first-interval": "1000",
+                                            "spf-hold-interval": "2000",
+                                            "spf-second-interval": "1000"
+                                        },
+                                        "state": {
+                                            "spf-hold-interval": "5000"
+                                        }
+                                    },
+                                    "state": {
+                                        "lsp-lifetime-interval": "1200"
+                                    }
+                                }
+                            }
+                        },
+                        "name": "BGP",
+                        "ospfv2": {
+                            "global": {
+                                "config": {
+                                    "summary-route-cost-mode": "RFC2328_COMPATIBLE"
+                                },
+                                "state": {
+                                    "summary-route-cost-mode": "RFC2328_COMPATIBLE"
+                                }
+                            }
+                        }
+                    }
+                },
+                "state": ""
+            },
+            {
+                "config": {
+                    "enabled-address-families": [
+                        "IPV6",
+                        "IPV4"
+                    ],
+                    "name": "223344",
+                    "route-distinguisher": "65000:10000",
+                    "type": "L3VRF"
+                },
+                "inter-instance-policies": {
+                    "apply-policy": {
+                        "config": {
+                            "default-export-policy": "REJECT_ROUTE",
+                            "default-import-policy": "REJECT_ROUTE"
+                        },
+                        "state": {
+                            "default-export-policy": "REJECT_ROUTE",
+                            "default-import-policy": "REJECT_ROUTE"
+                        }
+                    }
+                },
+                "mpls": {
+                    "global": {
+                        "config": {
+                            "null-label": "IMPLICIT"
+                        },
+                        "state": {
+                            "null-label": "IMPLICIT"
+                        }
+                    },
+                    "signaling-protocols": {
+                        "rsvp-te": {
+                            "global": {
+                                "graceful-restart": {
+                                    "config": {
+                                        "enable": "false"
+                                    },
+                                    "state": {
+                                        "enable": "false"
+                                    }
+                                },
+                                "hellos": {
+                                    "config": {
+                                        "hello-interval": "9000",
+                                        "refresh-reduction": "true"
+                                    },
+                                    "state": {
+                                        "hello-interval": "9000",
+                                        "refresh-reduction": "true"
+                                    }
+                                },
+                                "soft-preemption": {
+                                    "config": {
+                                        "enable": "false",
+                                        "soft-preemption-timeout": "30"
+                                    },
+                                    "state": {
+                                        "enable": "false",
+                                        "soft-preemption-timeout": "30"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "name": "223344",
+                "protocols": {
+                    "protocol": {
+                        "bgp": {
+                            "global": {
+                                "afi-safis": {
+                                    "afi-safi": [
+                                        {
+                                            "add-paths": {
+                                                "config": {
+                                                    "receive": "false",
+                                                    "send": "false"
+                                                },
+                                                "state": {
+                                                    "receive": "false",
+                                                    "send": "false"
+                                                }
+                                            },
+                                            "afi-safi-name": "IPV6_UNICAST",
+                                            "config": {
+                                                "afi-safi-name": "IPV6_UNICAST"
+                                            },
+                                            "graceful-restart": {
+                                                "config": {
+                                                    "enabled": "false"
+                                                },
+                                                "state": {
+                                                    "enabled": "false"
+                                                }
+                                            },
+                                            "route-selection-options": {
+                                                "config": {
+                                                    "advertise-inactive-routes": "false",
+                                                    "always-compare-med": "false",
+                                                    "enable-aigp": "false",
+                                                    "external-compare-router-id": "true",
+                                                    "ignore-as-path-length": "false",
+                                                    "ignore-next-hop-igp-metric": "false"
+                                                },
+                                                "state": {
+                                                    "advertise-inactive-routes": "false",
+                                                    "always-compare-med": "false",
+                                                    "enable-aigp": "false",
+                                                    "external-compare-router-id": "true",
+                                                    "ignore-as-path-length": "false",
+                                                    "ignore-next-hop-igp-metric": "false"
+                                                }
+                                            },
+                                            "state": {
+                                                "afi-safi-name": "IPV6_UNICAST"
+                                            }
+                                        },
+                                        {
+                                            "add-paths": {
+                                                "config": {
+                                                    "receive": "false",
+                                                    "send": "false"
+                                                },
+                                                "state": {
+                                                    "receive": "false",
+                                                    "send": "false"
+                                                }
+                                            },
+                                            "afi-safi-name": "IPV4_UNICAST",
+                                            "config": {
+                                                "afi-safi-name": "IPV4_UNICAST"
+                                            },
+                                            "graceful-restart": {
+                                                "config": {
+                                                    "enabled": "false"
+                                                },
+                                                "state": {
+                                                    "enabled": "false"
+                                                }
+                                            },
+                                            "route-selection-options": {
+                                                "config": {
+                                                    "advertise-inactive-routes": "false",
+                                                    "always-compare-med": "false",
+                                                    "enable-aigp": "false",
+                                                    "external-compare-router-id": "true",
+                                                    "ignore-as-path-length": "false",
+                                                    "ignore-next-hop-igp-metric": "false"
+                                                },
+                                                "state": {
+                                                    "advertise-inactive-routes": "false",
+                                                    "always-compare-med": "false",
+                                                    "enable-aigp": "false",
+                                                    "external-compare-router-id": "true",
+                                                    "ignore-as-path-length": "false",
+                                                    "ignore-next-hop-igp-metric": "false"
+                                                }
+                                            },
+                                            "state": {
+                                                "afi-safi-name": "IPV4_UNICAST"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "confederation": {
+                                    "config": {
+                                        "identifier": "0"
+                                    },
+                                    "state": {
+                                        "identifier": "0"
+                                    }
+                                },
+                                "config": {
+                                    "as": "65000",
+                                    "router-id": "0.0.0.0"
+                                },
+                                "default-route-distance": {
+                                    "config": "",
+                                    "state": ""
+                                },
+                                "graceful-restart": {
+                                    "config": "",
+                                    "state": ""
+                                },
+                                "route-selection-options": {
+                                    "config": {
+                                        "enable-aigp": "false",
+                                        "ignore-next-hop-igp-metric": "false"
+                                    },
+                                    "state": {
+                                        "enable-aigp": "false",
+                                        "ignore-next-hop-igp-metric": "false"
+                                    }
+                                },
+                                "state": {
+                                    "as": "65000",
+                                    "router-id": "1.1.1.1"
+                                },
+                                "use-multiple-paths": {
+                                    "config": {
+                                        "enabled": "true"
+                                    },
+                                    "ebgp": {
+                                        "config": {
+                                            "allow-multiple-as": "false"
+                                        },
+                                        "state": {
+                                            "allow-multiple-as": "false"
+                                        }
+                                    },
+                                    "ibgp": {
+                                        "state": {
+                                            "maximum-paths": "1"
+                                        }
+                                    },
+                                    "state": {
+                                        "enabled": "true"
+                                    }
+                                }
+                            },
+                            "neighbors": {
+                                "neighbor": [
+                                    {
+                                        "afi-safis": {
+                                            "afi-safi": [
+                                                {
+                                                    "add-paths": {
+                                                        "config": {
+                                                            "send": "false"
+                                                        },
+                                                        "state": {
+                                                            "send": "false"
+                                                        }
+                                                    },
+                                                    "afi-safi-name": "IPV4_UNICAST",
+                                                    "apply-policy": {
+                                                        "config": {
+                                                            "default-export-policy": "REJECT_ROUTE",
+                                                            "default-import-policy": "REJECT_ROUTE"
+                                                        },
+                                                        "state": {
+                                                            "default-export-policy": "REJECT_ROUTE",
+                                                            "default-import-policy": "REJECT_ROUTE"
+                                                        }
+                                                    },
+                                                    "config": {
+                                                        "afi-safi-name": "IPV4_UNICAST"
+                                                    },
+                                                    "graceful-restart": {
+                                                        "config": "",
+                                                        "state": ""
+                                                    },
+                                                    "state": {
+                                                        "afi-safi-name": "IPV4_UNICAST",
+                                                        "prefixes": {
+                                                            "installed": "0",
+                                                            "received": "0",
+                                                            "sent": "0"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "add-paths": {
+                                                        "config": {
+                                                            "send": "false"
+                                                        },
+                                                        "state": {
+                                                            "send": "false"
+                                                        }
+                                                    },
+                                                    "afi-safi-name": "IPV6_UNICAST",
+                                                    "apply-policy": {
+                                                        "config": {
+                                                            "default-export-policy": "REJECT_ROUTE",
+                                                            "default-import-policy": "REJECT_ROUTE"
+                                                        },
+                                                        "state": {
+                                                            "default-export-policy": "REJECT_ROUTE",
+                                                            "default-import-policy": "REJECT_ROUTE"
+                                                        }
+                                                    },
+                                                    "config": {
+                                                        "afi-safi-name": "IPV6_UNICAST"
+                                                    },
+                                                    "graceful-restart": {
+                                                        "config": "",
+                                                        "state": ""
+                                                    },
+                                                    "state": {
+                                                        "afi-safi-name": "IPV6_UNICAST",
+                                                        "prefixes": {
+                                                            "installed": "0",
+                                                            "received": "0",
+                                                            "sent": "0"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "apply-policy": {
+                                            "config": {
+                                                "default-export-policy": "REJECT_ROUTE",
+                                                "default-import-policy": "REJECT_ROUTE"
+                                            },
+                                            "state": {
+                                                "default-export-policy": "REJECT_ROUTE",
+                                                "default-import-policy": "REJECT_ROUTE"
+                                            }
+                                        },
+                                        "as-path-options": {
+                                            "config": {
+                                                "disable-peer-as-filter": "false",
+                                                "replace-peer-as": "false"
+                                            },
+                                            "state": {
+                                                "disable-peer-as-filter": "false",
+                                                "replace-peer-as": "false"
+                                            }
+                                        },
+                                        "config": {
+                                            "auth-password": "",
+                                            "description": "",
+                                            "enabled": "true",
+                                            "local-as": "0",
+                                            "neighbor-address": "192.168.22.22",
+                                            "peer-as": "65234",
+                                            "route-flap-damping": "false",
+                                            "send-community": "NONE"
+                                        },
+                                        "ebgp-multihop": {
+                                            "config": {
+                                                "enabled": "false",
+                                                "multihop-ttl": "0"
+                                            },
+                                            "state": {
+                                                "enabled": "false",
+                                                "multihop-ttl": "0"
+                                            }
+                                        },
+                                        "error-handling": {
+                                            "config": {
+                                                "treat-as-withdraw": "false"
+                                            },
+                                            "state": {
+                                                "treat-as-withdraw": "false"
+                                            }
+                                        },
+                                        "neighbor-address": "192.168.22.22",
+                                        "route-reflector": {
+                                            "config": "",
+                                            "state": ""
+                                        },
+                                        "state": {
+                                            "auth-password": "",
+                                            "description": "",
+                                            "dynamically-configured": "false",
+                                            "enabled": "true",
+                                            "established-transitions": "0",
+                                            "last-established": "154811992320",
+                                            "local-as": "0",
+                                            "messages": {
+                                                "received": {
+                                                    "UPDATE": "0"
+                                                },
+                                                "sent": {
+                                                    "UPDATE": "0"
+                                                }
+                                            },
+                                            "neighbor-address": "192.168.22.22",
+                                            "peer-as": "65234",
+                                            "route-flap-damping": "false",
+                                            "send-community": "NONE",
+                                            "session-state": "CONNECT"
+                                        },
+                                        "timers": {
+                                            "config": {
+                                                "connect-retry": "30",
+                                                "minimum-advertisement-interval": "30"
+                                            },
+                                            "state": {
+                                                "connect-retry": "30",
+                                                "minimum-advertisement-interval": "30"
+                                            }
+                                        },
+                                        "transport": {
+                                            "config": {
+                                                "mtu-discovery": "true"
+                                            },
+                                            "state": {
+                                                "mtu-discovery": "false",
+                                                "remote-address": "192.168.22.22"
+                                            }
+                                        },
+                                        "use-multiple-paths": {
+                                            "config": {
+                                                "enabled": "false"
+                                            },
+                                            "ebgp": {
+                                                "config": {
+                                                    "allow-multiple-as": "false"
+                                                },
+                                                "state": {
+                                                    "allow-multiple-as": "false"
+                                                }
+                                            },
+                                            "state": {
+                                                "enabled": "false"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "afi-safis": {
+                                            "afi-safi": [
+                                                {
+                                                    "add-paths": {
+                                                        "config": {
+                                                            "send": "false"
+                                                        },
+                                                        "state": {
+                                                            "send": "false"
+                                                        }
+                                                    },
+                                                    "afi-safi-name": "IPV4_UNICAST",
+                                                    "apply-policy": {
+                                                        "config": {
+                                                            "default-export-policy": "REJECT_ROUTE",
+                                                            "default-import-policy": "REJECT_ROUTE"
+                                                        },
+                                                        "state": {
+                                                            "default-export-policy": "REJECT_ROUTE",
+                                                            "default-import-policy": "REJECT_ROUTE"
+                                                        }
+                                                    },
+                                                    "config": {
+                                                        "afi-safi-name": "IPV4_UNICAST"
+                                                    },
+                                                    "graceful-restart": {
+                                                        "config": "",
+                                                        "state": ""
+                                                    },
+                                                    "state": {
+                                                        "afi-safi-name": "IPV4_UNICAST",
+                                                        "prefixes": {
+                                                            "installed": "0",
+                                                            "received": "0",
+                                                            "sent": "0"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "add-paths": {
+                                                        "config": {
+                                                            "send": "false"
+                                                        },
+                                                        "state": {
+                                                            "send": "false"
+                                                        }
+                                                    },
+                                                    "afi-safi-name": "IPV6_UNICAST",
+                                                    "apply-policy": {
+                                                        "config": {
+                                                            "default-export-policy": "REJECT_ROUTE",
+                                                            "default-import-policy": "REJECT_ROUTE"
+                                                        },
+                                                        "state": {
+                                                            "default-export-policy": "REJECT_ROUTE",
+                                                            "default-import-policy": "REJECT_ROUTE"
+                                                        }
+                                                    },
+                                                    "config": {
+                                                        "afi-safi-name": "IPV6_UNICAST"
+                                                    },
+                                                    "graceful-restart": {
+                                                        "config": "",
+                                                        "state": ""
+                                                    },
+                                                    "state": {
+                                                        "afi-safi-name": "IPV6_UNICAST",
+                                                        "prefixes": {
+                                                            "installed": "0",
+                                                            "received": "0",
+                                                            "sent": "0"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "apply-policy": {
+                                            "config": {
+                                                "default-export-policy": "REJECT_ROUTE",
+                                                "default-import-policy": "REJECT_ROUTE"
+                                            },
+                                            "state": {
+                                                "default-export-policy": "REJECT_ROUTE",
+                                                "default-import-policy": "REJECT_ROUTE"
+                                            }
+                                        },
+                                        "as-path-options": {
+                                            "config": {
+                                                "disable-peer-as-filter": "false",
+                                                "replace-peer-as": "false"
+                                            },
+                                            "state": {
+                                                "disable-peer-as-filter": "false",
+                                                "replace-peer-as": "false"
+                                            }
+                                        },
+                                        "config": {
+                                            "auth-password": "",
+                                            "description": "",
+                                            "enabled": "true",
+                                            "local-as": "0",
+                                            "neighbor-address": "fc00::192:168:22:22",
+                                            "peer-as": "65234",
+                                            "route-flap-damping": "false",
+                                            "send-community": "NONE"
+                                        },
+                                        "ebgp-multihop": {
+                                            "config": {
+                                                "enabled": "false",
+                                                "multihop-ttl": "0"
+                                            },
+                                            "state": {
+                                                "enabled": "false",
+                                                "multihop-ttl": "0"
+                                            }
+                                        },
+                                        "error-handling": {
+                                            "config": {
+                                                "treat-as-withdraw": "false"
+                                            },
+                                            "state": {
+                                                "treat-as-withdraw": "false"
+                                            }
+                                        },
+                                        "neighbor-address": "fc00::192:168:22:22",
+                                        "route-reflector": {
+                                            "config": "",
+                                            "state": ""
+                                        },
+                                        "state": {
+                                            "auth-password": "",
+                                            "description": "",
+                                            "dynamically-configured": "false",
+                                            "enabled": "true",
+                                            "established-transitions": "0",
+                                            "last-established": "154811992320",
+                                            "local-as": "0",
+                                            "messages": {
+                                                "received": {
+                                                    "UPDATE": "0"
+                                                },
+                                                "sent": {
+                                                    "UPDATE": "0"
+                                                }
+                                            },
+                                            "neighbor-address": "fc00::192:168:22:22",
+                                            "peer-as": "65234",
+                                            "route-flap-damping": "false",
+                                            "send-community": "NONE",
+                                            "session-state": "IDLE"
+                                        },
+                                        "timers": {
+                                            "config": {
+                                                "connect-retry": "30",
+                                                "minimum-advertisement-interval": "30"
+                                            },
+                                            "state": {
+                                                "connect-retry": "30",
+                                                "minimum-advertisement-interval": "30"
+                                            }
+                                        },
+                                        "transport": {
+                                            "config": {
+                                                "mtu-discovery": "true"
+                                            },
+                                            "state": {
+                                                "mtu-discovery": "false",
+                                                "remote-address": "fc00::192:168:22:22"
+                                            }
+                                        },
+                                        "use-multiple-paths": {
+                                            "config": {
+                                                "enabled": "false"
+                                            },
+                                            "ebgp": {
+                                                "config": {
+                                                    "allow-multiple-as": "false"
+                                                },
+                                                "state": {
+                                                    "allow-multiple-as": "false"
+                                                }
+                                            },
+                                            "state": {
+                                                "enabled": "false"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "config": {
+                            "identifier": "BGP",
+                            "name": "BGP"
+                        },
+                        "identifier": "BGP",
+                        "isis": {
+                            "global": {
+                                "config": {
+                                    "authentication-check": "true",
+                                    "iid-tlv": "false",
+                                    "instance": "0",
+                                    "level-capability": "LEVEL_1_2",
+                                    "poi-tlv": "false"
+                                },
+                                "graceful-restart": {
+                                    "config": {
+                                        "enabled": "false",
+                                        "helper-only": "true"
+                                    },
+                                    "state": {
+                                        "enabled": "false"
+                                    }
+                                },
+                                "inter-level-propagation-policies": {
+                                    "level1-to-level2": {
+                                        "config": {
+                                            "default-import-policy": "REJECT_ROUTE"
+                                        },
+                                        "state": {
+                                            "default-import-policy": "REJECT_ROUTE"
+                                        }
+                                    },
+                                    "level2-to-level1": {
+                                        "config": {
+                                            "default-import-policy": "REJECT_ROUTE"
+                                        },
+                                        "state": {
+                                            "default-import-policy": "REJECT_ROUTE"
+                                        }
+                                    }
+                                },
+                                "lsp-bit": {
+                                    "attached-bit": {
+                                        "config": {
+                                            "ignore-bit": "false",
+                                            "suppress-bit": "false"
+                                        },
+                                        "state": {
+                                            "ignore-bit": "false",
+                                            "suppress-bit": "false"
+                                        }
+                                    },
+                                    "overload-bit": {
+                                        "config": {
+                                            "advertise-high-metric": "false",
+                                            "set-bit": "false",
+                                            "set-bit-on-boot": "false"
+                                        },
+                                        "state": {
+                                            "advertise-high-metric": "false",
+                                            "set-bit": "false",
+                                            "set-bit-on-boot": "false"
+                                        }
+                                    }
+                                },
+                                "mpls": {
+                                    "igp-ldp-sync": {
+                                        "config": {
+                                            "enabled": "false",
+                                            "post-session-up-delay": "5"
+                                        },
+                                        "state": {
+                                            "enabled": "true"
+                                        }
+                                    }
+                                },
+                                "state": {
+                                    "authentication-check": "true",
+                                    "fast-flooding": "true",
+                                    "iid-tlv": "false",
+                                    "instance": "0",
+                                    "level-capability": "LEVEL_1_2",
+                                    "maximum-area-addresses": "3",
+                                    "poi-tlv": "false"
+                                },
+                                "timers": {
+                                    "config": {
+                                        "lsp-lifetime-interval": "1200"
+                                    },
+                                    "lsp-generation": {
+                                        "config": {
+                                            "lsp-first-wait-interval": "50",
+                                            "lsp-max-wait-interval": "5000",
+                                            "lsp-second-wait-interval": "50"
+                                        }
+                                    },
+                                    "spf": {
+                                        "config": {
+                                            "spf-first-interval": "1000",
+                                            "spf-hold-interval": "2000",
+                                            "spf-second-interval": "1000"
+                                        },
+                                        "state": {
+                                            "spf-hold-interval": "5000"
+                                        }
+                                    },
+                                    "state": {
+                                        "lsp-lifetime-interval": "1200"
+                                    }
+                                }
+                            }
+                        },
+                        "name": "BGP",
+                        "ospfv2": {
+                            "global": {
+                                "config": {
+                                    "summary-route-cost-mode": "RFC2328_COMPATIBLE"
+                                },
+                                "state": {
+                                    "summary-route-cost-mode": "RFC2328_COMPATIBLE"
+                                }
+                            }
+                        }
+                    }
+                },
+                "state": {
+                    "route-distinguisher": "65000:10000"
+                }
+            }
+        ]
+    }
+}

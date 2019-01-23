@@ -1,0 +1,103 @@
+{
+    "vrfs": {
+        "vrf": [
+            {
+                "afs": {
+                    "af": {
+                        "af-name": "ipv4",
+                        "create": "",
+                        "saf-name": "unicast",
+                        "topology-name": "default"
+                    }
+                },
+                "create": "",
+                "vrf-name": "mgmt"
+            },
+            {
+                "afs": {
+                    "af": [
+                        {
+                            "af-name": "ipv4",
+                            "bgp": {
+                                "export-route-targets": {
+                                    "route-targets": {
+                                        "route-target": {
+                                            "as-or-four-byte-as": {
+                                                "as": "65000",
+                                                "as-index": "1",
+                                                "as-xx": "0",
+                                                "stitching-rt": "0"
+                                            },
+                                            "type": "as"
+                                        }
+                                    }
+                                },
+                                "import-route-targets": {
+                                    "route-targets": {
+                                        "route-target": {
+                                            "as-or-four-byte-as": {
+                                                "as": "65000",
+                                                "as-index": "1",
+                                                "as-xx": "0",
+                                                "stitching-rt": "0"
+                                            },
+                                            "type": "as"
+                                        }
+                                    }
+                                }
+                            },
+                            "create": "",
+                            "saf-name": "unicast",
+                            "topology-name": "default"
+                        },
+                        {
+                            "af-name": "ipv6",
+                            "bgp": {
+                                "export-route-targets": {
+                                    "route-targets": {
+                                        "route-target": {
+                                            "as-or-four-byte-as": {
+                                                "as": "65000",
+                                                "as-index": "1",
+                                                "as-xx": "0",
+                                                "stitching-rt": "0"
+                                            },
+                                            "type": "as"
+                                        }
+                                    }
+                                },
+                                "import-route-targets": {
+                                    "route-targets": {
+                                        "route-target": {
+                                            "as-or-four-byte-as": {
+                                                "as": "65000",
+                                                "as-index": "1",
+                                                "as-xx": "0",
+                                                "stitching-rt": "0"
+                                            },
+                                            "type": "as"
+                                        }
+                                    }
+                                }
+                            },
+                            "create": "",
+                            "saf-name": "unicast",
+                            "topology-name": "default"
+                        }
+                    ]
+                },
+                "bgp-global": {
+                    "route-distinguisher": {
+                        "as": "65000",
+                        "as-index": "10019",
+                        "as-xx": "0",
+                        "type": "as"
+                    }
+                },
+                "create": "",
+                "description": "IP VPN for Customer 'Imba_Cust'",
+                "vrf-name": "223344"
+            }
+        ]
+    }
+}

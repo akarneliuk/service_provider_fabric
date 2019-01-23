@@ -12,7 +12,7 @@
                     "admin-status": "UP",
                     "enabled": "true",
                     "ifindex": "7",
-                    "last-change": "3737",
+                    "last-change": "62059",
                     "mtu": "1500",
                     "name": "Loopback0",
                     "oper-status": "UP",
@@ -86,24 +86,24 @@
                 "state": {
                     "admin-status": "UP",
                     "counters": {
-                        "in-broadcast-pkts": "12",
+                        "in-broadcast-pkts": "103",
                         "in-discards": "0",
                         "in-errors": "0",
-                        "in-multicast-pkts": "338",
-                        "in-octets": "136936",
-                        "in-unicast-pkts": "467",
+                        "in-multicast-pkts": "4293",
+                        "in-octets": "808310",
+                        "in-unicast-pkts": "558",
                         "in-unknown-protos": "0",
-                        "last-clear": "2019-01-04T22:58:20.158+00:00",
+                        "last-clear": "2019-01-19T18:41:15.535+00:00",
                         "out-broadcast-pkts": "1",
                         "out-discards": "0",
                         "out-errors": "0",
                         "out-multicast-pkts": "0",
-                        "out-octets": "599372",
-                        "out-unicast-pkts": "549"
+                        "out-octets": "904192",
+                        "out-unicast-pkts": "752"
                     },
                     "enabled": "true",
                     "ifindex": "3",
-                    "last-change": "4559",
+                    "last-change": "62058",
                     "mtu": "1514",
                     "name": "MgmtEth0/0/CPU0/0",
                     "oper-status": "UP",
@@ -143,14 +143,6 @@
                                             "ip": "192.168.141.51",
                                             "link-layer-address": "00:50:56:2d:7b:4a",
                                             "origin": "OTHER"
-                                        }
-                                    },
-                                    {
-                                        "ip": "192.168.141.71",
-                                        "state": {
-                                            "ip": "192.168.141.71",
-                                            "link-layer-address": "00:50:56:3a:fe:14",
-                                            "origin": "DYNAMIC"
                                         }
                                     },
                                     {
@@ -196,24 +188,24 @@
                 "state": {
                     "admin-status": "UP",
                     "counters": {
-                        "in-broadcast-pkts": "1",
+                        "in-broadcast-pkts": "0",
                         "in-discards": "0",
                         "in-errors": "0",
-                        "in-multicast-pkts": "627",
-                        "in-octets": "676708",
-                        "in-unicast-pkts": "2",
+                        "in-multicast-pkts": "9995",
+                        "in-octets": "11269108",
+                        "in-unicast-pkts": "292",
                         "in-unknown-protos": "0",
-                        "last-clear": "2019-01-04T22:58:20.148+00:00",
-                        "out-broadcast-pkts": "1",
+                        "last-clear": "2019-01-19T18:41:15.525+00:00",
+                        "out-broadcast-pkts": "2",
                         "out-discards": "0",
                         "out-errors": "0",
-                        "out-multicast-pkts": "626",
-                        "out-octets": "684209",
-                        "out-unicast-pkts": "3"
+                        "out-multicast-pkts": "9982",
+                        "out-octets": "11332336",
+                        "out-unicast-pkts": "291"
                     },
                     "enabled": "true",
                     "ifindex": "4",
-                    "last-change": "3737",
+                    "last-change": "62058",
                     "mtu": "1514",
                     "name": "GigabitEthernet0/0/0/0",
                     "oper-status": "UP",
@@ -280,8 +272,9 @@
                                         "ip": "fe80::20c:29ff:fe48:e05d",
                                         "state": {
                                             "ip": "fe80::20c:29ff:fe48:e05d",
+                                            "is-router": "",
                                             "link-layer-address": "00:0c:29:48:e0:5d",
-                                            "neighbor-state": "GLEAN",
+                                            "neighbor-state": "REACHABLE",
                                             "origin": "DYNAMIC"
                                         }
                                     },
@@ -329,24 +322,24 @@
                 "state": {
                     "admin-status": "UP",
                     "counters": {
-                        "in-broadcast-pkts": "2",
+                        "in-broadcast-pkts": "0",
                         "in-discards": "0",
                         "in-errors": "0",
-                        "in-multicast-pkts": "624",
-                        "in-octets": "694411",
-                        "in-unicast-pkts": "236",
+                        "in-multicast-pkts": "9911",
+                        "in-octets": "11672092",
+                        "in-unicast-pkts": "6696",
                         "in-unknown-protos": "0",
-                        "last-clear": "2019-01-04T22:58:20.158+00:00",
-                        "out-broadcast-pkts": "1",
+                        "last-clear": "2019-01-19T18:41:15.535+00:00",
+                        "out-broadcast-pkts": "2",
                         "out-discards": "0",
                         "out-errors": "0",
-                        "out-multicast-pkts": "618",
-                        "out-octets": "698319",
-                        "out-unicast-pkts": "234"
+                        "out-multicast-pkts": "9913",
+                        "out-octets": "11735085",
+                        "out-unicast-pkts": "6679"
                     },
                     "enabled": "true",
                     "ifindex": "5",
-                    "last-change": "3737",
+                    "last-change": "62058",
                     "mtu": "1514",
                     "name": "GigabitEthernet0/0/0/1",
                     "oper-status": "UP",
@@ -413,8 +406,9 @@
                                         "ip": "fe80::250:56ff:fed8:fdf3",
                                         "state": {
                                             "ip": "fe80::250:56ff:fed8:fdf3",
+                                            "is-router": "",
                                             "link-layer-address": "00:50:56:d8:fd:f3",
-                                            "neighbor-state": "GLEAN",
+                                            "neighbor-state": "REACHABLE",
                                             "origin": "DYNAMIC"
                                         }
                                     },
@@ -469,7 +463,7 @@
                         "in-octets": "0",
                         "in-unicast-pkts": "0",
                         "in-unknown-protos": "0",
-                        "last-clear": "2019-01-04T22:58:20.158+00:00",
+                        "last-clear": "2019-01-19T18:41:15.535+00:00",
                         "out-broadcast-pkts": "0",
                         "out-discards": "0",
                         "out-errors": "0",
@@ -479,11 +473,104 @@
                     },
                     "enabled": "true",
                     "ifindex": "6",
-                    "last-change": "6009",
+                    "last-change": "62253",
                     "mtu": "1514",
                     "name": "GigabitEthernet0/0/0/2",
                     "oper-status": "DOWN",
                     "type": "idx:ethernetCsmacd"
+                },
+                "subinterfaces": {
+                    "subinterface": {
+                        "config": {
+                            "enabled": "true",
+                            "index": "33",
+                            "name": "GigabitEthernet0/0/0/2.33"
+                        },
+                        "index": "33",
+                        "ipv4": {
+                            "addresses": {
+                                "address": {
+                                    "config": {
+                                        "ip": "192.168.33.1",
+                                        "prefix-length": "24"
+                                    },
+                                    "ip": "192.168.33.1",
+                                    "state": {
+                                        "ip": "192.168.33.1",
+                                        "origin": "STATIC",
+                                        "prefix-length": "24"
+                                    }
+                                }
+                            }
+                        },
+                        "ipv6": {
+                            "addresses": {
+                                "address": {
+                                    "config": {
+                                        "ip": "fc00::192:168:33:1",
+                                        "prefix-length": "112"
+                                    },
+                                    "ip": "fc00::192:168:33:1",
+                                    "state": {
+                                        "ip": "fc00::192:168:33:1",
+                                        "origin": "STATIC",
+                                        "prefix-length": "112",
+                                        "status": "UNKNOWN"
+                                    }
+                                }
+                            },
+                            "config": {
+                                "enabled": "false"
+                            },
+                            "neighbors": {
+                                "neighbor": {
+                                    "ip": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+                                    "state": {
+                                        "ip": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+                                        "link-layer-address": "00:00:00:00:00:00",
+                                        "neighbor-state": "DELETE",
+                                        "origin": "STATIC"
+                                    }
+                                }
+                            },
+                            "state": {
+                                "enabled": "false"
+                            }
+                        },
+                        "state": {
+                            "admin-status": "DOWN",
+                            "counters": {
+                                "in-broadcast-pkts": "0",
+                                "in-discards": "0",
+                                "in-errors": "0",
+                                "in-multicast-pkts": "0",
+                                "in-octets": "0",
+                                "in-unicast-pkts": "0",
+                                "in-unknown-protos": "0",
+                                "last-clear": "2019-01-19T18:41:15.535+00:00",
+                                "out-broadcast-pkts": "0",
+                                "out-discards": "0",
+                                "out-errors": "0",
+                                "out-multicast-pkts": "0",
+                                "out-octets": "0",
+                                "out-unicast-pkts": "0"
+                            },
+                            "enabled": "true",
+                            "ifindex": "8",
+                            "index": "33",
+                            "last-change": "62253",
+                            "name": "GigabitEthernet0/0/0/2.33",
+                            "oper-status": "DOWN"
+                        },
+                        "vlan": {
+                            "config": {
+                                "vlan-id": "10"
+                            },
+                            "state": {
+                                "vlan-id": "10"
+                            }
+                        }
+                    }
                 }
             },
             {
@@ -498,7 +585,7 @@
                         "in-octets": "0",
                         "in-unicast-pkts": "0",
                         "in-unknown-protos": "0",
-                        "last-clear": "2019-01-04T22:58:20.158+00:00",
+                        "last-clear": "2019-01-19T18:41:15.535+00:00",
                         "out-broadcast-pkts": "0",
                         "out-discards": "0",
                         "out-errors": "0",
@@ -508,7 +595,7 @@
                     },
                     "enabled": "true",
                     "ifindex": "2",
-                    "last-change": "5856",
+                    "last-change": "62097",
                     "mtu": "1500",
                     "name": "Null0",
                     "oper-status": "UP",

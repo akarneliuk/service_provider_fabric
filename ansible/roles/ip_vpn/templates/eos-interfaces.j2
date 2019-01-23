@@ -1,0 +1,36 @@
+{% for customer_site in l3vpn_svc.sites.site %}{# f-001: looping all customer sites in service request #}
+{% for customer_connection in customer_site.site_network_accesses.site_network_access %}{# f-002: looping all customer connections on site #}
+{% for sp_pop_site in pe_to_location %}{# f-003: looping all SP sites with PEs #}
+{% if sp_pop_site.location_id == customer_connection.location_reference and sp_pop_site.pe_id == inventory_hostname %}{# i-001: defining PE hostname based on location-id in ietf-l3vpn-svc request #}
+!
+vrf definition {{ customer_connection.vpn_attachment.vpn_id }}
+!
+ip routing vrf {{ customer_connection.vpn_attachment.vpn_id }}
+!
+ipv6 unicast-routing vrf {{ customer_connection.vpn_attachment.vpn_id }}
+!
+interface {{ sp_pop_site.uni_port }}
+    description "Customers port // UNI"
+    no switchport
+{% if customer_connection.bearer.always_on %}{# i-002: setting the admin state of the interfaces #}
+    no shutdown
+{% else %}{# i-002: setting the admin state of the interfaces #}
+    shutdown
+{% endif %}{# i-002: setting the admin state of the interfaces #}
+!
+interface {{ sp_pop_site.uni_port }}.{{ customer_connection.bearer.requested_type.dot1q_vlan }}
+    encapsulation dot1q vlan {{ customer_connection.bearer.requested_type.dot1q_vlan }}
+    description {{ customer_connection.site_network_access_id }}
+    vrf forwarding {{ customer_connection.vpn_attachment.vpn_id }}
+{% if customer_connection.ip_connection.ipv4 is defined %}{# i-003: configuring IPv4 address #}
+    ip address {{ customer_connection.ip_connection.ipv4.addresses.provider_address }}/{{ customer_connection.ip_connection.ipv4.addresses.prefix_length }}
+{% endif %}{# i-003: configuring IPv4 address #}
+{% if customer_connection.ip_connection.ipv6 is defined %}{# i-004: configuring IPv6 address #}
+    ipv6 address {{ customer_connection.ip_connection.ipv6.addresses.provider_address }}/{{ customer_connection.ip_connection.ipv6.addresses.prefix_length }}
+{% endif %}{# i-004: configuring IPv6 address #}
+!
+{% endif %}{# i-001: defining PE hostname based on location-id in ietf-l3vpn-svc request #}
+{% endfor %}{# f-003: looping all SP sites with PEs #}
+{% endfor %}{# f-002: looping all customer connections on site #}
+{% endfor %}{# f-001: looping all customer sites in service request #}
+

@@ -44,6 +44,22 @@
   tags:
       - oc-lldp
 
+- name: COLLECT OC ROUTING POLICY CONFIG AND STATE
+  netconf_get:
+      filter: <routing-policy xmlns="http://openconfig.net/yang/routing-policy"/>
+      display: json
+  register: oc_rpol
+  tags:
+      - oc-rpol
+
+- name: SAVE OC ROUTING POLICY CONFIG AND STATE
+  copy:
+      content: "{{ oc_rpol.output.data | to_nice_json }}"
+      dest: output/oc-rpol-{{ inventory_hostname }}.json
+  tags:
+      - oc-rpol
+
+
 - name: TEMP // COLLECT CISCO BGP CONFIG AND STATE
   netconf_get:
       filter: <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg"/>
@@ -58,6 +74,21 @@
       dest: output/cisco-bgp-{{ inventory_hostname }}.json
   tags:
       - cisco-bgp
+
+- name: TEMP // COLLECT CISCO VRF CONFIG AND STATE
+  netconf_get:
+      filter: <vrfs xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-infra-rsi-cfg"/>
+      display: json
+  register: vrf
+  tags:
+      - cisco-vrf
+
+- name: TEMP // SAVE CISCO VRF CONFIG AND STATE
+  copy:
+      content: "{{ vrf.output.data | to_nice_json }}"
+      dest: output/cisco-vrf-{{ inventory_hostname }}.json
+  tags:
+      - cisco-vrf
 
 - name: TEMP // COLLECT NOKIA NATIVE CONFIG AND STATE
   netconf_get:

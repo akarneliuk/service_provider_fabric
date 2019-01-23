@@ -1,0 +1,18 @@
+---
+- name: NATIVE YANG // IMPORTING NEXT FREE RD/RT INDEX
+  include_vars:
+      file: l3vpn_index.yml
+  tags:
+      - ip_vpn
+
+- name: NATIVE YANG // STARTING NOKIA CONFIGURATION LOOP
+  include_tasks: "{{ ansible_network_os }}_configuration_loop.yml"
+  when: ansible_network_os == 'sros'
+  loop:
+      - interfaces
+      - network-instance
+  loop_control:
+      loop_var: conf_loop_item
+  tags:
+      - ip_vpn
+...

@@ -1,3 +1,13 @@
 ---
+# Default for Ansible operation
 temp_folder: /tmp/SP_SR_TEMP
+# Defaults for IETF L3VPN SVC provisioning
+l3vpn_defaults:
+    route_distinguisher:
+        format: 2_byte_asn
+        start: 10000
+        end: 99999
+    route_target:
+        start: 10000
+        end: 99999
 ...

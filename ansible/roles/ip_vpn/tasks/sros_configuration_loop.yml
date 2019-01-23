@@ -1,0 +1,15 @@
+---
+- name: NATIVE YANG // CONFIGURATION LOOP // TEMPLATING XML CONFIG FILE
+  template:
+      src: "{{ ansible_network_os }}-{{ conf_loop_item }}.j2"
+      dest: "{{ temp_folder }}/{{ inventory_hostname}}_{{ conf_loop_item }}.xml"
+  tags:
+      - ip_vpn
+
+- name: NATIVE YANG // CONFIGURATION LOOP // PUSHING CONFIG
+  netconf_config:
+      content: "{{ lookup ('file', '{{ temp_folder }}/{{ inventory_hostname}}_{{ conf_loop_item }}.xml') }}"
+  ignore_errors: yes
+  tags:
+      - ip_vpn
+...

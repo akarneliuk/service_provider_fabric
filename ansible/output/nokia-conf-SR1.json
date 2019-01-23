@@ -1,0 +1,765 @@
+{
+    "configure": {
+        "card": {
+            "admin-state": "enable",
+            "card-type": "iom-1",
+            "mda": {
+                "admin-state": "enable",
+                "mda-slot": "1",
+                "mda-type": "me6-100gb-qsfp28"
+            },
+            "slot-number": "1"
+        },
+        "log": {
+            "filter": {
+                "entry": {
+                    "action": "forward",
+                    "description": "Collect only events of major severity or higher",
+                    "entry-id": "10",
+                    "match": {
+                        "severity": {
+                            "gte": "major"
+                        }
+                    }
+                },
+                "filter-id": "1001"
+            },
+            "log-id": [
+                {
+                    "admin-state": "enable",
+                    "destination": {
+                        "console": ""
+                    },
+                    "id": "10",
+                    "source": {
+                        "debug": "true"
+                    }
+                },
+                {
+                    "description": "Default System Log",
+                    "destination": {
+                        "memory": {
+                            "max-entries": "500"
+                        }
+                    },
+                    "id": "99",
+                    "source": {
+                        "main": "true"
+                    }
+                },
+                {
+                    "description": "Default Serious Errors Log",
+                    "destination": {
+                        "memory": {
+                            "max-entries": "500"
+                        }
+                    },
+                    "filter": "1001",
+                    "id": "100",
+                    "source": {
+                        "main": "true"
+                    }
+                },
+                {
+                    "destination": {
+                        "netconf": ""
+                    },
+                    "id": "101"
+                }
+            ]
+        },
+        "policy-options": {
+            "policy-statement": [
+                {
+                    "default-action": {
+                        "action-type": "reject"
+                    },
+                    "entry": [
+                        {
+                            "action": {
+                                "action-type": "accept"
+                            },
+                            "entry-id": "10",
+                            "from": {
+                                "protocol": {
+                                    "name": "bgp"
+                                }
+                            },
+                            "to": {
+                                "protocol": {
+                                    "name": "bgp-vpn"
+                                }
+                            }
+                        },
+                        {
+                            "action": {
+                                "action-type": "accept"
+                            },
+                            "entry-id": "20",
+                            "from": {
+                                "protocol": {
+                                    "name": "bgp-vpn"
+                                }
+                            },
+                            "to": {
+                                "protocol": {
+                                    "name": "bgp"
+                                }
+                            }
+                        }
+                    ],
+                    "name": "RP_BGP_TO_BGP-VPN"
+                },
+                {
+                    "default-action": {
+                        "action-type": "reject"
+                    },
+                    "entry": {
+                        "action": {
+                            "action-type": "accept"
+                        },
+                        "entry-id": "10",
+                        "from": {
+                            "protocol": {
+                                "name": "bgp-vpn"
+                            }
+                        },
+                        "to": {
+                            "protocol": {
+                                "name": "bgp"
+                            }
+                        }
+                    },
+                    "name": "RP_PASS_ALL"
+                }
+            ]
+        },
+        "port": [
+            {
+                "admin-state": "enable",
+                "connector": {
+                    "breakout": "c4-10g"
+                },
+                "port-id": "1/1/c1"
+            },
+            {
+                "admin-state": "enable",
+                "ethernet": {
+                    "encap-type": "dot1q",
+                    "lldp": {
+                        "dest-mac": {
+                            "mac-type": "nearest-bridge",
+                            "notification": "true",
+                            "port-id-subtype": "tx-if-name",
+                            "receive": "true",
+                            "transmit": "true",
+                            "tx-mgmt-address": [
+                                {
+                                    "admin-state": "enable",
+                                    "mgmt-address-system-type": "system"
+                                },
+                                {
+                                    "admin-state": "enable",
+                                    "mgmt-address-system-type": "system-ipv6"
+                                }
+                            ],
+                            "tx-tlvs": {
+                                "port-desc": "true",
+                                "sys-cap": "true",
+                                "sys-desc": "true",
+                                "sys-name": "true"
+                            }
+                        }
+                    },
+                    "mode": "network",
+                    "single-fiber": "true"
+                },
+                "port-id": "1/1/c1/1"
+            },
+            {
+                "admin-state": "enable",
+                "connector": {
+                    "breakout": "c4-10g"
+                },
+                "port-id": "1/1/c2"
+            },
+            {
+                "admin-state": "enable",
+                "ethernet": {
+                    "encap-type": "dot1q",
+                    "mode": "access"
+                },
+                "port-id": "1/1/c2/1"
+            }
+        ],
+        "router": {
+            "autonomous-system": "65000",
+            "bgp": {
+                "group": {
+                    "family": {
+                        "evpn": "true",
+                        "vpn-ipv4": "true",
+                        "vpn-ipv6": "true"
+                    },
+                    "group-name": "IBGP_PEERS",
+                    "local-address": "10.0.0.44",
+                    "peer-as": "65000"
+                },
+                "neighbor": [
+                    {
+                        "group": "IBGP_PEERS",
+                        "ip-address": "10.0.0.22"
+                    },
+                    {
+                        "group": "IBGP_PEERS",
+                        "ip-address": "10.0.0.33"
+                    }
+                ],
+                "next-hop-resolution": {
+                    "labeled-routes": {
+                        "transport-tunnel": {
+                            "family": {
+                                "family-type": "vpn",
+                                "resolution": "filter",
+                                "resolution-filter": {
+                                    "sr-isis": "true"
+                                }
+                            }
+                        }
+                    }
+                },
+                "router-id": "10.0.0.44"
+            },
+            "interface": [
+                {
+                    "interface-name": "noc_1/1/c1/1",
+                    "ipv4": {
+                        "primary": {
+                            "address": "10.1.44.44",
+                            "prefix-length": "24"
+                        }
+                    },
+                    "ipv6": {
+                        "address": {
+                            "ipv6-address": "fc00::10:1:44:44",
+                            "prefix-length": "112"
+                        }
+                    },
+                    "port": "1/1/c1/1:0"
+                },
+                {
+                    "interface-name": "system",
+                    "ipv4": {
+                        "primary": {
+                            "address": "10.0.0.44",
+                            "prefix-length": "32"
+                        }
+                    },
+                    "ipv6": {
+                        "address": {
+                            "ipv6-address": "fc00::10:0:0:44",
+                            "prefix-length": "128"
+                        }
+                    }
+                }
+            ],
+            "isis": {
+                "admin-state": "enable",
+                "advertise-router-capability": "as",
+                "area-address": "49.0000",
+                "interface": [
+                    {
+                        "interface-name": "noc_1/1/c1/1",
+                        "interface-type": "point-to-point",
+                        "level": {
+                            "ipv6-unicast-metric": "10",
+                            "level-number": "2",
+                            "metric": "10"
+                        },
+                        "passive": "false"
+                    },
+                    {
+                        "interface-name": "system",
+                        "ipv4-node-sid": {
+                            "index": "44"
+                        },
+                        "level": {
+                            "ipv6-unicast-metric": "10",
+                            "level-number": "2",
+                            "metric": "10"
+                        },
+                        "passive": "true"
+                    }
+                ],
+                "ipv6-routing": "mt",
+                "isis-instance": "0",
+                "level": {
+                    "level-number": "2",
+                    "wide-metrics-only": "true"
+                },
+                "level-capability": "2",
+                "multi-topology": {
+                    "ipv6-unicast": "true"
+                },
+                "segment-routing": {
+                    "admin-state": "enable",
+                    "prefix-sid-range": {
+                        "global": ""
+                    },
+                    "tunnel-table-pref": "8"
+                }
+            },
+            "mpls-labels": {
+                "sr-labels": {
+                    "end": "524287",
+                    "start": "500000"
+                }
+            },
+            "router-id": "10.0.0.44",
+            "router-name": "Base"
+        },
+        "service": {
+            "vprn": {
+                "admin-state": "enable",
+                "bgp": {
+                    "group": [
+                        {
+                            "export": {
+                                "policy": "RP_PASS_ALL"
+                            },
+                            "family": {
+                                "ipv4": "true"
+                            },
+                            "group-name": "CE_IPV4",
+                            "import": {
+                                "policy": "RP_PASS_ALL"
+                            },
+                            "peer-as": "65234"
+                        },
+                        {
+                            "export": {
+                                "policy": "RP_PASS_ALL"
+                            },
+                            "family": {
+                                "ipv6": "true"
+                            },
+                            "group-name": "CE_IPV6",
+                            "import": {
+                                "policy": "RP_PASS_ALL"
+                            },
+                            "peer-as": "65234"
+                        }
+                    ],
+                    "neighbor": [
+                        {
+                            "group": "CE_IPV4",
+                            "ip-address": "192.168.44.44"
+                        },
+                        {
+                            "group": "CE_IPV6",
+                            "ip-address": "fc00::192:168:44:44"
+                        }
+                    ]
+                },
+                "customer": "1",
+                "interface": {
+                    "description": "223344_44_1",
+                    "interface-name": "toCUST",
+                    "ipv4": {
+                        "primary": {
+                            "address": "192.168.44.1",
+                            "prefix-length": "24"
+                        }
+                    },
+                    "ipv6": {
+                        "address": {
+                            "ipv6-address": "fc00::192:168:44:1",
+                            "prefix-length": "112"
+                        }
+                    },
+                    "sap": {
+                        "sap-id": "1/1/c2/1:44"
+                    }
+                },
+                "route-distinguisher": "65000:10000",
+                "service-id": "223344",
+                "service-name": "223344",
+                "vrf-target": {
+                    "community": "target:65000:10000"
+                }
+            }
+        },
+        "system": {
+            "bluetooth": {
+                "advertising-timeout": "30"
+            },
+            "dns": {
+                "address-pref": "ipv4-only"
+            },
+            "grpc": {
+                "admin-state": "enable",
+                "allow-unsecure-connection": "",
+                "gnmi": {
+                    "admin-state": "enable",
+                    "auto-config-save": "true"
+                }
+            },
+            "management-interface": {
+                "cli": {
+                    "md-cli": {
+                        "auto-config-save": "true"
+                    }
+                },
+                "configuration-mode": "model-driven",
+                "netconf": {
+                    "admin-state": "enable",
+                    "auto-config-save": "true"
+                },
+                "yang-modules": {
+                    "base-r13-modules": "true",
+                    "nokia-modules": "true",
+                    "openconfig-modules": "true"
+                }
+            },
+            "name": "SR1",
+            "security": {
+                "aaa": {
+                    "local-profiles": {
+                        "profile": [
+                            {
+                                "default-action": "permit-all",
+                                "entry": [
+                                    {
+                                        "action": "permit",
+                                        "entry-id": "10",
+                                        "match": "configure system security"
+                                    },
+                                    {
+                                        "action": "permit",
+                                        "entry-id": "20",
+                                        "match": "show system security"
+                                    },
+                                    {
+                                        "action": "permit",
+                                        "entry-id": "30",
+                                        "match": "tools perform security"
+                                    },
+                                    {
+                                        "action": "permit",
+                                        "entry-id": "40",
+                                        "match": "tools dump security"
+                                    },
+                                    {
+                                        "action": "deny",
+                                        "entry-id": "100",
+                                        "match": "configure li"
+                                    },
+                                    {
+                                        "action": "deny",
+                                        "entry-id": "110",
+                                        "match": "show li"
+                                    },
+                                    {
+                                        "action": "deny",
+                                        "entry-id": "111",
+                                        "match": "clear li"
+                                    },
+                                    {
+                                        "action": "deny",
+                                        "entry-id": "112",
+                                        "match": "tools dump li"
+                                    }
+                                ],
+                                "netconf": {
+                                    "base-op-authorization": {
+                                        "kill-session": "true",
+                                        "lock": "true"
+                                    }
+                                },
+                                "user-profile-name": "administrative"
+                            },
+                            {
+                                "entry": [
+                                    {
+                                        "action": "permit",
+                                        "entry-id": "10",
+                                        "match": "exec"
+                                    },
+                                    {
+                                        "action": "permit",
+                                        "entry-id": "20",
+                                        "match": "exit"
+                                    },
+                                    {
+                                        "action": "permit",
+                                        "entry-id": "30",
+                                        "match": "help"
+                                    },
+                                    {
+                                        "action": "permit",
+                                        "entry-id": "40",
+                                        "match": "logout"
+                                    },
+                                    {
+                                        "action": "permit",
+                                        "entry-id": "50",
+                                        "match": "password"
+                                    },
+                                    {
+                                        "action": "deny",
+                                        "entry-id": "60",
+                                        "match": "show config"
+                                    },
+                                    {
+                                        "action": "deny",
+                                        "entry-id": "65",
+                                        "match": "show li"
+                                    },
+                                    {
+                                        "action": "deny",
+                                        "entry-id": "66",
+                                        "match": "clear li"
+                                    },
+                                    {
+                                        "action": "deny",
+                                        "entry-id": "67",
+                                        "match": "tools dump li"
+                                    },
+                                    {
+                                        "action": "permit",
+                                        "entry-id": "70",
+                                        "match": "show"
+                                    },
+                                    {
+                                        "action": "permit",
+                                        "entry-id": "80",
+                                        "match": "enable-admin"
+                                    },
+                                    {
+                                        "action": "deny",
+                                        "entry-id": "100",
+                                        "match": "configure li"
+                                    }
+                                ],
+                                "user-profile-name": "default"
+                            }
+                        ]
+                    }
+                },
+                "ssh": {
+                    "client-cipher-list-v1": {
+                        "cipher": [
+                            {
+                                "index": "200",
+                                "name": "3des"
+                            },
+                            {
+                                "index": "205",
+                                "name": "blowfish"
+                            },
+                            {
+                                "index": "210",
+                                "name": "des"
+                            }
+                        ]
+                    },
+                    "client-cipher-list-v2": {
+                        "cipher": [
+                            {
+                                "index": "190",
+                                "name": "aes256-ctr"
+                            },
+                            {
+                                "index": "192",
+                                "name": "aes192-ctr"
+                            },
+                            {
+                                "index": "194",
+                                "name": "aes128-ctr"
+                            },
+                            {
+                                "index": "200",
+                                "name": "aes128-cbc"
+                            },
+                            {
+                                "index": "205",
+                                "name": "3des-cbc"
+                            },
+                            {
+                                "index": "210",
+                                "name": "blowfish-cbc"
+                            },
+                            {
+                                "index": "215",
+                                "name": "cast128-cbc"
+                            },
+                            {
+                                "index": "220",
+                                "name": "arcfour"
+                            },
+                            {
+                                "index": "225",
+                                "name": "aes192-cbc"
+                            },
+                            {
+                                "index": "230",
+                                "name": "aes256-cbc"
+                            },
+                            {
+                                "index": "235",
+                                "name": "rijndael-cbc"
+                            }
+                        ]
+                    },
+                    "client-mac-list-v2": {
+                        "mac": [
+                            {
+                                "index": "200",
+                                "name": "hmac-sha2-512"
+                            },
+                            {
+                                "index": "210",
+                                "name": "hmac-sha2-256"
+                            },
+                            {
+                                "index": "215",
+                                "name": "hmac-sha1"
+                            },
+                            {
+                                "index": "220",
+                                "name": "hmac-sha1-96"
+                            },
+                            {
+                                "index": "225",
+                                "name": "hmac-md5"
+                            },
+                            {
+                                "index": "230",
+                                "name": "hmac-ripemd160"
+                            },
+                            {
+                                "index": "235",
+                                "name": "hmac-ripemd160-openssh-com"
+                            },
+                            {
+                                "index": "240",
+                                "name": "hmac-md5-96"
+                            }
+                        ]
+                    },
+                    "server-cipher-list-v1": {
+                        "cipher": [
+                            {
+                                "index": "200",
+                                "name": "3des"
+                            },
+                            {
+                                "index": "205",
+                                "name": "blowfish"
+                            }
+                        ]
+                    },
+                    "server-cipher-list-v2": {
+                        "cipher": [
+                            {
+                                "index": "190",
+                                "name": "aes256-ctr"
+                            },
+                            {
+                                "index": "192",
+                                "name": "aes192-ctr"
+                            },
+                            {
+                                "index": "194",
+                                "name": "aes128-ctr"
+                            },
+                            {
+                                "index": "200",
+                                "name": "aes128-cbc"
+                            },
+                            {
+                                "index": "205",
+                                "name": "3des-cbc"
+                            },
+                            {
+                                "index": "210",
+                                "name": "blowfish-cbc"
+                            },
+                            {
+                                "index": "215",
+                                "name": "cast128-cbc"
+                            },
+                            {
+                                "index": "220",
+                                "name": "arcfour"
+                            },
+                            {
+                                "index": "225",
+                                "name": "aes192-cbc"
+                            },
+                            {
+                                "index": "230",
+                                "name": "aes256-cbc"
+                            },
+                            {
+                                "index": "235",
+                                "name": "rijndael-cbc"
+                            }
+                        ]
+                    },
+                    "server-mac-list-v2": {
+                        "mac": [
+                            {
+                                "index": "200",
+                                "name": "hmac-sha2-512"
+                            },
+                            {
+                                "index": "210",
+                                "name": "hmac-sha2-256"
+                            },
+                            {
+                                "index": "215",
+                                "name": "hmac-sha1"
+                            },
+                            {
+                                "index": "220",
+                                "name": "hmac-sha1-96"
+                            },
+                            {
+                                "index": "225",
+                                "name": "hmac-md5"
+                            },
+                            {
+                                "index": "230",
+                                "name": "hmac-ripemd160"
+                            },
+                            {
+                                "index": "235",
+                                "name": "hmac-ripemd160-openssh-com"
+                            },
+                            {
+                                "index": "240",
+                                "name": "hmac-md5-96"
+                            }
+                        ]
+                    }
+                },
+                "user-params": {
+                    "local-user": {
+                        "user": {
+                            "access": {
+                                "console": "true",
+                                "netconf": "true"
+                            },
+                            "console": {
+                                "member": "administrative"
+                            },
+                            "password": "$2y$10$TQrZlpBDra86.qoexZUzQeBXDY1FcdDhGWdD9lLxMuFyPVSm0OGy6",
+                            "user-name": "admin"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

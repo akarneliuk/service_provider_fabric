@@ -1,0 +1,23 @@
+---
+- name: CLI AUTOMATION // CONFIGURATION LOOP // TEMPLATING CLI CONFIGURATION FILE
+  template:
+      src: "eos-{{ conf_loop_item }}.j2"
+      dest: "{{ temp_folder }}/{{ inventory_hostname}}_{{ conf_loop_item }}.conf"
+  tags:
+      - ip_vpn
+
+- name: CLI AUTOMATION // CONFIGURATION LOOP // PUSHING CLI CONFIG
+  local_action:
+      module: "eos_config"
+      authorize: true
+      save: true
+      src: "{{ temp_folder }}/{{ inventory_hostname}}_{{ conf_loop_item }}.conf"
+      provider:
+          host: "{{ inventory_hostname }}"
+          username: "{{ ansible_user }}"
+          password: "{{ ansible_pass }}"
+          auth_pass: "{{ ansible_pass }}"
+  ignore_errors: yes
+  tags:
+      - ip_vpn
+...

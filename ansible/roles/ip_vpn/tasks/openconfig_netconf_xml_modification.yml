@@ -1,0 +1,117 @@
+---
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // REMOVING UNNECESSARY FRAMING
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml"
+      regexp: '<\?.+\?>\n'
+      replace: ''
+  tags:
+      - ip_vpn
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // OC NI HEADER REWRITE
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml"
+      regexp: '^<nc:config xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0".+?>'
+      replace: '<nc:config xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:oc-netinst="http://openconfig.net/yang/network-instance">'
+  when: conf_loop_item == 'openconfig-network-instance'
+  tags:
+      - ip_vpn
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml"
+      regexp: 'type>oc-if'
+      replace: 'type xmlns:idx="urn:ietf:params:xml:ns:yang:iana-if-type">idx'
+  when: (conf_loop_item == 'openconfig-interfaces' and ansible_network_os == 'iosxr')
+  tags:
+      - ip_vpn
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR 
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml"
+      regexp: 'xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type" '
+      replace: ''
+  when: ansible_network_os == 'iosxr'
+  tags:
+      - ip_vpn
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION 
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml"
+      regexp: '>oc-netinst:'
+      replace: '>'
+  when: conf_loop_item == 'openconfig-network-instance'
+  tags:
+      - ip_vpn
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml"
+      regexp: '>DEFAULT_INSTANCE'
+      replace: ' xmlns:idx="http://openconfig.net/yang/network-instance-types">idx:DEFAULT_INSTANCE'
+  when: (conf_loop_item == 'openconfig-network-instance' and ansible_network_os == 'iosxr')
+  tags:
+      - ip_vpn
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml"
+      regexp: 'enabled-address-families>IPV'
+      replace: 'enabled-address-families xmlns:idx="http://openconfig.net/yang/openconfig-types">idx:IPV'
+  when: (conf_loop_item == 'openconfig-network-instance' and ansible_network_os == 'iosxr')
+  tags:
+      - ip_vpn
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml"
+      regexp: '>ISIS'
+      replace: ' xmlns:idx="http://openconfig.net/yang/policy-types">idx:ISIS'
+  when: (conf_loop_item == 'openconfig-network-instance' and ansible_network_os == 'iosxr')
+  tags:
+      - ip_vpn
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml"
+      regexp: 'afi-name>IPV'
+      replace: 'afi-name xmlns:idx="http://openconfig.net/yang/isis-types">idx:IPV'
+  when: (conf_loop_item == 'openconfig-network-instance' and ansible_network_os == 'iosxr')
+  tags:
+      - ip_vpn
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml"
+      regexp: 'safi-name>UNICAST'
+      replace: 'safi-name xmlns:idx="http://openconfig.net/yang/isis-types">idx:UNICAST'
+  when: (conf_loop_item == 'openconfig-network-instance' and ansible_network_os == 'iosxr')
+  tags:
+      - ip_vpn
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // CISCO IOS XR
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml"
+      regexp: 'type>L3VRF'
+      replace: 'type xmlns:idx="http://openconfig.net/yang/network-instance-types">idx:L3VRF'
+  when: (conf_loop_item == 'openconfig-network-instance' and ansible_network_os == 'iosxr')
+  tags:
+      - ip_vpn
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // ARISTA EOS 4.21.1.1F
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml"
+      regexp: '<oc-if:interface><oc-if:name>'
+      replace: '<oc-if:interface><oc-if:name nc:operation="replace">'
+  when: (conf_loop_item == 'openconfig-interfaces' and ansible_network_os == "nexus")
+  tags:
+      - ip_vpn
+
+- name: CONFIGURATION LOOP // NETCONF XML MODIFICATION // ARISTA EOS 4.21.1.1F
+  replace:
+      path: "{{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml"
+      regexp: '<oc-netinst:multi-topology><oc-netinst:config>'
+      replace: '<oc-netinst:multi-topology><oc-netinst:config><oc-netinst:enabled>true</oc-netinst:enabled>'
+  when: (conf_loop_item == 'openconfig-network-instance' and ansible_network_os == "nexus")
+  tags:
+      - ip_vpn
+...

@@ -1,0 +1,437 @@
+{
+	"l3vpn_svc": {
+		"vpn_profiles": {
+			"valid_provider_identifiers": {
+				"encryption_profile_identifier": [
+					{
+						"id": "NO_ENCR"
+					}
+				], 
+				"cloud_identifier": [
+					{
+						"id": "NO_CLOUD"
+					}
+				], 
+				"bfd_profile_identifier": [
+					{
+						"id": "NO_BFD"
+					}
+				], 
+				"qos_profile_identifier": [
+					{
+						"id": "DEFAULT_QOS"
+					}
+				]
+			}
+		},
+		"vpn_services": {
+			"vpn_service": [
+				{ 
+					"vpn_id": "223344", 
+					"customer_name": "Imba_Cust", 
+					"vpn_service_topology": "any-to-any", 
+					"multicast": {
+						"enabled": false
+					}
+				}
+			]
+		},
+		"sites": {
+			"site": [
+				{
+					"site_id": "CUST1", 
+					"requested_site_start": "string", 
+					"requested_site_stop": "string",
+					"locations": {
+						"location": [
+							{
+								"location_id": "DE-FRA-EQUINIX-FR2", 
+								"country_code": "DE", 
+								"city": "Frankfurt", 
+								"state": "Hessen", 
+								"address": "Somestreet 22", 
+								"postal_code": "60500"
+							}
+						]
+					}, 
+					"devices": {
+						"device": [
+							{
+								"device_id": "VX4", 
+								"management": {
+									"address_family": "ipv4", 
+									"address": "192.168.141.84"
+								}, 
+								"location": "CUST2"
+							}
+						]
+					},
+					"management": {
+						"type": "customer_managed",
+					},
+					"site_vpn_flavor": "site_vpn_flavor_single", 
+					"maximum_routes": {
+						"address_family": [
+							{
+								"maximum_routes": "100", 
+								"af": "ipv4"
+							},
+                            {
+                                "maximum_routes": "100",   
+                                "af": "ipv6"
+                            }
+						]
+					}, 
+					"traffic_protection": {
+						"enabled": false
+					}, 
+					"routing_protocols": {
+						"routing_protocol": [
+							{
+								"type": "bgp", 
+								"bgp": {
+									"autonomous_system": "65234", 
+									"address_family": ["ipv4", "ipv6"]
+								}
+							}
+						]
+					},
+					"site_network_accesses": {
+						"site_network_access": [
+							{
+								"site_network_access_id": "223344_22_1", 
+								"site_network_access_type": "point-to-point", 
+								"location_reference": "DE-FRA-EQUINIX-FR2", 
+								"access_diversity": {
+									"constraints": {
+									"groups": {
+										"group": [
+											{
+												"group_id": "234"
+											}
+										]
+									},
+										"constraint": [
+											{
+												"constraint_type": "pe-diverse", 
+												"target": {
+													"group": [
+														{
+															"group_id": "234"
+														}
+													]
+												}
+											}
+										]
+									}
+								},
+								"bearer": {
+									"always_on": true, 
+									"requested_type": {
+										"strict": true,
+                                                                                "requested_type": "Ethernet-dot1q",
+                                                                                "dot1q_vlan": 22
+									} 
+								},
+								"ip_connection": {
+									"oam": {
+										"bfd": {
+											"enabled": false
+										}
+									}, 
+									"ipv4": {
+										"address_allocation_type": "static-address", 
+										"addresses": {
+											"provider_address": "192.168.22.1", 
+											"prefix_length": "24", 
+											"customer_address": "192.168.22.22"
+										}
+									}, 
+									"ipv6": {
+										"address_allocation_type": "static-address", 
+										"addresses": {
+											"provider_address": "fc00::192:168:22:1", 
+											"prefix_length": "112", 
+											"customer_address": "fc00::192:168:22:22"
+										}
+									}
+								}, 
+								"service": {
+									"svc_input_bandwidth": 100000000,
+									"svc_output_bandwidth": 100000000,
+									"svc_mtu": 1514
+								},  
+								"vpn_attachment": {
+									"vpn_id": "223344", 
+									"site_role": "any-to-any-role"
+								}
+							}
+						]
+					}
+				},
+				{
+					"site_id": "CUST2", 
+					"requested_site_start": "string", 
+					"requested_site_stop": "string",
+					"locations": {
+						"location": [
+							{
+								"location_id": "UK-LON-INTERXION-LON1", 
+								"country_code": "UK", 
+								"city": "London", 
+								"state": "London", 
+								"address": "Anotherstreet 33", 
+								"postal_code": "E16QR"
+							}
+						]
+					}, 
+					"devices": {
+						"device": [
+							{
+								"device_id": "VX4", 
+								"management": {
+									"address_family": "ipv4", 
+									"address": "192.168.141.84"
+								}, 
+								"location": "CUST3"
+							}
+						]
+					},
+					"management": {
+						"type": "customer_managed",
+					},
+					"site_vpn_flavor": "site_vpn_flavor_single", 
+					"maximum_routes": {
+						"address_family": [
+							{	
+								"maximum_routes": "100", 
+								"af": "ipv4"
+							},
+							{
+                                "maximum_routes": "100",   
+                                "af": "ipv6"
+                            }
+						]
+					}, 
+					"traffic_protection": {
+						"enabled": false
+					}, 
+					"routing_protocols": {
+						"routing_protocol": [
+							{
+								"type": "bgp", 
+								"bgp": {
+									"autonomous_system": "65234", 
+									"address_family": ["ipv4", "ipv6"]
+								}
+							}
+						]
+					},
+					"site_network_accesses": {
+						"site_network_access": [
+							{
+								"site_network_access_id": "223344_33_1", 
+								"site_network_access_type": "point-to-point", 
+								"location_reference": "UK-LON-INTERXION-LON1", 
+								"access_diversity": {
+									"constraints": {
+									"groups": {
+										"group": [
+											{
+												"group_id": "234"
+											}
+										]
+									},
+										"constraint": [
+											{
+												"constraint_type": "pe-diverse", 
+												"target": {
+													"group": [
+														{
+															"group_id": "234"
+														}
+													]
+												}
+											}
+										]
+									}
+								},
+								"bearer": {
+									"always_on": true, 
+									"requested_type": {
+										"strict": true, 
+										"requested_type": "Ethernet-dot1q",
+										"dot1q_vlan": 33
+									} 
+								},
+								"ip_connection": {
+									"oam": {
+										"bfd": {
+											"enabled": false
+										}
+									}, 
+									"ipv4": {
+										"address_allocation_type": "static-address", 
+										"addresses": {
+											"provider_address": "192.168.33.1", 
+											"prefix_length": "24", 
+											"customer_address": "192.168.33.33"
+										}
+									}, 
+									"ipv6": {
+										"address_allocation_type": "static-address", 
+										"addresses": {
+											"provider_address": "fc00::192:168:33:1", 
+											"prefix_length": "112", 
+											"customer_address": "fc00::192:168:33:33"
+										}
+									}
+								}, 
+								"service": {
+									"svc_input_bandwidth": 100000000,
+									"svc_output_bandwidth": 100000000,
+									"svc_mtu": 1514
+								},  
+								"vpn_attachment": {
+									"vpn_id": "223344", 
+									"site_role": "any-to-any-role"
+								}
+							}
+						]
+					}
+				},
+				{
+					"site_id": "CUST3", 
+					"requested_site_start": "string", 
+					"requested_site_stop": "string",
+					"locations": {
+						"location": [
+							{
+								"location_id": "BY-MIN-BELTELECOM-IX1", 
+								"country_code": "BY", 
+								"city": "Minsk", 
+								"state": "Minsk", 
+								"address": "theotherstreet 44", 
+								"postal_code": "220034"
+							}
+						]
+					}, 
+					"devices": {
+						"device": [
+							{
+								"device_id": "VX4", 
+								"management": {
+									"address_family": "ipv4", 
+									"address": "192.168.141.84"
+								}, 
+								"location": "CUST4"
+							}
+						]
+					},
+					"management": {
+						"type": "customer_managed",
+					},
+					"site_vpn_flavor": "site_vpn_flavor_single", 
+					"maximum_routes": {
+						"address_family": [
+							{
+								"maximum_routes": "100", 
+								"af": "ipv4"
+							},
+							{
+								"maximum_routes": "100", 
+								"af": "ipv6"
+							}
+						]
+					}, 
+					"traffic_protection": {
+						"enabled": false
+					}, 
+					"routing_protocols": {
+						"routing_protocol": [
+							{
+								"type": "bgp", 
+								"bgp": {
+									"autonomous_system": "65234", 
+									"address_family": ["ipv4", "ipv6"]
+								}
+							}
+						]
+					},
+					"site_network_accesses": {
+						"site_network_access": [
+							{
+								"site_network_access_id": "223344_44_1", 
+								"site_network_access_type": "point-to-point", 
+								"location_reference": "BY-MIN-BELTELECOM-IX1", 
+								"access_diversity": {
+									"constraints": {
+										"groups": {
+											"group": [
+												{
+													"group_id": "234"
+												}
+											]
+										},
+										"constraint": [
+											{
+												"constraint_type": "pe-diverse", 
+												"target": {
+												"group": [
+														{
+															"group_id": "234"
+														}
+													]
+												}
+											}
+										]
+									}
+								},
+								"bearer": {
+									"always_on": true, 
+									"requested_type": {
+										"strict": true, 
+										"requested_type": "Ethernet-dot1q",
+                                        "dot1q_vlan": 44
+									} 
+								},
+								"ip_connection": {
+									"oam": {
+										"bfd": {
+											"enabled": false
+										}
+									}, 
+									"ipv4": {
+										"address_allocation_type": "static-address", 
+										"addresses": {
+											"provider_address": "192.168.44.1", 
+											"prefix_length": "24", 
+											"customer_address": "192.168.44.44"
+										}
+									}, 
+									"ipv6": {
+										"address_allocation_type": "static-address", 
+										"addresses": {
+											"provider_address": "fc00::192:168:44:1", 
+											"prefix_length": "112", 
+											"customer_address": "fc00::192:168:44:44"
+										}
+									}
+								}, 
+								"service": {
+									"svc_input_bandwidth": 100000000,
+									"svc_output_bandwidth": 100000000,
+									"svc_mtu": 1514
+								},  
+								"vpn_attachment": {
+									"vpn_id": "223344", 
+									"site_role": "any-to-any-role"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	}
+}

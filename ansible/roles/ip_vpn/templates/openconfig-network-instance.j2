@@ -1,0 +1,159 @@
+{% for customer_site in l3vpn_svc.sites.site %}{# f-001: looping all customer sites in service request #}
+{% for customer_connection in customer_site.site_network_accesses.site_network_access %}{# f-002: looping all customer connections on site #}
+{% for sp_pop_site in pe_to_location %}{# f-003: looping all SP sites with PEs #}
+{% if sp_pop_site.location_id == customer_connection.location_reference and sp_pop_site.pe_id == inventory_hostname %}{# i-001: defining PE hostname based on location-id in ietf-l3vpn-svc request #}
+{
+    "openconfig-network-instance:network-instances": {
+        "network-instance": [
+            {
+                "name": "{{ customer_connection.vpn_attachment.vpn_id }}",
+                "config": {
+                    "name": "{{ customer_connection.vpn_attachment.vpn_id }}",
+{% if ansible_network_os == 'nexus' %}{# i-012: setting network instance type for Arista #}
+                    "type": "L3VRF",
+{% endif %}{# i-012: setting network instance type for Arista #}
+                    "enabled-address-families": [
+                        "IPV4",
+                        "IPV6"
+                    ],
+{% for routing_protocol in routing %}{# f-004: looping routing protocols configuration from underlay #}
+{% if routing_protocol.id == 'BGP' %}{# i-002: looking for BGP config #}
+                    "route-distinguisher": "{{ routing_protocol.asn }}:{{ l3vpn_defaults.route_distinguisher.start + l3vpn_index_next_free }}",
+{% endif %}{# i-002: looking for BGP config #}
+{% endfor %}{# f-004: looping routing protocols configuration from underlay #}
+{% for vpn_service in l3vpn_svc.vpn_services.vpn_service %}{# f-005: looping all VPN services within ietf-l3vpn-svc request #}
+{% if vpn_service.vpn_id == customer_connection.vpn_attachment.vpn_id %}{# i-003: looking for match between connection and VPN service #}
+                    "description": "IP VPN for Customer '{{ vpn_service.customer_name }}'"
+{% endif %}{# i-003: looking for match between connection and VPN service #}
+{% endfor %}{# f-005: looping all VPN services within ietf-l3vpn-svc request #}
+                },
+                "interfaces": {
+                    "interface": [
+                        {
+                            "config": {
+                                "id": "{{ sp_pop_site.uni_port }}.{{ customer_connection.bearer.requested_type.dot1q_vlan }}",
+                                "interface": "{{ sp_pop_site.uni_port }}",
+{% if ansible_network_os == 'nexus' %}{# i-012: adding AF for Arista EOS #}
+                                "associated-address-families": [ "IPV4", "IPV6" ],
+{% endif %}{# i-00x: adding AF for Arista EOS #}
+                                "subinterface": {{ customer_connection.bearer.requested_type.dot1q_vlan }}
+                            },
+                            "id": "{{ sp_pop_site.uni_port }}.{{ customer_connection.bearer.requested_type.dot1q_vlan }}"
+                        }
+                    ]
+                },
+                "protocols": {
+                    "protocol": [
+{% for cust_routing_protocol in customer_site.routing_protocols.routing_protocol %}{# f-006: looping for all customer routing protocols within ietf-l3vpn-svc request #}
+{% if cust_routing_protocol.type == 'bgp' %}{# i-004: matching customer routing protocol type #}
+                        {
+                            "identifier": "{{ cust_routing_protocol.type | upper }}",
+                            "name": "{% if ansible_network_os == 'nexus' %}BGP{% elif ansible_network_os == 'iosxr' %}default{% endif %}",
+                            "config": {
+{% if ansible_network_os != 'iosxr' %}{# i-005: 'nexus' and 'sros' relevant, 'iosxr' doesn't have this field #}
+                                "enabled": true,
+{% endif %}{# i-005: 'nexus' and 'sros' relevant, 'iosxr' doesn't have this field #}
+                                "identifier": "{{ cust_routing_protocol.type | upper }}",
+                                "name": "{% if ansible_network_os == 'nexus' %}BGP{% elif ansible_network_os == 'iosxr' %}default{% endif %}"
+                            },
+                            "bgp": {
+                                "global": {
+                                    "config": {
+{% for routing_protocol in routing %}{# f-008: looping routing protocols configuration from underlay #}
+{% if routing_protocol.id == 'BGP' %}{# i-009: looking for BGP config #}
+                                        "as": {{ routing_protocol.asn }}
+{% endif %}{# i-009: looking for BGP config #}
+{% endfor %}{# f-008: looping routing protocols configuration from underlay #}
+                                    },
+                                    "afi-safis": {
+                                        "afi-safi": [
+{% for afi_name in cust_routing_protocol.bgp.address_family %}{# f-007: creating missing AFI within VRF context in BGP process #}
+{% if afi_name == 'ipv4' or afi_name == 'ipv6' %}{# i-006: creating AFI only for proper entries #}
+{% if loop.index > 1 %},{% endif %}
+                                            {
+{% if afi_name == 'ipv4' %}{# i-007: creating AFI for IPv4 or IPv6 UNICAST #}
+                                                "afi-safi-name": "IPV4_UNICAST",
+{% elif afi_name == 'ipv6' %}{# i-007: creating AFI for IPv4 or IPv6 UNICAST #}
+                                                "afi-safi-name": "IPV6_UNICAST",
+{% endif %}{# i-007: creating AFI for IPv4 or IPv6 UNICAST #}
+                                                "config": {
+{% if afi_name == 'ipv4' %}{# i-008: creating AFI for IPv4 or IPv6 UNICAST #}
+                                                    "afi-safi-name": "IPV4_UNICAST"
+{% elif afi_name == 'ipv6' %}{# i-008: creating AFI for IPv4 or IPv6 UNICAST #}
+                                                    "afi-safi-name": "IPV6_UNICAST"
+{% endif %}{# i-008: creating AFI for IPv4 or IPv6 UNICAST #}
+{% if ansible_network_os == 'iosxr' %}{# i-009: Cisco IOS XR specific #}
+                                                    ,"enabled": true
+{% endif %}{# i-009: Cisco IOS XR specific #}
+                                                }
+                                            }
+{% endif %}{# i-006: creating AFI only for proper entries #}
+{% endfor %}{# f-007: creating missing AFI within VRF context in BGP process #}
+                                        ]
+                                    }
+                                },
+                                "neighbors": {
+                                    "neighbor": [
+{% for afi_name in cust_routing_protocol.bgp.address_family %}{# f-008: creating missing AFI within VRF context in BGP process #}
+{% if afi_name == 'ipv4' or afi_name == 'ipv6' %}{# i-010: creating AFI only for proper entries #}
+{% if loop.index > 1%},{% endif %}
+                                        {
+{% if afi_name == 'ipv4' %}{# i-011: creating AFI for IPv4 or IPv6 UNICAST #}
+                                            "neighbor-address": "{{ customer_connection.ip_connection.ipv4.addresses.customer_address }}",
+{% elif afi_name == 'ipv6' %}{# i-011: creating AFI for IPv4 or IPv6 UNICAST #}
+                                            "neighbor-address": "{{ customer_connection.ip_connection.ipv6.addresses.customer_address }}",
+{% endif %}{# i-011: creating AFI for IPv4 or IPv6 UNICAST #}
+                                            "config": {
+{% if afi_name == 'ipv4' %}{# i-011: creating AFI for IPv4 or IPv6 UNICAST #}
+                                                "neighbor-address": "{{ customer_connection.ip_connection.ipv4.addresses.customer_address }}",
+{% elif afi_name == 'ipv6' %}{# i-011: creating AFI for IPv4 or IPv6 UNICAST #}
+                                                "neighbor-address": "{{ customer_connection.ip_connection.ipv6.addresses.customer_address }}",
+{% endif %}{# i-011: creating AFI for IPv4 or IPv6 UNICAST #}
+                                                "peer-as": {{ cust_routing_protocol.bgp.autonomous_system }}
+                                            },
+                                            "afi-safis": {
+                                                "afi-safi": [
+                                                    {
+{% if afi_name == 'ipv4' %}{# i-007: creating AFI for IPv4 or IPv6 UNICAST #}
+                                                        "afi-safi-name": "IPV4_UNICAST",
+{% elif afi_name == 'ipv6' %}{# i-007: creating AFI for IPv4 or IPv6 UNICAST #}
+                                                        "afi-safi-name": "IPV6_UNICAST",
+{% endif %}{# i-007: creating AFI for IPv4 or IPv6 UNICAST #}
+                                                        "config": {
+{% if afi_name == 'ipv4' %}{# i-008: creating AFI for IPv4 or IPv6 UNICAST #}
+                                                            "afi-safi-name": "IPV4_UNICAST"
+{% elif afi_name == 'ipv6' %}{# i-008: creating AFI for IPv4 or IPv6 UNICAST #}
+                                                            "afi-safi-name": "IPV6_UNICAST"
+{% endif %}{# i-008: creating AFI for IPv4 or IPv6 UNICAST #}
+{% if ansible_network_os == 'iosxr' %}{# i-009: Cisco IOS XR specific #}
+                                                            ,"enabled": true
+{% endif %}{# i-009: Cisco IOS XR specific #}       
+                                                        },
+                                                        "apply-policy": {
+                                                            "config": {
+                                                                "export-policy": [ "RP_PASS_ALL" ],
+                                                                "import-policy": [ "RP_PASS_ALL" ]
+                                                            }
+                                                        }
+                                                    }   
+                                                ]
+                                            }   
+                                        }
+{% endif %}{# i-010: creating AFI only for proper entries #}
+{% endfor %}{# f-008: creating missing AFI within VRF context in BGP process #}
+                                    ]
+                                }
+                            }
+                        }
+{% endif %}{# i-004: matching customer routing protocol type #}
+{% endfor %}{# f-006: looping for all customer routing protocols within ietf-l3vpn-svc request #}
+                    ]
+                }
+            }
+        ]
+    }
+}
+{% endif %}{# i-001: defining PE hostname based on location-id in ietf-l3vpn-svc request #}
+{% endfor %}{# f-003: looping all SP sites with PEs #}
+{% endfor %}{# f-002: looping all customer connections on site #}
+{% endfor %}{# f-001: looping all customer sites in service request #}

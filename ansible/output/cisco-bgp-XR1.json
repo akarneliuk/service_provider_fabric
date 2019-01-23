@@ -1,0 +1,130 @@
+{
+    "bgp": {
+        "instance": {
+            "instance-as": {
+                "as": "0",
+                "four-byte-as": {
+                    "as": "65000",
+                    "bgp-running": "",
+                    "default-vrf": {
+                        "bgp-entity": {
+                            "neighbor-groups": {
+                                "neighbor-group": {
+                                    "create": "",
+                                    "neighbor-group-afs": {
+                                        "neighbor-group-af": [
+                                            {
+                                                "activate": "",
+                                                "af-name": "vpnv4-unicast"
+                                            },
+                                            {
+                                                "activate": "",
+                                                "af-name": "vpnv6-unicast"
+                                            },
+                                            {
+                                                "activate": "",
+                                                "af-name": "l2vpn-evpn"
+                                            }
+                                        ]
+                                    },
+                                    "neighbor-group-name": "IBGP_PEERS",
+                                    "remote-as": {
+                                        "as-xx": "0",
+                                        "as-yy": "65000"
+                                    },
+                                    "update-source-interface": "Loopback0"
+                                }
+                            },
+                            "neighbors": {
+                                "neighbor": [
+                                    {
+                                        "neighbor-address": "10.0.0.22",
+                                        "neighbor-group-add-member": "IBGP_PEERS"
+                                    },
+                                    {
+                                        "neighbor-address": "10.0.0.44",
+                                        "neighbor-group-add-member": "IBGP_PEERS"
+                                    }
+                                ]
+                            }
+                        },
+                        "global": {
+                            "global-afs": {
+                                "global-af": [
+                                    {
+                                        "af-name": "vpnv4-unicast",
+                                        "enable": ""
+                                    },
+                                    {
+                                        "af-name": "vpnv6-unicast",
+                                        "enable": ""
+                                    },
+                                    {
+                                        "af-name": "l2vpn-evpn",
+                                        "enable": ""
+                                    }
+                                ]
+                            },
+                            "router-id": "10.0.0.33"
+                        }
+                    },
+                    "vrfs": {
+                        "vrf": {
+                            "vrf-global": {
+                                "exists": "",
+                                "vrf-global-afs": {
+                                    "vrf-global-af": [
+                                        {
+                                            "af-name": "ipv4-unicast",
+                                            "enable": ""
+                                        },
+                                        {
+                                            "af-name": "ipv6-unicast",
+                                            "enable": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "vrf-name": "223344",
+                            "vrf-neighbors": {
+                                "vrf-neighbor": [
+                                    {
+                                        "neighbor-address": "192.168.33.33",
+                                        "remote-as": {
+                                            "as-xx": "0",
+                                            "as-yy": "65234"
+                                        },
+                                        "vrf-neighbor-afs": {
+                                            "vrf-neighbor-af": {
+                                                "activate": "",
+                                                "af-name": "ipv4-unicast",
+                                                "route-policy-in": "RP_PASS_ALL",
+                                                "route-policy-out": "RP_PASS_ALL"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "neighbor-address": "fc00::192:168:33:33",
+                                        "remote-as": {
+                                            "as-xx": "0",
+                                            "as-yy": "65234"
+                                        },
+                                        "vrf-neighbor-afs": {
+                                            "vrf-neighbor-af": {
+                                                "activate": "",
+                                                "af-name": "ipv6-unicast",
+                                                "route-policy-in": "RP_PASS_ALL",
+                                                "route-policy-out": "RP_PASS_ALL"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "instance-name": "default"
+        }
+    }
+}

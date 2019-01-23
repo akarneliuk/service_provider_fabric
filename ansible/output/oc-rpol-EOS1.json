@@ -1,0 +1,81 @@
+{
+    "routing-policy": {
+        "defined-sets": {
+            "prefix-sets": ""
+        },
+        "policy-definitions": {
+            "policy-definition": {
+                "config": {
+                    "name": "RP_PASS_ALL"
+                },
+                "name": "RP_PASS_ALL",
+                "statements": {
+                    "statement": {
+                        "actions": {
+                            "config": {
+                                "policy-result": "ACCEPT_ROUTE"
+                            }
+                        },
+                        "conditions": {
+                            "bgp-conditions": {
+                                "match-as-path-set": {
+                                    "config": {
+                                        "match-set-options": "ANY"
+                                    },
+                                    "state": {
+                                        "match-set-options": "ANY"
+                                    }
+                                },
+                                "match-community-set": {
+                                    "config": {
+                                        "match-set-options": "ANY"
+                                    },
+                                    "state": {
+                                        "match-set-options": "ANY"
+                                    }
+                                },
+                                "match-ext-community-set": {
+                                    "config": {
+                                        "match-set-options": "ANY"
+                                    },
+                                    "state": {
+                                        "match-set-options": "ANY"
+                                    }
+                                }
+                            },
+                            "match-neighbor-set": {
+                                "config": {
+                                    "match-set-options": "ANY"
+                                },
+                                "state": {
+                                    "match-set-options": "ANY"
+                                }
+                            },
+                            "match-prefix-set": {
+                                "config": {
+                                    "match-set-options": "ANY"
+                                },
+                                "state": {
+                                    "match-set-options": "ANY"
+                                }
+                            },
+                            "match-tag-set": {
+                                "config": {
+                                    "match-set-options": "ANY"
+                                },
+                                "state": {
+                                    "match-set-options": "ANY"
+                                }
+                            }
+                        },
+                        "config": {
+                            "name": "10",
+                            "sequence-number": "10"
+                        },
+                        "name": "10"
+                    }
+                }
+            }
+        }
+    }
+}

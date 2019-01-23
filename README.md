@@ -19,14 +19,14 @@ This repositry is currently being developed, so expect the changes and pull the 
 
 # To-do list
 1) Add automation for EVPNoSR services
-2) Add automation for IPVPNoSR services
+2) Add automation for IPVPNoSR services [done]
 3) Add SR policies (static and dynamic using BGP-SR-TE)
 4) Add Telemtry using Netflux TICK stack + Grafana
 5) Add automatic chose of connection method use by device depending on its capabilities (CLI, NETCONF/YANG(native), NETCONF/YANG(OpenConfig))
 6) Add GRT routing service (BGP-LU for IPv4/IPv6) for Internet traffic
 
 # Version
-The current version of the repository is `0.4.2`
+The current version of the repository is `0.5`
 
 # Change log
 Version `0.1`
@@ -64,3 +64,10 @@ Version `0.4.1`
 Version `0.4.2`
 1) Configuration of Nokia SR OS for `underlay_mpls` role is converted to NETCONF/YANG using Nokia native YANG modules.
 2) Configuration of Nokia SR OS for `underlay_bgp` role is converted to NETCONF/YANG using Nokia native YANG modules.
+
+Version `0.5`
+1) Automation for IP VPN service creation based on IETF L3VPN SVC (RFC 8299) is added. Check `ansible\README.md` for details how to launch.
+2) L3VPN service reqest is located in `ansible\vars` folder and starts with `service_ip_vpn_` prefix.
+3) Information about default route target and route distinguishers range allocated for automated services is stored in `ansible\group_vars\all\main.yml`
+4) In `ansible\files\ietf` folders there are all IETF YANG models including L3VPN and L2VPN SVC clonned from official GitHub of Yang.
+5) To role `underlay_bgp` added configuration of default route policy (action: accept_route) to be used later for customer route fileting.

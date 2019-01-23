@@ -1,0 +1,58 @@
+{% for customer_site in l3vpn_svc.sites.site %}{# f-001: looping all customer sites in service request #}
+{% for customer_connection in customer_site.site_network_accesses.site_network_access %}{# f-002: looping all customer connections on site #}
+{% for sp_pop_site in pe_to_location %}{# f-003: looping all SP sites with PEs #}
+{% if sp_pop_site.location_id == customer_connection.location_reference and sp_pop_site.pe_id == inventory_hostname %}{# i-001: defining PE hostname based on location-id in ietf-l3vpn-svc request #}
+<config>
+    <configure xmlns="urn:nokia.com:sros:ns:yang:sr:conf">
+        <port>
+            <port-id>{{ sp_pop_site.uni_port }}</port-id>
+            <admin-state>{% if customer_connection.bearer.always_on %}enable{% else %}disable{% endif %}</admin-state>
+            <ethernet>
+                <mode>access</mode>
+{% if 'dot1q' in customer_connection.bearer.requested_type.requested_type %}{# i-002: setting proper encapsulation #}
+                <encap-type>dot1q</encap-type>
+{% endif %}{# i-002: setting proper encapsulation #}
+            </ethernet>
+        </port>
+        <service>
+            <vprn>
+                <service-name>{{ customer_connection.vpn_attachment.vpn_id }}</service-name>
+                <admin-state>enable</admin-state>
+                <service-id>{{ customer_connection.vpn_attachment.vpn_id }}</service-id>
+                <customer>1</customer>
+                <interface>
+{% for vpn_service in l3vpn_svc.vpn_services.vpn_service %}{# f-004: looping all VPN services within ietf-l3vpn-svc request #}
+{% if vpn_service.vpn_id == customer_connection.vpn_attachment.vpn_id %}{# i-005: looking for match between connection and VPN service #}
+                    <interface-name>to_{{ vpn_service.customer_name }}</interface-name>
+{% endif %}{# i-005: looking for match between connection and VPN service #}
+{% endfor %}{# f-004: looping all VPN services within ietf-l3vpn-svc request #}
+                    <description>{{ customer_connection.site_network_access_id }}</description>
+{% if customer_connection.ip_connection.ipv4 is defined %}{# i-003: configuring IPv4 address #}
+                    <ipv4>
+                        <primary>
+                            <address>{{ customer_connection.ip_connection.ipv4.addresses.provider_address }}</address>
+                            <prefix-length>{{ customer_connection.ip_connection.ipv4.addresses.prefix_length }}</prefix-length>
+                        </primary>
+                    </ipv4>
+{% endif %}{# i-003: configuring IPv4 address #}
+                    <sap>
+                        <sap-id>{{ sp_pop_site.uni_port }}{% if 'dot1q' in customer_connection.bearer.requested_type.requested_type %}:{{ customer_connection.bearer.requested_type.dot1q_vlan }}{% endif %}</sap-id>
+                    </sap>
+{% if customer_connection.ip_connection.ipv6 is defined %}{# i-004: configuring IPv6 address #}
+                    <ipv6>
+                        <address>
+                            <ipv6-address>{{ customer_connection.ip_connection.ipv6.addresses.provider_address }}</ipv6-address>
+                            <prefix-length>{{ customer_connection.ip_connection.ipv6.addresses.prefix_length }}</prefix-length>
+                        </address>
+                    </ipv6>
+{% endif %}{# i-004: configuring IPv6 address #}
+                </interface>
+            </vprn>
+        </service>
+    </configure>
+</config>
+{% endif %}{# i-001: defining PE hostname based on location-id in ietf-l3vpn-svc request #}
+{% endfor %}{# f-003: looping all SP sites with PEs #}
+{% endfor %}{# f-002: looping all customer connections on site #}
+{% endfor %}{# f-001: looping all customer sites in service request #}
+

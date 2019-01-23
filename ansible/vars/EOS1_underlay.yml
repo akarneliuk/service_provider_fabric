@@ -73,4 +73,10 @@ routing:
 mpls:
     - protocol: isis-sr
       enabled: true
+routing_policies:
+    - name: RP_PASS_ALL
+      entries:
+          - id: 10
+            condition: MATCH_ANY
+            action: ACCEPT_ROUTE
 ...

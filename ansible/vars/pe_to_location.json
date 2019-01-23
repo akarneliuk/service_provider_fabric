@@ -1,0 +1,20 @@
+{
+   "pe_to_location": [
+       {
+           "location_id": "DE-FRA-EQUINIX-FR2",
+           "pe_id": "EOS1",
+           "uni_port": "Ethernet3"
+       },
+       {
+           "location_id": "UK-LON-INTERXION-LON1",
+           "pe_id": "XR1",
+           "uni_port": "GigabitEthernet0/0/0/2"
+       },
+       {
+           "location_id": "BY-MIN-BELTELECOM-IX1",
+           "pe_id": "SR1",
+           "uni_port": "1/1/c2/1"
+       }
+
+   ]
+}

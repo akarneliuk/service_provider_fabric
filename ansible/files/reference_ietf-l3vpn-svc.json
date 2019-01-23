@@ -1,0 +1,560 @@
+{
+	"ietf-l3vpn-svc:l3vpn-svc": {
+		"vpn-profiles": {
+			"valid-provider-identifiers": {
+				"encryption-profile-identifier": [
+					{
+						"id": "string"
+					}
+				], 
+				"cloud-identifier": [
+					{
+						"id": "string"
+					}
+				], 
+				"bfd-profile-identifier": [
+					{
+						"id": "string"
+					}
+				], 
+				"qos-profile-identifier": [
+					{
+						"id": "string"
+					}
+				]
+			}
+		},
+		"vpn-services": {
+			"vpn-service": [
+				{ 
+					"vpn-id": "string", 
+					"customer-name": "string", 
+					"vpn-service-topology": "identityref", 
+					"carrierscarrier": "boolean", 
+					"cloud-accesses": {
+						"cloud-access": [
+							{
+								"cloud-identifier": "string",  
+								"permit-any": "empty",
+								"permit-site": ["string"], 
+								"deny-site": ["string"], 
+								"address-translation": {
+									"nat44": {
+										"nat44-customer-address": "string", 
+										"enabled": "boolean"
+									}
+								}
+							}
+						]
+					},
+					"multicast": {
+						"enabled": "boolean"
+						"customer-tree-flavors": {
+							"tree-flavor": ["identityref"]
+						}, 
+						"rp": {
+							"rp-discovery": {
+								"rp-discovery-type": "identityref", 
+								"bsr-candidates": {
+									"bsr-candidate-address": "string"
+								}, 
+								"rp-group-mappings": {
+									"rp-group-mapping": [
+										{
+											"rp-address": "string", 
+											"provider-managed": {
+												"optimal-traffic-delivery": "boolean", 
+												"enabled": "boolean", 
+												"rp-redundancy": "boolean"
+											}, 
+											"id": "uint16", 
+											"groups": {
+												"group": [
+													{
+														"group-address": "string", 
+														"group-end": "string", 
+														"id": "uint16", 
+														"group-start": "string"
+													}
+												]
+											}
+										}
+									]
+								}
+							}
+						}
+					},
+					"extranet-vpns": {
+						"extranet-vpn": [
+							{
+								"vpn-id": "string", 
+								"local-sites-role": "identityref"
+							}
+						]
+					}
+				}
+			]
+		},
+		"sites": {
+			"site": [
+				{
+					"site-id": "string", 
+					"requested-site-start": "string", 
+					"requested-site-stop": "string",
+					"locations": {
+						"location": [
+							{
+								"location-id": "string", 
+								"country-code": "string", 
+								"city": "string", 
+								"state": "string", 
+								"address": "string", 
+								"postal-code": "string"
+							}
+						]
+					}, 
+					"devices": {
+						"device": [
+							{
+								"device-id": "string", 
+								"management": {
+									"address-family": "enumeration", 
+									"address": "string"
+								}, 
+								"location": "string"
+							}
+						]
+					},
+					"site-diversity": {
+						"groups": {
+							"group": [
+								{
+									"group-id": "string"
+							}
+							]
+						}
+					}, 					
+					"management": {
+						"type": "identityref"
+					},
+					"vpn-policies": {
+						"vpn-policy": [
+							{
+								"vpn-policy-id": "string", 
+								"entries": [
+									{
+										"vpn": [
+											{
+												"vpn-id": "string", 
+												"site-role": "identityref"
+											}
+										],
+										"id": "string", 
+										"filters": {
+											"filter": [
+												{
+													"lan-tag": ["string"], 
+													"ipv4-lan-prefix": ["string"], 
+													"type": "identityref", 
+													"ipv6-lan-prefix": ["string"]
+												}
+											]
+										}
+									}
+								]
+							}
+						]
+					},
+					"site-vpn-flavor": "identityref", 
+					"maximum-routes": {
+						"address-family": [
+							{
+								"maximum-routes": "uint32", 
+								"af": "enumeration"
+							}
+						]
+					}, 
+					"security": {
+						"encryption": {
+							"encryption-profile": {
+								"profile-name": "string", 
+								"algorithm": "string", 
+								"preshared-key": "string"
+							}, 
+							"layer": "enumeration", 
+							"enabled": "boolean"
+						}, 
+						"authentication": {}
+					}, 
+					"service": {
+						"carrierscarrier": {
+							"signalling-type": "enumeration"
+						},
+						"multicast": {
+							"protocol-type": "enumeration", 
+							"multicast-site-type": "enumeration", 
+							"multicast-address-family": {
+								"ipv4": "boolean", 
+								"ipv6": "boolean"
+							}
+						},
+						"qos": {
+							"qos-classification-policy": {
+								"rule": [
+									{
+										"target-class-id": "string", 
+										"id": "string", 
+										"match-flow": {
+											"l4-src-port": ["uint16"], 
+											"l4-src-port-range": {
+												"lower-port": "uint16", 
+												"upper-port": "uint16"
+											}, 
+											"dot1p": "uint8", 
+											"target-sites": ["string"], 
+											"ipv6-src-prefix": "string",
+											"ipv4-src-prefix": "string", 
+											"ipv6-dst-prefix": "string", 
+											"dscp": "uint8", 
+											"l4-dst-port-range": {
+												"lower-port": "uint16", 
+												"upper-port": "uint16"
+											}, 
+											"protocol-field": "union", 
+											"ipv4-dst-prefix": "string", 
+											"l4-dst-port": "uint16"
+										}, 
+										"match-application": "identityref"
+									}
+								]
+							}, 
+							"qos-profile": {
+								"profile": "string", 
+								"classes": {
+									"class": [
+										{
+											"latency": {
+												"latency-boundary": "uint16", 
+												"use-lowest-latency": "empty"
+											}, 
+											"direction": "identityref", 
+											"jitter": {
+												"latency-boundary": "uint32", 
+												"use-lowest-jitter": "empty"
+											}, 
+											"rate-limit": "decimal64", 
+											"bandwidth": {
+												"end-to-end": "empty", 
+												"guaranteed-bw-percent": "decimal64"
+											},
+											"class-id": "string"
+										} 
+									]
+								}
+							}
+						}
+					},
+					"traffic-protection": {
+						"enabled": "boolean"
+					}, 
+					"routing-protocols": {
+						"routing-protocol": [
+							{
+								"type": "identityref", 
+								"rip": {
+									"address-family": "enumeration"
+								}, 
+								"bgp": {
+									"autonomous-system": "uint32", 
+									"address-family": "enumeration"
+								}, 
+								"vrrp": {
+								"address-family": "enumeration"
+								}, 
+								"static": {
+									"cascaded-lan-prefixes": {
+										"ipv4-lan-prefixes": [
+											{
+												"lan-tag": "string", 
+												"lan": "string",
+												"next-hop": "string"
+											}
+										], 
+										"ipv6-lan-prefixes": [
+											{
+												"lan-tag": "string", 
+												"lan": "string", 
+												"next-hop": "string"
+											}
+										]
+									}
+								}, 
+								"ospf": {
+									"area-address": "string", 
+									"metric": "uint16", 
+									"address-family": ["enumeration"], 
+									"sham-links": {
+										"sham-link": [
+											{
+												"metric": "uint16", 
+												"target-site": "string"
+											}
+										]
+									}
+								}
+							}
+						]
+					},
+					"site-network-accesses": {
+						"site-network-access": [
+							{
+								"site-network-access-id": "string", 
+								"site-network-access-type": "identityref", 
+								"location-reference": "string", 
+								"device-reference": "string", 
+								"access-diversity": {
+									"groups": {
+										"group": [
+											{
+												"group-id": "string"
+											}
+										]
+									}, 
+									"constraints": {
+										"constraint": [
+											{
+												"constraint-type": "identityref", 
+												"target": {
+													"all-other-accesses": "empty", 
+													"group": [
+														{
+															"group-id": "string"
+														}, 
+													"all-other-groups": "empty"
+												}
+											}
+										]
+									}
+								},
+								"bearer": {
+									"always-on": "boolean", 
+									"requested-type": {
+										"strict": "boolean", 
+										"requested-type": "string"
+									}, 
+									"bearer-reference": "string"
+								},
+								"ip-connection": {
+									"oam": {
+										"bfd": {
+											"enabled": "boolean",
+											"fixed-value": "uint32", 
+											"profile-name": "string"
+										}
+									}, 
+									"ipv4": {
+										"provider-dhcp": {
+											"provider-address": "string", 
+											"customer-addresses": {
+												"address-group": [
+													{
+														"end-address": "string", 
+														"group-id": "string", 
+														"start-address": "string"
+													}
+												]
+											}, 
+											"prefix-length": "uint8", 
+											"number-of-dynamic-address": "uint16"
+										}, 
+										"address-allocation-type": "identityref", 
+										"addresses": {
+											"provider-address": "string", 
+											"prefix-length": "uint8", 
+											"customer-address": "string"
+										}, 
+										"dhcp-relay": {
+											"provider-address": "string", 
+											"customer-dhcp-servers": {
+												"server-ip-address": ["string"]
+											}, 
+											"prefix-length": "uint8"
+										}
+									}, 
+									"ipv6": {
+										"provider-dhcp": {
+											"provider-address": "string", 
+											"customer-addresses": {
+												"address-group": [
+													{
+														"end-address": "string", 
+														"group-id": "string", 
+														"start-address": "string"
+													}
+												]
+											}, 
+											"prefix-length": "uint8", 
+											"number-of-dynamic-address": "uint16"
+										}, 
+										"address-allocation-type": "identityref", 
+										"addresses": {
+											"provider-address": "string", 
+											"prefix-length": "uint8", 
+											"customer-address": "string"
+										}, 
+										"dhcp-relay": {
+											"provider-address": "string", 
+											"customer-dhcp-servers": {
+												"server-ip-address": ["string"]
+											}, 
+											"prefix-length": "uint8"
+										}
+									}
+								}, 
+								"security": {
+									"encryption": {
+										"encryption-profile": {
+											"profile-name": "string", 
+											"algorithm": "string", 
+											"preshared-key": "string"
+										}, 
+										"layer": "enumeration", 
+										"enabled": "boolean"
+									}, 
+									"authentication": {}
+								}, 		
+								"service": {
+									"svc-input-bandwidth": "uint64",
+									"svc-output-bandwidth": "uint64",
+									"svc-mtu": "uint16", 
+									"qos": {
+										"qos-classification-policy": {
+											"rule": [
+												{
+													"target-class-id": "string", 
+													"id": "string", 
+													"match-flow": {
+														"l4-src-port": ["uint16"], 
+														"l4-src-port-range": {
+															"lower-port": "uint16", 
+															"upper-port": "uint16"
+														}, 
+														"dot1p": "uint8", 
+														"target-sites": ["string"], 
+														"ipv6-src-prefix": "string",
+														"ipv4-src-prefix": "string", 
+														"ipv6-dst-prefix": "string", 
+														"dscp": "uint8", 
+														"l4-dst-port-range": {
+															"lower-port": "uint16", 
+															"upper-port": "uint16"
+														}, 
+														"protocol-field": "union", 
+														"ipv4-dst-prefix": "string", 
+														"l4-dst-port": "uint16"
+													}, 
+													"match-application": "identityref"
+												}
+											]
+										}, 
+										"qos-profile": {
+											"profile": "string", 
+											"classes": {
+												"class": [
+													{
+														"latency": {
+															"latency-boundary": "uint16", 
+															"use-lowest-latency": "empty"
+														}, 
+														"direction": "identityref", 
+														"jitter": {
+															"latency-boundary": "uint32", 
+															"use-lowest-jitter": "empty"
+														}, 
+														"rate-limit": "decimal64", 
+														"bandwidth": {
+															"end-to-end": "empty", 
+															"guaranteed-bw-percent": "decimal64"
+														},
+														"class-id": "string"
+													} 
+												]
+											}
+										}
+									},
+									"carrierscarrier": {
+										"signalling-type": "enumeration"
+									}, 
+									"multicast": {
+										"protocol-type": "enumeration", 
+										"multicast-site-type": "enumeration", 
+										"multicast-address-family": {
+											"ipv4": "boolean", 
+											"ipv6": "boolean"
+										}
+									}, 
+								},  
+								"routing-protocols": {
+									"routing-protocol": [
+										{
+											"type": "identityref", 
+											"rip": {
+												"address-family": "enumeration"
+											}, 
+											"bgp": {
+												"autonomous-system": "uint32", 
+												"address-family": "enumeration"
+											}, 
+											"vrrp": {
+												"address-family": "enumeration"
+											}, 
+											"static": {
+												"cascaded-lan-prefixes": {
+													"ipv4-lan-prefixes": [
+														{
+															"lan-tag": "string", 
+															"lan": "string",
+															"next-hop": "string"
+														}
+													], 
+													"ipv6-lan-prefixes": [
+														{
+															"lan-tag": "string", 
+															"lan": "string", 
+															"next-hop": "string"
+														}
+													]
+												}
+											}, 
+											"ospf": {
+												"area-address": "string", 
+												"metric": "uint16", 
+												"address-family": ["enumeration"], 
+												"sham-links": {
+													"sham-link": [
+														{
+															"metric": "uint16", 
+															"target-site": "string"
+														}
+													]
+												}
+											}
+										}
+									]
+								},  
+								"availability": {
+									"access-priority": "uint32"
+								},
+								"vpn-attachment": {
+									"vpn-id": "string", 
+									"vpn-policy-id": "string", 
+									"site-role": "identityref"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	}
+}

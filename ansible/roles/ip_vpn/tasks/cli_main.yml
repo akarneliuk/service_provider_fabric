@@ -1,0 +1,17 @@
+---
+- name: CLI AUTOMATION // IMPORTING NEXT FREE RD/RT INDEX
+  include_vars:
+      file: l3vpn_index.yml
+  tags:
+      - ip_vpn
+
+- name: CLI AUTOMATION // STARTING NOKIA CONFIGURATION LOOP
+  include_tasks: "cli_configuration_loop.yml"
+  loop:
+      - interfaces
+      - network-instance
+  loop_control:
+      loop_var: conf_loop_item
+  tags:
+      - ip_vpn
+...

@@ -10,11 +10,13 @@ This part is dedicated for automated deployment of:
 Wherever possible, OpenConfig YANG models are used. More preciesly OpenConfig is used:
 1) In Arista EOS and Cisco IOS XR for configuration of underlay MPLS fabric running ISIS as IGP with Segment Routing extensions
 2) In Cisco IOS XR for configuration of underlay BGP sginaling for EVPN, VPNV4/VPNV6 unicast
+3) In Cisco IOS XR for configuration of VRF, interfaces in VRF and BGP within VRF for PE-CE routing
 
 Important notes:
 1) As of today the most current Nokia SR OS release 16.0.R5 doesn't support Segment Routing in OpenConfig YANG models. Nevertheless the common templates `openconfig-interfaces.j2` and `openconfig-network-instance.j2` are prepared and can properly configure ISIS on all NOSes including Nokia SR OS. As soon as Nokia's OpenConfig YANG models will support Segment Routing, the Ansible playbooks will be changed so that Nokia start use OpenConfig as well. Temporary Nokia is using native YANG modules without JTOX drivers (direcly XML is templated).
 2) Arista EOS in version 4.21.1.1F supports OpenConfig YANG modules only for IPV4/IPV6 UNICAST AFI/SAFI, hence Ansible module `eos_config` is used to configure underlay BGP. For Nokia SR OS also Ansible `sros_config` is used.
 3) During creation of automation using OpenConfig it turned out that there is no node for `update-source` wihtin BGP module, that's why native Cisco IOS XR YANG module is used to fix that. There is no JTOX used for that, but rather XML for NETCONF is constructed directly.
+4) For IP VPN services the following mix of provisioning techniques is used: OpenConfig/native YANG for Cisco, CLI-based for Arista, native YANG for Nokia.
 
 # How to use Service Provider Fabric automation
 
@@ -22,6 +24,7 @@ There are several possible options how you can automatically deploy Service Prov
 1) To deploy undelay routing (ISIS) and MPLS (Segment Routing) use `ansible-playbook service_provider_fabric.yml --inventory=hosts --tags=underlay_mpls`.
 2) To deploy undelay BGP signaling use `ansible-playbook service_provider_fabric.yml --inventory=hosts --tags=underlay_bgp`.
 3) To deploy the whole underlay infrastructure (ISIS + Segment Routing + BGP) use `ansible-playbook service_provider_fabric.yml --inventory=hosts --tags=underlay`.
+4) To depoy overlay IP VPN service use `ansible-playbook service_provider_fabric.yml --inventory=hosts --tags=ip_vpn`.
 
 # Temporary limitations
 
@@ -35,4 +38,5 @@ There are some Ansible playbooks, which help a lot for development of automation
 - Tag `oc-netinst` stands for OpenConfig YANG module `openconfig-network-instance.yang` including all its imports.
 - Tag `oc-lldp` stands for OpenConfig YANG module `openconfig-lldp.yang`.
 - Tag `cisco-bgp` stands for Cisco native YANG module `Cisco-IOS-XR-ipv4-bgp-cfg.yang`.
+- Tag `cisco-vrf` stands for Cisco native YANG module `Cisco-IOS-XR-infra-rsi-cfg.yang`.
 - Tag `nokia-conf` stands for Nokia native YANG module `nokia-conf.yang`.

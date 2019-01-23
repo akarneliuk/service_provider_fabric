@@ -1,0 +1,34 @@
+{
+    "routing-policy": {
+        "policy-definitions": {
+            "policy-definition": {
+                "config": {
+                    "name": "RP_PASS_ALL"
+                },
+                "name": "RP_PASS_ALL",
+                "state": {
+                    "name": "RP_PASS_ALL"
+                },
+                "statements": {
+                    "statement": {
+                        "actions": {
+                            "config": {
+                                "accept-route": ""
+                            },
+                            "state": {
+                                "accept-route": ""
+                            }
+                        },
+                        "config": {
+                            "name": "statement-2458556656"
+                        },
+                        "name": "statement-2458556656",
+                        "state": {
+                            "name": "statement-2458556656"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

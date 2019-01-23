@@ -1,0 +1,35 @@
+{% for customer_site in l3vpn_svc.sites.site %}{# f-001: looping all customer sites in service request #}
+{% for customer_connection in customer_site.site_network_accesses.site_network_access %}{# f-002: looping all customer connections on site #}
+{% for sp_pop_site in pe_to_location %}{# f-003: looping all SP sites with PEs #}
+{% if sp_pop_site.location_id == customer_connection.location_reference and sp_pop_site.pe_id == inventory_hostname %}{# i-001: defining PE hostname based on location-id in ietf-l3vpn-svc request #}
+!
+{% for cust_routing_protocol in customer_site.routing_protocols.routing_protocol %}{# f-006: looping for all customer routing protocols within ietf-l3vpn-svc request #}
+{% if cust_routing_protocol.type == 'bgp' %}{# i-004: matching customer routing protocol type #}
+{% for routing_protocol in routing %}{# f-008: looping routing protocols configuration from underlay #}
+{% if routing_protocol.id == 'BGP' %}{# i-009: looking for BGP config #}
+router bgp {{ routing_protocol.asn }}
+    vrf {{ customer_connection.vpn_attachment.vpn_id }}
+        rd {{ routing_protocol.asn }}:{{ l3vpn_defaults.route_distinguisher.start + l3vpn_index_next_free }}
+{% for afi_name in cust_routing_protocol.bgp.address_family %}{# f-007: creating missing AFI within VRF context in BGP process #}
+        route-target import vpn-{{ afi_name }} {{ routing_protocol.asn }}:{{ l3vpn_defaults.route_distinguisher.start + l3vpn_index_next_free }}
+        route-target export vpn-{{ afi_name }} {{ routing_protocol.asn }}:{{ l3vpn_defaults.route_distinguisher.start + l3vpn_index_next_free }}
+{% if afi_name == 'ipv4' %}{# i-011: creating AFI for IPv4 or IPv6 UNICAST #}
+        neighbor {{ customer_connection.ip_connection.ipv4.addresses.customer_address }} remote-as {{ cust_routing_protocol.bgp.autonomous_system }}
+        neighbor {{ customer_connection.ip_connection.ipv4.addresses.customer_address }} route-map RP_PASS_ALL in
+        neighbor {{ customer_connection.ip_connection.ipv4.addresses.customer_address }} route-map RP_PASS_ALL out
+{% elif afi_name == 'ipv6' %}{# i-011: creating AFI for IPv4 or IPv6 UNICAST #}
+        neighbor {{ customer_connection.ip_connection.ipv6.addresses.customer_address }} remote-as {{ cust_routing_protocol.bgp.autonomous_system }}
+        neighbor {{ customer_connection.ip_connection.ipv6.addresses.customer_address }} route-map RP_PASS_ALL in
+        neighbor {{ customer_connection.ip_connection.ipv6.addresses.customer_address }} route-map RP_PASS_ALL out
+{% endif %}{# i-011: creating AFI for IPv4 or IPv6 UNICAST #}
+{% endfor %}{# f-007: creating missing AFI within VRF context in BGP process #}
+{% endif %}{# i-009: looking for BGP config #}
+{% endfor %}{# f-008: creating missing AFI within VRF context in BGP process #}
+{% endif %}{# i-004: matching customer routing protocol type #}
+{% endfor %}{# f-006: looping for all customer routing protocols within ietf-l3vpn-svc request #}
+!
+{% endif %}{# i-001: defining PE hostname based on location-id in ietf-l3vpn-svc request #}
+{% endfor %}{# f-003: looping all SP sites with PEs #}
+{% endfor %}{# f-002: looping all customer connections on site #}
+{% endfor %}{# f-001: looping all customer sites in service request #}
+

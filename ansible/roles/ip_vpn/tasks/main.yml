@@ -1,0 +1,66 @@
+---
+- name: IMPORTING HOST VARIABLES
+  include_vars:
+      file: "{{ inventory_hostname }}_underlay.yml"
+  tags:
+      - ip_vpn
+
+- name: IMPORTING SERVICE REQUEST
+  include_vars:
+      file: service_ip_vpn_IMBA_CUST.json
+  tags:
+      - ip_vpn
+
+- name: IMPORTING DEVICE MAPPING
+  include_vars:
+      file: pe_to_location.json
+  tags:
+      - ip_vpn
+
+- name: CREATING TEMPORARY OUTPUT FOLDER
+  file:
+      dest: "{{ temp_folder }}"
+      state: directory
+  tags:
+      - ip_vpn
+
+- name: OPENCONFIG YANG
+  include_tasks: openconfig_main.yml
+  when: ansible_network_os == 'iosxr'
+  tags:
+      - ip_vpn
+
+- name: NATIVE YANG
+  include_tasks: native_main.yml
+  when: ansible_network_os == 'sros'
+  tags:
+      - ip_vpn
+
+- name: CLI AUTOMATION
+  include_tasks: cli_main.yml
+  when: ansible_network_os == 'nexus'
+  tags:
+      - ip_vpn
+
+- name: UPDATING LIST OF PROVISIONED SERVICES
+  blockinfile:
+      path: vars/provisioned_services.yml
+      block: "{{ lookup('template', 'provision_new_ip_vpn.j2') }}"
+  tags:
+      - ip_vpn
+
+- name: UPDATING NEXT FREE RD/RT INDEX
+  lineinfile:
+      path: vars/l3vpn_index.yml
+      regexp: 'l3vpn_index_next_free'
+      line: 'l3vpn_index_next_free: {{ l3vpn_index_next_free + 1 }}'
+  tags:
+      - ip_vpn
+
+#- name: DELETING TEMPORARY FILES
+#  file:
+#      dest: "{{ temp_folder }}"
+#      state: absent
+#  tags:
+#      - ip_vpn
+...

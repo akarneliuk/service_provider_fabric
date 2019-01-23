@@ -1,0 +1,25 @@
+---
+- name: OPENCONFIG YANG // IMPORTING NEXT FREE RD/RT INDEX
+  include_vars:
+      file: l3vpn_index.yml
+  tags:
+      - ip_vpn
+
+- name: OPENCONFIG YANG // STARTING NOKIA CONFIGURATION LOOP
+  include_tasks: "openconfig_configuration_loop.yml"
+  loop:
+      - openconfig-interfaces
+      - openconfig-network-instance
+  loop_control:
+      loop_var: conf_loop_item
+  tags:
+      - ip_vpn
+
+- name: OPENCONFIG YANG // FIXING RT FOR CISCO USING NATIVE YANG
+  netconf_config:
+      xml: "{{ lookup ('template', '{{ ansible_network_os }}-temp-yang.j2') }}"
+  ignore_errors: yes
+  when: ansible_network_os == 'iosxr'
+  tags:
+      - ip_vpn
+...

@@ -5,5 +5,5 @@
   roles:
       - underlay_mpls
       - underlay_bgp
-      - overlay_services 
+      - ip_vpn 
 ...

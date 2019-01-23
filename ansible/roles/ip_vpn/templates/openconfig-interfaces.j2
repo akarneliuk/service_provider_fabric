@@ -1,0 +1,86 @@
+{% for customer_site in l3vpn_svc.sites.site %}{# f-001: looping all customer sites in service request #}
+{% for customer_connection in customer_site.site_network_accesses.site_network_access %}{# f-002: looping all customer connections on site #}
+{% for sp_pop_site in pe_to_location %}{# f-003: looping all SP sites with PEs #}
+{% if sp_pop_site.location_id == customer_connection.location_reference and sp_pop_site.pe_id == inventory_hostname %}{# i-001: defining PE hostname based on location-id in ietf-l3vpn-svc request #}
+{
+    "openconfig-interfaces:interfaces": {
+        "interface": [
+            {
+                "name": "{{ sp_pop_site.uni_port }}",
+                "config": {
+                    "name": "{{ sp_pop_site.uni_port }}",
+                    "description": "Customers port // UNI",
+                    "enabled": {% if customer_connection.bearer.always_on %}true{% else %}false{% endif %},
+{% if ansible_network_os == 'iosxr' %}{# i-002: setting up mtu for Cisco IOS XR #}
+                    "mtu": {{ customer_connection.service.svc_mtu }},
+{% endif %}{# i-002: setting up mtu for Cisco IOS XR #}
+                    "type": "{% if 'Ethernet' in customer_connection.bearer.requested_type.requested_type %}ethernetCsmacd{% endif %}"
+                },
+                "subinterfaces": {
+                    "subinterface": [
+{% if ansible_network_os == 'nexus' %}{# i-006: pushing 'no switchport' to Arista #}
+                        {
+                            "index": 0,
+                            "config": {
+                                "enabled": true,
+                                "index": 0
+                            }
+                        },
+{% endif %}{# i-006: pushing 'no switchport' to Arista #}
+                        {
+                            "index": {{ customer_connection.bearer.requested_type.dot1q_vlan }},
+                            "config": {
+                                "index": {{ customer_connection.bearer.requested_type.dot1q_vlan }},
+                                "enabled": {% if customer_connection.bearer.always_on %}true{% else %}false{% endif %},
+                                "description": "{{ customer_connection.site_network_access_id }}"
+{% if ansible_network_os == 'iosxr' %}{# i-003: setting up subinterface for Cisco IOS XR #}
+                                ,"name": "{{ sp_pop_site.uni_port }}.{{ customer_connection.bearer.requested_type.dot1q_vlan }}"
+{% endif %}{# i-003: setting up subinterface for Cisco IOS XR #}
+                            }
+{% if customer_connection.ip_connection.ipv4 is defined %}{# i-004: configuring IPv4 address #}
+                            ,"openconfig-if-ip:ipv4": {
+                                "addresses": {
+                                    "address": [
+                                        {
+                                            "config": {
+                                                "ip": "{{ customer_connection.ip_connection.ipv4.addresses.provider_address }}", 
+                                                "prefix-length": {{ customer_connection.ip_connection.ipv4.addresses.prefix_length }}
+                                            }, 
+                                            "ip": "{{ customer_connection.ip_connection.ipv4.addresses.provider_address }}"
+                                        }
+                                    ]
+                                }
+                            }
+{% endif %}{# i-004: configuring IPv4 address #}
+{% if customer_connection.ip_connection.ipv6 is defined %}{# i-005: configuring IPv6 address #}
+                            ,"openconfig-if-ip:ipv6": {
+                                "addresses": {
+                                    "address": [
+                                        {
+                                            "config": {
+                                                "ip": "{{ customer_connection.ip_connection.ipv6.addresses.provider_address }}",
+                                                "prefix-length": {{ customer_connection.ip_connection.ipv6.addresses.prefix_length }}
+                                            },
+                                            "ip": "{{ customer_connection.ip_connection.ipv6.addresses.provider_address }}"
+                                        }
+                                    ]
+                                }
+                            } 
+{% endif %}{# i-005: configuring IPv6 address #}
+                            ,"openconfig-vlan:vlan": {
+                                "config": {
+                                    "vlan-id": {{ customer_connection.bearer.requested_type.dot1q_vlan }}
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
+{% endif %}{# i-001: defining PE hostname based on location-id in ietf-l3vpn-svc request #}
+{% endfor %}{# f-003: looping all SP sites with PEs #}
+{% endfor %}{# f-002: looping all customer connections on site #}
+{% endfor %}{# f-001: looping all customer sites in service request #}
+

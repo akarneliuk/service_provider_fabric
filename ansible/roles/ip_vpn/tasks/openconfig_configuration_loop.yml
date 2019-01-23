@@ -1,0 +1,32 @@
+---
+- name: OPECONFIG YANG // CONFIGURATION LOOP // TEMPLATING JSON CONFIGURATION FILE
+  template:
+      src: "{{ conf_loop_item }}.j2"
+      dest: "{{ temp_folder }}/{{ inventory_hostname}}_{{ conf_loop_item }}.json"
+  tags:
+      - ip_vpn
+
+- name: OPENCONFIG YANG // CONFIGURATION LOOP // CREATING JTOX DRIVER
+  shell: |
+      pyang --lax-quote-checks -f jtox -o {{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.jtox -p files/openconfig/{% if ansible_network_os == 'nexus' and 'EOS' in inventory_hostname %}eos{% else %}{{ ansible_network_os }}{% endif %} files/openconfig/{% if ansible_network_os == 'nexus' and 'EOS' in inventory_hostname %}eos{% else %}{{ ansible_network_os }}{% endif %}/{{ conf_loop_item }}.yang {% if conf_loop_item == 'openconfig-interfaces' %}files/openconfig/{% if ansible_network_os == 'nexus' and 'EOS' in inventory_hostname %}eos{% else %}{{ ansible_network_os }}{% endif %}/openconfig-if*{% endif %}
+  tags:
+      - ip_vpn
+
+- name: OPENCONFIG YANG // CONFIGURATION LOOP // CREATING NETCONF XML FILE
+  shell: |
+      json2xml -t config -o {{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml {{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.jtox {{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.json
+  tags:
+      - ip_vpn
+
+- name: OPENCONFIG YANG // CONFIGURATION LOOP // NETCONF XML MODIFICATION
+  include_tasks: openconfig_netconf_xml_modification.yml
+  tags:
+      - ip_vpn
+
+- name: OPENCONFIG YANG // CONFIGURATION LOOP // PUSHING CONFIG
+  netconf_config:
+      xml: "{{ lookup ('file', '{{ temp_folder }}/{{ inventory_hostname }}_{{ conf_loop_item }}.xml') }}"
+  ignore_errors: yes
+  tags:
+      - ip_vpn
+...
