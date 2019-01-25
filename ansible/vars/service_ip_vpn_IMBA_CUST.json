@@ -62,7 +62,7 @@
 									"address_family": "ipv4", 
 									"address": "192.168.141.84"
 								}, 
-								"location": "CUST2"
+								"location": "CUST22"
 							}
 						]
 					},
@@ -193,7 +193,7 @@
 									"address_family": "ipv4", 
 									"address": "192.168.141.84"
 								}, 
-								"location": "CUST3"
+								"location": "CUST33"
 							}
 						]
 					},
@@ -324,7 +324,7 @@
 									"address_family": "ipv4", 
 									"address": "192.168.141.84"
 								}, 
-								"location": "CUST4"
+								"location": "CUST44"
 							}
 						]
 					},

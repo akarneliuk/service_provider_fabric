@@ -1,0 +1,36 @@
+---
+- name: IMPORTING SERVICE REQUEST
+  include_vars:
+      file: service_ip_vpn_IMBA_CUST.json
+  tags:
+      - ip_vpn
+
+- name: IMPORTING DEVICE MAPPING
+  include_vars:
+      file: cpe_to_location.json
+  tags:
+      - ip_vpn
+
+- name: IMPORTING CUSTOMER EMULATION
+  include_vars:
+      file: "{{ inventory_hostname }}_ip_vpn.yml"
+  tags:
+      - ip_vpn
+
+- name: CREATING TEMPORARY OUTPUT FOLDER
+  file:
+      dest: "{{ temp_folder }}"
+      state: directory
+  tags:
+      - ip_vpn
+
+- name: STARTING CONFIGURATION LOOP
+  include_tasks: "cli_configuration_loop.yml"
+  loop:
+      - interfaces
+      - network-instance
+  loop_control:
+      loop_var: conf_loop_item
+  tags:
+      - ip_vpn
+...

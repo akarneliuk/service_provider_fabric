@@ -44,4 +44,7 @@ router bgp {{ routing_protocol.asn }}
 !
 {% endif %}{# 001: creation of BGP context #}
 {% endfor %}
-
+!
+route-map RP_PASS_ALL permit 10
+  description "Route Policy for IP VPN"
+!

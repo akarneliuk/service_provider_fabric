@@ -3,7 +3,7 @@ l3vpns:
 # BEGIN ANSIBLE MANAGED BLOCK
         - vpn_id: 223344
           customer_name: Imba_Cust
-          route_distinguisher: 65000:10000
-          route_target: 65000:10000
+          route_distinguisher: 65000:10002
+          route_target: 65000:10002
 
 # END ANSIBLE MANAGED BLOCK

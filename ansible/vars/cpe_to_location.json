@@ -1,0 +1,115 @@
+{
+   "cpe_to_location": [
+       {
+           "location_id": "DE-FRA-EQUINIX-FR2",
+           "cpe_id": "VX4",
+           "uni_port": "swp1",
+           "advertised_subnets": [
+               {
+                  "afi": "ipv4",
+                  "address": "192.168.22.0",
+                  "prefix_length": 24
+               },
+               {
+                  "afi": "ipv4",
+                  "address": "192.168.122.0",
+                  "prefix_length": 25
+               },
+               {
+                  "afi": "ipv4",
+                  "address": "192.168.122.128",
+                  "prefix_length": 25
+               },
+               {
+                  "afi": "ipv6",
+                  "address": "fc00::192:168:22:0",
+                  "prefix_length": 112
+               },
+               {
+                  "afi": "ipv6",
+                  "address": "fc00::192:168:122:0",
+                  "prefix_length": 113
+               },
+               {
+                  "afi": "ipv6",
+                  "address": "fc00::192:168:122:8000",
+                  "prefix_length": 113
+               }
+           ]
+       },
+       {
+           "location_id": "UK-LON-INTERXION-LON1",
+           "cpe_id": "VX4",
+           "uni_port": "swp2",
+           "advertised_subnets": [
+               {
+                  "afi": "ipv4",
+                  "address": "192.168.33.0",
+                  "prefix_length": 24
+               },
+               {
+                  "afi": "ipv4",
+                  "address": "192.168.133.0",
+                  "prefix_length": 25
+               },
+               {
+                  "afi": "ipv4",
+                  "address": "192.168.133.128",
+                  "prefix_length": 25
+               },
+               {
+                  "afi": "ipv6",
+                  "address": "fc00::192:168:33:0",
+                  "prefix_length": 112
+               },
+               {
+                  "afi": "ipv6",
+                  "address": "fc00::192:168:133:0",
+                  "prefix_length": 113
+               },
+               {
+                  "afi": "ipv6",
+                  "address": "fc00::192:168:133:8000",
+                  "prefix_length": 113
+               }
+           ]
+       },
+       {
+           "location_id": "BY-MIN-BELTELECOM-IX1",
+           "cpe_id": "VX4",
+           "uni_port": "swp3",
+           "advertised_subnets": [
+               {
+                  "afi": "ipv4",
+                  "address": "192.168.44.0",
+                  "prefix_length": 24
+               },
+               {
+                  "afi": "ipv4",
+                  "address": "192.168.144.0",
+                  "prefix_length": 25
+               },
+               {
+                  "afi": "ipv4",
+                  "address": "192.168.144.128",
+                  "prefix_length": 25
+               },
+               {
+                  "afi": "ipv6",
+                  "address": "fc00::192:168:44:0",
+                  "prefix_length": 112
+               },
+               {
+                  "afi": "ipv6",
+                  "address": "fc00::192:168:144:0",
+                  "prefix_length": 113
+               },
+               {
+                  "afi": "ipv6",
+                  "address": "fc00::192:168:144:8000",
+                  "prefix_length": 113
+               }
+           ]
+       }
+   ]
+}

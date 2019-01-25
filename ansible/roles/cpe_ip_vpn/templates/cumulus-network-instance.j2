@@ -1,0 +1,40 @@
+{% for customer_site in l3vpn_svc.sites.site %}{# f-001: looping all customer sites in service request #}
+{% for cpe_pop_site in cpe_to_location %}{# f-002: looping all SP sites with PEs #}
+{% for customer_device in customer_site.devices.device %}{# f-003: looping all customer devices on site #}
+{% if customer_device.device_id == cpe_pop_site.cpe_id %}{# i-001: matching CPE from ietf l3vpn svc service request and customer db #}
+{% for customer_connection in customer_site.site_network_accesses.site_network_access %}{# f-004: looping all customer connections on site #}
+{% if cpe_pop_site.location_id == customer_connection.location_reference %}{# i-002: matching locations #}
+{% for cust_routing_protocol in customer_site.routing_protocols.routing_protocol %}{# f-005: looping for all customer routing protocols within ietf-l3vpn-svc request #}
+{% if cust_routing_protocol.type == 'bgp' %}{# i-003: matching customer routing protocol type #}
+
+add bgp vrf {{ customer_device.location }} autonomous-system {{ cust_routing_protocol.bgp.autonomous_system }}
+add bgp vrf {{ customer_device.location }} router-id {{ customer_connection.ip_connection.ipv4.addresses.customer_address }}
+
+{% for afi_name in cust_routing_protocol.bgp.address_family %}{# f-006: creating missing AFI within VRF context in BGP process #}
+{% if afi_name == 'ipv4' %}{# i-004: creating AFI for IPv4 or IPv6 UNICAST #}
+add bgp vrf {{ customer_device.location }} neighbor {{ customer_connection.ip_connection.ipv4.addresses.provider_address }} remote-as 65000
+add bgp vrf {{ customer_device.location }} ipv4 unicast neighbor {{ customer_connection.ip_connection.ipv4.addresses.provider_address }} allowas-in 1
+add bgp vrf {{ customer_device.location }} ipv4 unicast neighbor {{ customer_connection.ip_connection.ipv4.addresses.provider_address }} activate
+{% elif afi_name == 'ipv6' %}{# i-004: creating AFI for IPv4 or IPv6 UNICAST #}
+add bgp vrf {{ customer_device.location }} neighbor {{ customer_connection.ip_connection.ipv6.addresses.provider_address }} remote-as 65000
+add bgp vrf {{ customer_device.location }} ipv6 unicast neighbor {{ customer_connection.ip_connection.ipv6.addresses.provider_address }} allowas-in 1
+add bgp vrf {{ customer_device.location }} ipv6 unicast neighbor {{ customer_connection.ip_connection.ipv6.addresses.provider_address }} activate
+del bgp vrf {{ customer_device.location }} ipv4 unicast neighbor {{ customer_connection.ip_connection.ipv6.addresses.provider_address }} activate
+{% endif %}{# i-004: creating AFI for IPv4 or IPv6 UNICAST #}
+{% endfor %}{# f-006: creating missing AFI within VRF context in BGP process #}
+
+{% if cpe_pop_site.advertised_subnets is defined %}{# i-005: advertising subnets #}
+{% for active_nlri in cpe_pop_site.advertised_subnets %}{# f-007: looping all subnets #}
+add bgp vrf {{ customer_device.location }} {{ active_nlri.afi }} unicast network {{ active_nlri.address }}/{{ active_nlri.prefix_length }}
+{% endfor %}{# f-007: looping all subnets #}
+{% endif %}{# i-005: advertising subnets #}
+
+
+{% endif %}{# i-003: matching customer routing protocol type #}
+{% endfor %}{# f-005: looping for all customer routing protocols within ietf-l3vpn-svc request #}
+{% endif %}{# i-002: matching locations #}
+{% endfor %}{# f-004: looping all customer connections on site #}
+{% endif %}{# i-001: matching CPE from ietf l3vpn svc service request and customer db #}
+{% endfor %}{# f-003: looping all customer devices on site #}
+{% endfor %}{# f-002: looping all SP sites with PEs #}
+{% endfor %}{# f-001: looping all customer sites in service request #}

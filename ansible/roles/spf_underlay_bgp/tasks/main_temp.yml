@@ -14,7 +14,7 @@
       - underlay
       - underlay_bgp
 
-- name: STARING NOKIA CONFIGURATION LOOP
+- name: STARTING NOKIA CONFIGURATION LOOP
   include_tasks: "{{ ansible_network_os }}_configuration_loop.yml"
   when: ansible_network_os == 'sros'
   loop:

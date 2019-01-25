@@ -1,5 +1,7 @@
 ---
+ansible_network_os: cumulus
 ansible_user: cumulus
 ansible_pass: CumulusLinux!
 ansible_ssh_pass: CumulusLinux!
+ansible_become_pass: CumulusLinux!
 ...

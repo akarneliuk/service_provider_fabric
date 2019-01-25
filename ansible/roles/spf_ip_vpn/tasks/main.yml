@@ -57,10 +57,10 @@
   tags:
       - ip_vpn
 
-#- name: DELETING TEMPORARY FILES
-#  file:
-#      dest: "{{ temp_folder }}"
-#      state: absent
-#  tags:
-#      - ip_vpn
+- name: DELETING TEMPORARY FILES
+  file:
+      dest: "{{ temp_folder }}"
+      state: absent
+  tags:
+      - ip_vpn
 ...

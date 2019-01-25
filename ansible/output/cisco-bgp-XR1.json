@@ -98,6 +98,7 @@
                                             "vrf-neighbor-af": {
                                                 "activate": "",
                                                 "af-name": "ipv4-unicast",
+                                                "as-override": "true",
                                                 "route-policy-in": "RP_PASS_ALL",
                                                 "route-policy-out": "RP_PASS_ALL"
                                             }

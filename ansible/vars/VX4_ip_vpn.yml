@@ -1,0 +1,52 @@
+---
+starting_vlan: 1000
+customer_emulation:
+    - vrf: CUST22
+      afi: ipv4
+      address: 192.168.122.1
+      prefix: 25
+    - vrf: CUST22
+      afi: ipv4
+      address: 192.168.122.129
+      prefix: 25
+    - vrf: CUST22
+      afi: ipv6
+      address: fc00::192:168:122:1
+      prefix: 113
+    - vrf: CUST22
+      afi: ipv6
+      address: fc00::192:168:122:8001
+      prefix: 113
+    - vrf: CUST33
+      afi: ipv4
+      address: 192.168.133.1
+      prefix: 25
+    - vrf: CUST33
+      afi: ipv4
+      address: 192.168.133.129
+      prefix: 25
+    - vrf: CUST33
+      afi: ipv6
+      address: fc00::192:168:133:1
+      prefix: 113
+    - vrf: CUST33
+      afi: ipv6
+      address: fc00::192:168:133:8001
+      prefix: 113
+    - vrf: CUST44
+      afi: ipv4
+      address: 192.168.144.1
+      prefix: 25
+    - vrf: CUST44
+      afi: ipv4
+      address: 192.168.144.129
+      prefix: 25
+    - vrf: CUST44
+      afi: ipv6
+      address: fc00::192:168:144:1
+      prefix: 113
+    - vrf: CUST44
+      afi: ipv6
+      address: fc00::192:168:144:8001
+      prefix: 113
+...

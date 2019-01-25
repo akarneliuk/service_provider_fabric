@@ -57,5 +57,29 @@
 {% endif %}{# 001: configuration of BGP process #}
 {% endfor %}
         </router>
+        <policy-options>
+            <policy-statement>
+                <name>RP_PASS_ALL</name>
+                <default-action>
+                    <action-type>reject</action-type>
+                </default-action>
+                <entry>
+                    <entry-id>10</entry-id>
+                    <from>
+                        <protocol>
+                            <name>bgp-vpn</name>
+                        </protocol>
+                    </from>
+                    <to>
+                        <protocol>
+                            <name>bgp</name>
+                        </protocol>
+                    </to>
+                    <action>
+                        <action-type>accept</action-type>
+                    </action>
+                </entry>
+            </policy-statement>
+        </policy-options>
     </configure>
 </config>

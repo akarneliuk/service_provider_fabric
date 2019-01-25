@@ -18,6 +18,7 @@
   include_tasks: configuration_loop.yml
   loop:
       - openconfig-network-instance
+      - openconfig-routing-policy
   tags:
       - underlay
       - underlay_bgp

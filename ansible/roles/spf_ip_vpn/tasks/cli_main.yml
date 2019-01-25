@@ -5,7 +5,7 @@
   tags:
       - ip_vpn
 
-- name: CLI AUTOMATION // STARTING NOKIA CONFIGURATION LOOP
+- name: CLI AUTOMATION // STARTING CONFIGURATION LOOP
   include_tasks: "cli_configuration_loop.yml"
   loop:
       - interfaces

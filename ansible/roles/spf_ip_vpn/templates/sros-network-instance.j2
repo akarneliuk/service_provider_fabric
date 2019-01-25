@@ -7,8 +7,15 @@
         <service>
             <vprn>
                 <service-name>{{ customer_connection.vpn_attachment.vpn_id }}</service-name>
+                <auto-bind-tunnel>
+                    <resolution>filter</resolution>
+                    <resolution-filter>
+                        <sr-isis>true</sr-isis>
+                    </resolution-filter>
+                </auto-bind-tunnel>
 {% for routing_protocol in routing %}{# f-004: looping routing protocols configuration from underlay #}
 {% if routing_protocol.id == 'BGP' %}{# i-002: looking for BGP config #}
+                <autonomous-system>{{ routing_protocol.asn }}</autonomous-system>
                 <route-distinguisher>{{ routing_protocol.asn }}:{{ l3vpn_defaults.route_distinguisher.start + l3vpn_index_next_free }}</route-distinguisher>
                 <vrf-target>
                     <community>target:{{ routing_protocol.asn }}:{{ l3vpn_defaults.route_distinguisher.start + l3vpn_index_next_free }}</community>
@@ -25,9 +32,6 @@
                     <family>
                         <{{ afi_name }}>true</{{ afi_name }}>
                     </family>
-                    <import>
-                        <policy>RP_PASS_ALL</policy>
-                    </import>
                     <export>
                         <policy>RP_PASS_ALL</policy>
                     </export>

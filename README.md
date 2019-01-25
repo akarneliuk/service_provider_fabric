@@ -67,7 +67,8 @@ Version `0.4.2`
 
 Version `0.5`
 1) Automation for IP VPN service creation based on IETF L3VPN SVC (RFC 8299) is added. Check `ansible\README.md` for details how to launch.
-2) L3VPN service reqest is located in `ansible\vars` folder and starts with `service_ip_vpn_` prefix.
+2) IETF L3VPN SVC service reqest is located in `ansible\vars` folder and starts with `service_ip_vpn_` prefix.
 3) Information about default route target and route distinguishers range allocated for automated services is stored in `ansible\group_vars\all\main.yml`
 4) In `ansible\files\ietf` folders there are all IETF YANG models including L3VPN and L2VPN SVC clonned from official GitHub of Yang.
 5) To role `underlay_bgp` added configuration of default route policy (action: accept_route) to be used later for customer route fileting.
+6) Added customer provisioning for IP VPN using `ansible\customer_equipment.yml`.

@@ -1,0 +1,17 @@
+---
+- name: CONFIGURATION LOOP // TEMPLATING CLI CONFIGURATION FILE
+  local_action:
+      module: "template"
+      src: "{{ ansible_network_os }}-{{ conf_loop_item }}.j2"
+      dest: "{{ temp_folder }}/{{ inventory_hostname}}_{{ conf_loop_item }}.conf"
+  tags:
+      - ip_vpn
+
+- name: CONFIGURATION LOOP // PUSHING CLI CONFIG
+  nclu:
+      atomic: yes
+      template: "{{ lookup('template', '{{ ansible_network_os }}-{{ conf_loop_item }}.j2') }}"
+  ignore_errors: yes
+  tags:
+      - ip_vpn
+...
