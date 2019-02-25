@@ -1,0 +1,14 @@
+---
+nms:
+    - id: 1
+      type: snmp
+      snmp:
+          version: 3
+          engineID: 192168141084
+          security:
+              type: authPriv
+              auth: sha
+              priv: aes
+          view:
+              - iso
+...

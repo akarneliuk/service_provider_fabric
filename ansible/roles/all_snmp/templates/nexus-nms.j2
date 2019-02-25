@@ -1,0 +1,14 @@
+{% for nms_entry in nms %}{# f-001: looping all NMS types #}
+{% if nms_entry.type == 'snmp' %}{# i-001: checking that NMS type is SNMP #}
+snmp-server engineID local {{ nms_entry.snmp.engineID }}
+snmp-server source-interface Management1
+snmp-server user Collector TG v3 auth sha SUPER_AUTH priv aes SUPER_PASS
+{% if nms_entry.snmp.version == 3 %}{# i-002: constructing commands for SNMPv3 #}
+{% for snmp_view in nms_entry.snmp.view %}{# f-002: looping all sub-trees in SNMP #}
+snmp-server view SPF_VIEW {{ snmp_view }} included
+{% endfor %}{# f-002: looping all sub-trees in SNMP #}
+snmp-server group SPF_GROUP v3 priv read SPF_VIEW
+snmp-server user {{ snmp_credentials.user }} SPF_GROUP v3 auth {{ nms_entry.snmp.security.auth }} {{ snmp_credentials.auth_pass }} priv {{ nms_entry.snmp.security.priv }} {{ snmp_credentials.priv_pass }}
+{% endif %}{# i-002: constructing commands for SNMPv3 #}
+{% endif %}{# i-001: checking that NMS type is SNMP #}
+{% endfor %}{# f-001: looping all NMS types #}

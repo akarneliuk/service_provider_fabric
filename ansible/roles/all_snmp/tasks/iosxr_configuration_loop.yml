@@ -1,0 +1,24 @@
+---
+- name: CISCO // CONFIGURATION LOOP // TEMPLATING CLI CONFIGURATION FILE
+  local_action:
+      module: "template"
+      src: "{{ ansible_network_os }}-{{ conf_loop_item }}.j2"
+      dest: "{{ temp_folder }}/{{ inventory_hostname}}_{{ conf_loop_item }}.conf"
+  tags:
+      - nms
+      - nms_snmp
+
+- name: CISCO // CONFIGURATION LOOP // CLI CONFIG
+  local_action:
+      module: "iosxr_config"
+      force: yes
+      src: "{{ temp_folder }}/{{ inventory_hostname}}_{{ conf_loop_item }}.conf"
+      provider:
+          host: "{{ inventory_hostname }}"
+          username: "{{ ansible_user }}"
+          password: "{{ ansible_pass }}"
+  ignore_errors: yes
+  tags:
+      - nms
+      - nms_snmp
+...

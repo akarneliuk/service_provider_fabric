@@ -67,4 +67,16 @@ routing_policies:
           - id: 10
             condition: MATCH_ANY
             action: ACCEPT_ROUTE
+nms:
+    - id: 1
+      type: snmp
+      snmp:
+          version: 3
+          engineID: 010000000044
+          security:
+              type: authPriv
+              auth: sha
+              priv: aes
+          view:
+              - iso
 ...

@@ -6,4 +6,5 @@
       - spf_underlay_mpls
       - spf_underlay_bgp
       - spf_ip_vpn 
+      - all_snmp
 ...

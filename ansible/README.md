@@ -26,6 +26,7 @@ There are several possible options how you can automatically deploy Service Prov
 3) To deploy the whole underlay infrastructure (ISIS + Segment Routing + BGP) use `ansible-playbook service_provider_fabric.yml --inventory=hosts --tags=underlay`.
 4) To depoy overlay IP VPN service use `ansible-playbook service_provider_fabric.yml --inventory=hosts --tags=ip_vpn`.
 5) To provision customer sites for IP VPN use `ansible-playbook customer_equipment.yml --inventory=hosts --tags=ip_vpn`.
+6) To enable SNMPv3 monitoring use `ansible-playbook service_provider_fabric.yml/customer_equipment.yml --inventory=hosts --tags=nms_snmp`.
 
 # Temporary limitations
 

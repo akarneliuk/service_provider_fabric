@@ -1,0 +1,36 @@
+---
+- name: IMPORTING VARIABLES
+  include_vars:
+      file: "{{ inventory_hostname }}_underlay.yml"
+  tags:
+      - nms
+      - nms_snmp
+
+- name: CREATING TEMPORARY OUTPUT FOLDER
+  local_action:
+      module: "file"
+      dest: "{{ temp_folder }}"
+      state: directory
+  tags:
+      - nms
+      - nms_snmp
+
+- name: STARTING CONFIGURATION LOOP
+  include_tasks: "{{ ansible_network_os}}_configuration_loop.yml"
+  loop:
+      - nms
+  loop_control:
+      loop_var: conf_loop_item
+  tags:
+      - nms
+      - nms_snmp
+
+#- name: DELETING TEMPORARY FILES
+#  local_action: 
+#      module: file
+#      dest: "{{ temp_folder }}"
+#      state: absent
+#  tags:
+#      - nms
+#      - nms_snmp
+...

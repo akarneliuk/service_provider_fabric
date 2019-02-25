@@ -1,13 +1,19 @@
 {
     "configure": {
         "card": {
-            "admin-state": "enable",
             "card-type": "iom-1",
-            "mda": {
-                "admin-state": "enable",
-                "mda-slot": "1",
-                "mda-type": "me6-100gb-qsfp28"
+            "fp": {
+                "fp-number": "1"
             },
+            "mda": [
+                {
+                    "mda-slot": "1",
+                    "mda-type": "me6-100gb-qsfp28"
+                },
+                {
+                    "mda-slot": "2"
+                }
+            ],
             "slot-number": "1"
         },
         "log": {
@@ -25,16 +31,6 @@
                 "filter-id": "1001"
             },
             "log-id": [
-                {
-                    "admin-state": "enable",
-                    "destination": {
-                        "console": ""
-                    },
-                    "id": "10",
-                    "source": {
-                        "debug": "true"
-                    }
-                },
                 {
                     "description": "Default System Log",
                     "destination": {
@@ -69,70 +65,28 @@
             ]
         },
         "policy-options": {
-            "policy-statement": [
-                {
-                    "default-action": {
-                        "action-type": "reject"
-                    },
-                    "entry": [
-                        {
-                            "action": {
-                                "action-type": "accept"
-                            },
-                            "entry-id": "10",
-                            "from": {
-                                "protocol": {
-                                    "name": "bgp"
-                                }
-                            },
-                            "to": {
-                                "protocol": {
-                                    "name": "bgp-vpn"
-                                }
-                            }
-                        },
-                        {
-                            "action": {
-                                "action-type": "accept"
-                            },
-                            "entry-id": "20",
-                            "from": {
-                                "protocol": {
-                                    "name": "bgp-vpn"
-                                }
-                            },
-                            "to": {
-                                "protocol": {
-                                    "name": "bgp"
-                                }
-                            }
-                        }
-                    ],
-                    "name": "RP_BGP_TO_BGP-VPN"
+            "policy-statement": {
+                "default-action": {
+                    "action-type": "reject"
                 },
-                {
-                    "default-action": {
-                        "action-type": "reject"
+                "entry": {
+                    "action": {
+                        "action-type": "accept"
                     },
-                    "entry": {
-                        "action": {
-                            "action-type": "accept"
-                        },
-                        "entry-id": "10",
-                        "from": {
-                            "protocol": {
-                                "name": "bgp-vpn"
-                            }
-                        },
-                        "to": {
-                            "protocol": {
-                                "name": "bgp"
-                            }
+                    "entry-id": "10",
+                    "from": {
+                        "protocol": {
+                            "name": "bgp-vpn"
                         }
                     },
-                    "name": "RP_PASS_ALL"
-                }
-            ]
+                    "to": {
+                        "protocol": {
+                            "name": "bgp"
+                        }
+                    }
+                },
+                "name": "RP_PASS_ALL"
+            }
         },
         "port": [
             {
@@ -171,10 +125,18 @@
                             }
                         }
                     },
-                    "mode": "network",
                     "single-fiber": "true"
                 },
                 "port-id": "1/1/c1/1"
+            },
+            {
+                "port-id": "1/1/c1/2"
+            },
+            {
+                "port-id": "1/1/c1/3"
+            },
+            {
+                "port-id": "1/1/c1/4"
             },
             {
                 "admin-state": "enable",
@@ -190,6 +152,27 @@
                     "mode": "access"
                 },
                 "port-id": "1/1/c2/1"
+            },
+            {
+                "port-id": "1/1/c2/2"
+            },
+            {
+                "port-id": "1/1/c2/3"
+            },
+            {
+                "port-id": "1/1/c2/4"
+            },
+            {
+                "port-id": "1/1/c3"
+            },
+            {
+                "port-id": "1/1/c4"
+            },
+            {
+                "port-id": "1/1/c5"
+            },
+            {
+                "port-id": "1/1/c6"
             }
         ],
         "router": {
@@ -220,7 +203,6 @@
                         "transport-tunnel": {
                             "family": {
                                 "family-type": "vpn",
-                                "resolution": "filter",
                                 "resolution-filter": {
                                     "sr-isis": "true"
                                 }
@@ -275,8 +257,7 @@
                             "ipv6-unicast-metric": "10",
                             "level-number": "2",
                             "metric": "10"
-                        },
-                        "passive": "false"
+                        }
                     },
                     {
                         "interface-name": "system",
@@ -321,6 +302,13 @@
         "service": {
             "vprn": {
                 "admin-state": "enable",
+                "auto-bind-tunnel": {
+                    "resolution": "filter",
+                    "resolution-filter": {
+                        "sr-isis": "true"
+                    }
+                },
+                "autonomous-system": "65000",
                 "bgp": {
                     "group": [
                         {
@@ -330,10 +318,7 @@
                             "family": {
                                 "ipv4": "true"
                             },
-                            "group-name": "CE_IPV4",
-                            "import": {
-                                "policy": "RP_PASS_ALL"
-                            },
+                            "group-name": "CE_ipv4",
                             "peer-as": "65234"
                         },
                         {
@@ -343,20 +328,17 @@
                             "family": {
                                 "ipv6": "true"
                             },
-                            "group-name": "CE_IPV6",
-                            "import": {
-                                "policy": "RP_PASS_ALL"
-                            },
+                            "group-name": "CE_ipv6",
                             "peer-as": "65234"
                         }
                     ],
                     "neighbor": [
                         {
-                            "group": "CE_IPV4",
+                            "group": "CE_ipv4",
                             "ip-address": "192.168.44.44"
                         },
                         {
-                            "group": "CE_IPV6",
+                            "group": "CE_ipv6",
                             "ip-address": "fc00::192:168:44:44"
                         }
                     ]
@@ -364,7 +346,7 @@
                 "customer": "1",
                 "interface": {
                     "description": "223344_44_1",
-                    "interface-name": "toCUST",
+                    "interface-name": "to_Imba_Cust",
                     "ipv4": {
                         "primary": {
                             "address": "192.168.44.1",
@@ -381,11 +363,10 @@
                         "sap-id": "1/1/c2/1:44"
                     }
                 },
-                "route-distinguisher": "65000:10000",
-                "service-id": "223344",
+                "route-distinguisher": "65000:10003",
                 "service-name": "223344",
                 "vrf-target": {
-                    "community": "target:65000:10000"
+                    "community": "target:65000:10003"
                 }
             }
         },
@@ -400,7 +381,6 @@
                 "admin-state": "enable",
                 "allow-unsecure-connection": "",
                 "gnmi": {
-                    "admin-state": "enable",
                     "auto-config-save": "true"
                 }
             },
@@ -415,10 +395,8 @@
                     "admin-state": "enable",
                     "auto-config-save": "true"
                 },
-                "yang-modules": {
-                    "base-r13-modules": "true",
-                    "nokia-modules": "true",
-                    "openconfig-modules": "true"
+                "snmp": {
+                    "engine-id": "010000000044"
                 }
             },
             "name": "SR1",
@@ -546,6 +524,37 @@
                         ]
                     }
                 },
+                "snmp": {
+                    "access": [
+                        {
+                            "context": "_sros_none",
+                            "group": "TG",
+                            "notify": "iso",
+                            "read": "iso",
+                            "security-level": "privacy",
+                            "security-model": "usm"
+                        },
+                        {
+                            "context": "_sros_none",
+                            "group": "TG1",
+                            "notify": "iso",
+                            "read": "iso",
+                            "security-level": "no-auth-no-privacy",
+                            "security-model": "usm"
+                        },
+                        {
+                            "context": "_sros_none",
+                            "group": "TG1",
+                            "security-level": "auth-no-privacy",
+                            "security-model": "usm"
+                        }
+                    ],
+                    "community": {
+                        "access-permissions": "r",
+                        "community-string": "6gY4uqklbHtQhhtLSdq2zwlFwzDhWetTPHk= hash2",
+                        "version": "v2c"
+                    }
+                },
                 "ssh": {
                     "client-cipher-list-v1": {
                         "cipher": [
@@ -647,6 +656,7 @@
                             }
                         ]
                     },
+                    "preserve-key": "true",
                     "server-cipher-list-v1": {
                         "cipher": [
                             {
@@ -746,17 +756,37 @@
                 },
                 "user-params": {
                     "local-user": {
-                        "user": {
-                            "access": {
-                                "console": "true",
-                                "netconf": "true"
+                        "user": [
+                            {
+                                "access": {
+                                    "snmp": "true"
+                                },
+                                "password": "$2y$10$iWWKq.vSoXYxKxENMtgXg.8vX2SyUbLPFNwIUktqdT447FnuEVtXW",
+                                "snmp": {
+                                    "authentication": {
+                                        "authentication-key": "ej8qT6JhG5fyshWgjhXXF95T7q2pP4w0yKRvEhKhcQEr/AeI hash2",
+                                        "authentication-protocol": "sha",
+                                        "privacy": {
+                                            "privacy-key": "WiyQX/n/n3ZmbQYjesZSc/tC7y6qh3qsCBQT39D/L6s= hash2",
+                                            "privacy-protocol": "aes-128-cfb"
+                                        }
+                                    },
+                                    "group": "TG"
+                                },
+                                "user-name": "Collector"
                             },
-                            "console": {
-                                "member": "administrative"
-                            },
-                            "password": "$2y$10$TQrZlpBDra86.qoexZUzQeBXDY1FcdDhGWdD9lLxMuFyPVSm0OGy6",
-                            "user-name": "admin"
-                        }
+                            {
+                                "access": {
+                                    "console": "true",
+                                    "netconf": "true"
+                                },
+                                "console": {
+                                    "member": "administrative"
+                                },
+                                "password": "$2y$10$TQrZlpBDra86.qoexZUzQeBXDY1FcdDhGWdD9lLxMuFyPVSm0OGy6",
+                                "user-name": "admin"
+                            }
+                        ]
                     }
                 }
             }

@@ -1,0 +1,25 @@
+---
+- name: ARISTA // CONFIGURATION LOOP // TEMPLATING CLI CONFIGURATION FILE
+  local_action:
+      module: "template"
+      src: "{{ ansible_network_os }}-{{ conf_loop_item }}.j2"
+      dest: "{{ temp_folder }}/{{ inventory_hostname}}_{{ conf_loop_item }}.conf"
+  tags:
+      - nms
+      - nms_snmp
+
+- name: ARISTA // CONFIGURATION LOOP // CLI CONFIG
+  local_action:
+      module: "eos_config"
+      authorize: true
+      save: true
+      src: "{{ temp_folder }}/{{ inventory_hostname}}_{{ conf_loop_item }}.conf"
+      provider:
+          host: "{{ inventory_hostname }}"
+          username: "{{ ansible_user }}"
+          password: "{{ ansible_pass }}"
+  ignore_errors: yes
+  tags:
+      - nms
+      - nms_snmp
+...

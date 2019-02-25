@@ -1,0 +1,10 @@
+---
+- name: CUMULUS // CONFIGURATION LOOP // PUSHING CLI CONFIG
+  nclu:
+      atomic: yes
+      template: "{{ lookup('template', '{{ ansible_network_os }}-{{ conf_loop_item }}.j2') }}"
+  ignore_errors: yes
+  tags:
+      - nms
+      - nms_snmp
+...

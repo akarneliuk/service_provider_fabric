@@ -1,0 +1,42 @@
+---
+- name: NOKIA // CONFIGURATION LOOP // GENERATING HASH FOR KEYS
+  local_action:
+      module: "command snmpkey {{ item.snmp.security.auth }} {{ snmp_credentials.auth_pass }} {{ item.snmp.engineID }} {{ item.snmp.security.priv }} {{ snmp_credentials.priv_pass }}"
+  register: snmp_hash
+  loop: "{{ nms }}"
+  when: item.type == 'snmp'
+  tags:
+      - nms
+      - nms_snmp
+
+- name: NOKIA // CONFIGURATION LOOP // CREATING VARS WITH HASH VALUES
+  set_fact:
+      auth_hash: "{{ snmp_hash.results[0].stdout_lines[0] | regex_replace('^authKey: 0x(.*)$', '\\1') }}"
+      priv_hash: "{{ snmp_hash.results[0].stdout_lines[1] | regex_replace('^privKey: 0x(.*)$', '\\1') }}"
+  tags:
+      - nms
+      - nms_snmp
+
+- name: NOKIA // CONFIGURATION LOOP // TEMPLATING CLI CONFIGURATION FILE
+  local_action:
+      module: "template"
+      src: "{{ ansible_network_os }}-{{ conf_loop_item }}.j2"
+      dest: "{{ temp_folder }}/{{ inventory_hostname}}_{{ conf_loop_item }}.conf"
+  tags:
+      - nms
+      - nms_snmp
+
+- name: NOKIA // CONFIGURATION LOOP // CLI CONFIG
+  local_action:
+      module: "sros_config"
+      save: yes
+      src: "{{ temp_folder }}/{{ inventory_hostname}}_{{ conf_loop_item }}.conf"
+      provider:
+          host: "{{ inventory_hostname }}"
+          username: "{{ ansible_user }}"
+          password: "{{ ansible_pass }}"
+  ignore_errors: yes
+  tags:
+      - nms
+      - nms_snmp
+...

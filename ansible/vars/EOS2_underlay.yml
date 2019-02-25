@@ -63,4 +63,16 @@ routing:
 mpls:
     - protocol: isis-sr
       enabled: true
+nms:
+    - id: 1
+      type: snmp
+      snmp:
+          version: 3
+          engineID: 010000000001
+          security:
+              type: authPriv
+              auth: sha
+              priv: aes
+          view:
+              - iso
 ...

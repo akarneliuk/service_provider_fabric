@@ -2,5 +2,6 @@
 - hosts: cpe
   gather_facts: yes
   roles:
-      - cpe_ip_vpn 
+      - cpe_ip_vpn
+      - all_snmp
 ...
