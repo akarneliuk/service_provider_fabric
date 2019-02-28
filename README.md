@@ -25,7 +25,7 @@ This repositry is currently being developed, so expect the changes and pull the 
 5) Add GRT routing service (BGP-LU for IPv4/IPv6) for Internet traffic
 
 # Version
-The current version of the repository is `0.5.1`
+The current version of the repository is `0.5.2`
 
 # Change log
 Version `0.1`
@@ -74,3 +74,7 @@ Version `0.5`
 
 Version `0.5.1`
 1) Added automated configuration of SNMP version 3. More details in `ansible/README.md`.
+
+Version `0.5.2`
+1) Management IP addresses are changed to IPv6, so from now on the communication between management host and all VNFs is over IPv6.
+2) File `hosts` with actual state of project's `/etc/hosts` is added to `files` folder.

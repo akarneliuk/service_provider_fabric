@@ -68,7 +68,7 @@ nms:
       type: snmp
       snmp:
           version: 3
-          engineID: 010000000001
+          engineID: "010000000001"
           security:
               type: authPriv
               auth: sha

@@ -1,0 +1,6 @@
+# New Service Provider Fabric management
+fc00::192:168:1:a1 SR1
+fc00::192:168:1:51 XR1
+fc00::192:168:1:71 EOS1
+fc00::192:168:1:72 EOS2
+fc00::192:168:1:84 VX4
