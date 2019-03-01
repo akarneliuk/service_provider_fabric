@@ -1,0 +1,6 @@
+---
+ansible_user: aaa
+ansible_pass: N3tw0rk!
+ansible_ssh_pass: N3tw0rk!
+ansible_become_pass: N3tw0rk!
+...

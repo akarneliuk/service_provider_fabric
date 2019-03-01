@@ -8,14 +8,14 @@
     /configure system security snmp access "SPF_GROUP" context "_sros_none" security-model usm security-level {% if nms_entry.snmp.security.type == 'authPriv' %}privacy{% endif %} read "{{ snmp_view }}"
     /configure system security snmp access "SPF_GROUP" context "_sros_none" security-model usm security-level {% if nms_entry.snmp.security.type == 'authPriv' %}privacy{% endif %} notify "{{ snmp_view }}"
 {% endfor %}{# f-002: looping all sub-trees in SNMP #}
-    /configure system security user-params local-user user "{{ snmp_credentials.user }}" password 1qaz2wsx3edc4rfv
-    /configure system security user-params local-user user "{{ snmp_credentials.user }}" access snmp true 
-    /configure system security user-params local-user user "{{ snmp_credentials.user }}" snmp group "SPF_GROUP"
-    /configure system security user-params local-user user "{{ snmp_credentials.user }}" snmp authentication authentication-protocol {{ nms_entry.snmp.security.auth }}
-    /configure system security user-params local-user user "{{ snmp_credentials.user }}" snmp authentication authentication-key {{ auth_hash }}
-    /configure system security user-params local-user user "{{ snmp_credentials.user }}" snmp authentication privacy privacy-protocol {% if nms_entry.snmp.security.priv == 'aes'  %}aes-128-cfb{% endif %}
+    /configure system security user-params local-user user "{{ snmp_credentials.username }}" password 1qaz2wsx3edc4rfv
+    /configure system security user-params local-user user "{{ snmp_credentials.username }}" access snmp true 
+    /configure system security user-params local-user user "{{ snmp_credentials.username }}" snmp group "SPF_GROUP"
+    /configure system security user-params local-user user "{{ snmp_credentials.username }}" snmp authentication authentication-protocol {{ nms_entry.snmp.security.auth }}
+    /configure system security user-params local-user user "{{ snmp_credentials.username }}" snmp authentication authentication-key {{ auth_hash }}
+    /configure system security user-params local-user user "{{ snmp_credentials.username }}" snmp authentication privacy privacy-protocol {% if nms_entry.snmp.security.priv == 'aes'  %}aes-128-cfb{% endif %}
 
-    /configure system security user-params local-user user "{{ snmp_credentials.user }}" snmp authentication privacy privacy-key {{ priv_hash }}
+    /configure system security user-params local-user user "{{ snmp_credentials.username }}" snmp authentication privacy privacy-key {{ priv_hash }}
 {% endif %}{# i-002: constructing commands for SNMPv3 #}
 {% endif %}{# i-001: checking that NMS type is SNMP #}
 {% endfor %}{# f-001: looping all NMS types #}

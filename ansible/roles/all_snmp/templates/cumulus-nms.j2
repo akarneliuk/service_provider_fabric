@@ -5,7 +5,7 @@ add snmp-server listening-address 192.168.141.84 vrf mgmt
 {% for snmp_view in nms_entry.snmp.view %}{# f-002: looping all sub-trees in SNMP #}
 add snmp-server viewname SPF_VIEW included iso
 {% endfor %}{# f-002: looping all sub-trees in SNMP #}
-add snmp-server username {{ snmp_credentials.user }} auth-{{ nms_entry.snmp.security.auth }} {{ snmp_credentials.auth_pass }} encrypt-{{ nms_entry.snmp.security.priv }} {{ snmp_credentials.priv_pass }} view SPF_VIEW
+add snmp-server username {{ snmp_credentials.username }} auth-{{ nms_entry.snmp.security.auth }} {{ snmp_credentials.auth.pass }} encrypt-{{ nms_entry.snmp.security.priv }} {{ snmp_credentials.priv.pass }} view SPF_VIEW
 {% endif %}{# i-002: constructing commands for SNMPv3 #}
 {% endif %}{# i-001: checking that NMS type is SNMP #}
 {% endfor %}{# f-001: looping all NMS types #}

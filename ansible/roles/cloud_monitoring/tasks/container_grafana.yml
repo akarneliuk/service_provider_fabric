@@ -1,0 +1,76 @@
+---
+- name: CONTAINER GRAFANA // CREATING FOLDER 
+  file:
+      dest: "{{ path_to_containers }}/grafana"
+      state: directory
+  tags:
+      - tick_install
+
+- name: CONTAINER GRAFANA // CREATING STORAGE FOLDER
+  file:
+      dest: "{{ path_to_containers }}/grafana/data"
+      state: directory
+  tags:
+      - tick_install
+
+- name: CONTAINER GRAFANA // LAUNCHING CONTAINER
+  docker_container:
+      name: spf_grafana
+      image: grafana/grafana
+      state: started
+      user: root
+      ports:
+           - "3000:3000"
+      volumes:
+           - "{{ pwd_actual }}/{{ path_to_containers }}/grafana/data:/var/lib/grafana"
+  become: yes
+  tags:
+      - tick_install
+      - tick_ops
+
+- name: CONTAINER GRAFANA // CREATE TEMP DATASTORE CONFIG
+  file:
+      dest: "{{ path_to_containers }}/grafana/datastore.yml"
+      state: touch
+  tags:
+      - tick_install
+
+- name: CONTAINER GRAFANA // TEMPLATING DATASTORE
+  copy:
+      content: |
+          apiVersion: 1
+          datasources:
+              - name: InfluxDB
+                type: influxdb
+                access: proxy
+                database: {{ var_influxdb.db_name }} 
+                user: {{ var_influxdb.username }}
+                password: {{ var_influxdb.password }}
+                url: http://172.17.0.2:8086
+                withCredentials: yes
+                isDefault: yes
+      dest: "{{ path_to_containers }}/grafana/datastore.yml"
+  tags:
+      - tick_install
+
+- name: CONTAINER GRAFANA // COPYING DATASTORY IN CONTAINER FOR PROVISIONING
+  shell: "docker cp {{ path_to_containers }}/grafana/datastore.yml spf_grafana:/etc/grafana/provisioning/datasources/datastore.yml"
+  become: yes
+  tags:
+      - tick_install
+
+- name: CONTAINER GRAFANA // RESTARTING CONTAINER
+  docker_container:
+      name: spf_grafana
+      image: grafana/grafana
+      state: started
+      user: root
+      restart: yes
+      ports:
+           - "3000:3000"
+      volumes:
+           - "{{ pwd_actual }}/{{ path_to_containers }}/grafana/data:/var/lib/grafana"
+  become: yes
+  tags:
+      - tick_install
+...

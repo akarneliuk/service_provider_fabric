@@ -1,0 +1,97 @@
+---
+- name: INSTALLING NECESSARY TOOLS
+  yum:
+      name: "{{ item }}"
+      state: present
+  become: yes
+  loop:
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+  tags:
+      - docker_install
+
+- name: ADDING DOCKER REPOSITORY
+  yum_repository:
+      name: docker
+      description: Docker CE repository
+      baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+  become: yes
+  tags:
+      - docker_install
+
+- name: INSTALLING DOCKER
+  yum:
+      name: "{{ item }}"
+      state: present
+  become: yes
+  loop:
+      - docker-ce 
+      - docker-ce-cli 
+      - containerd.io
+  tags:
+      - docker_install
+
+- name: INSTALLING PIP PACKAGE FOR DOCKER
+  pip:
+      name: "{{ item }}"
+  become: yes
+  loop:
+      - docker
+  tags:
+      - docker_install
+
+- name: CREATING FILE FOR CUSTOMIZED DOCKER CONFIGURATION
+  file:
+      path: /etc/docker/daemon.json
+      state: touch
+  become: yes
+  tags:
+      - docker_install
+
+- name: ENABLING IPV6 ON DOCKER NETWORK
+  lineinfile:
+      path: /etc/docker/daemon.json
+      line: '{"ipv6": true, "fixed-cidr-v6": "fc00:ffff:1::/64"}'
+      state: present
+  become: yes
+  tags:
+      - docker_install
+
+- name: LAUNCHING DOCKER
+  service:
+      name: docker
+      state: started
+  become: yes
+  tags:
+      - docker_install
+      - docker_ops
+
+- name: ALLOWING FW RULES FOR SNMP OVER IPV6 // 1
+  iptables:
+      rule_num: 1
+      action: insert
+      ip_version: ipv6
+      chain: FORWARD
+      protocol: udp
+      destination_port: 161
+      jump: ACCEPT
+  become: yes
+  tags:
+      - docker_install
+      - docker_ops
+
+- name: ALLOWING FW RULES FOR SNMP OVER IPV6 // 2
+  iptables:
+      rule_num: 2
+      action: insert
+      ip_version: ipv6
+      chain: FORWARD
+      protocol: udp
+      source_port: 161
+      jump: ACCEPT
+  become: yes
+  tags:
+      - docker_install
+      - docker_ops
+...

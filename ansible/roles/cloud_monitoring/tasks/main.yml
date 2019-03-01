@@ -1,0 +1,40 @@
+---
+- name: CREATING FOLDER FOR ALL CONTAINERS
+  file:
+      dest: "{{ path_to_containers }}"
+      state: directory
+  tags:
+      - tick_install
+
+- name: GETTING PWD
+  command: pwd
+  register: pwd
+  tags:
+      - tick_install
+      - tick_ops
+
+- name: SETTING PWD VARIABLE
+  set_fact:
+      pwd_actual: "{{ pwd.stdout }}"
+  tags:
+      - tick_install
+      - tick_ops
+
+- name: CONTAINER INFLUXDB
+  include_tasks: container_influxdb.yml
+  tags:
+      - tick_install
+      - tick_ops
+
+- name: CONTAINER GRAFANA
+  include_tasks: container_grafana.yml
+  tags:
+      - tick_install
+      - tick_ops
+
+- name: CONTAINER TELEGRAF
+  include_tasks: container_telegraf.yml
+  tags:
+      - tick_install
+      - tick_ops
+...

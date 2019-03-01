@@ -1,5 +1,5 @@
 ---
-# Default for Ansible operation
+# Defaults for Ansible operation
 temp_folder: /tmp/SP_SR_TEMP
 # Defaults for IETF L3VPN SVC provisioning
 l3vpn_defaults:
@@ -10,4 +10,12 @@ l3vpn_defaults:
     route_target:
         start: 10000
         end: 99999
+# Defaults for Docker containers
+path_to_containers: containers
+var_influxdb:
+    username: spf_workforce
+    password: spf_w0rkf0rc3
+    db_name: spf
+var_grafana:
+var_telegraf:
 ...

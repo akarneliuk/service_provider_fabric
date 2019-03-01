@@ -1,0 +1,4 @@
+{% for host_entry in etc_hosts %}
+{{ host_entry.hostname }}: "{{ host_entry.ip_address }}"
+{% endfor %}
+

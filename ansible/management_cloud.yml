@@ -1,0 +1,9 @@
+---
+- hosts: management_host
+  gather_facts: yes
+  connection: local
+  roles:
+      - cloud_hosts
+      - cloud_docker
+      - cloud_monitoring
+...

@@ -1,0 +1,83 @@
+---
+- name: CONTAINER INFLUXDB // CREATING FOLDER 
+  file:
+      dest: "{{ path_to_containers }}/influxdb"
+      state: directory
+  tags:
+      - tick_install
+
+- name: CONTAINER INFLUXDB // CREATING STORAGE FOLDER
+  file:
+      dest: "{{ path_to_containers }}/influxdb/data"
+      state: directory
+  tags:
+      - tick_install
+
+- name: CONTAINER INFLUXDB // GENERATING INFLUXDB CONFIG
+  shell: "docker run --rm influxdb influxd config > {{ path_to_containers }}/influxdb/influxdb.conf"
+  become: yes
+  tags:
+      - tick_install
+
+- name: CONTAINER INFLUXDB // LAUNCHING CONTAINER
+  docker_container:
+      name: spf_influxdb
+      image: influxdb
+      state: started
+      command: "-config /etc/influxdb/influxdb.conf"
+      ports:
+           - "8086:8086"
+           - "8088:8088"
+      volumes:
+           - "{{ pwd_actual }}/{{ path_to_containers }}/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro"
+           - "{{ pwd_actual }}/{{ path_to_containers }}/influxdb/data:/var/lib/influxdb"
+  become: yes
+  tags:
+      - tick_install
+      - tick_ops
+
+- name: CONTAINER INFLUXDB // CREATING DATABASE
+  uri:
+      url: "http://localhost:8086/query?q={{ db_request | urlencode }}"
+      method: POST
+  ignore_errors: yes
+  vars:
+      db_request: "CREATE DATABASE {{ var_influxdb.db_name }}"
+  tags:
+      - tick_install
+ 
+- name: CONTAINER INFLUXDB // CREATING USERS
+  uri:
+      url: "http://localhost:8086/query?q={{ db_request | urlencode }}"
+      method: POST
+  ignore_errors: yes
+  vars:
+      db_request: "CREATE USER {{ var_influxdb.username }} WITH PASSWORD '{{ var_influxdb.password }}' WITH ALL PRIVILEGES"
+  tags:
+      - tick_install
+
+- name: CONTAINER INFLUXDB // ENABLING AUTHENTICATION
+  lineinfile:
+      dest: "{{ path_to_containers }}/influxdb/influxdb.conf"
+      regexp: 'auth-enabled = false'
+      line: 'auth-enabled = true'
+  tags:
+      - tick_install
+
+- name: CONTAINER INFLUXDB // RESTARTING CONTAINER
+  docker_container:
+      name: spf_influxdb
+      image: influxdb
+      state: started
+      restart: yes
+      command: "-config /etc/influxdb/influxdb.conf"
+      ports:
+           - "8086:8086"
+           - "8088:8088"
+      volumes:
+           - "{{ pwd_actual }}/{{ path_to_containers }}/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro"
+           - "{{ pwd_actual }}/{{ path_to_containers }}/influxdb/data:/var/lib/influxdb"
+  become: yes
+  tags:
+      - tick_install
+...

@@ -1,0 +1,19 @@
+---
+- name: IMPORTING VARIABLES
+  include_vars:
+      file: etc_hosts.yml
+  tags:
+      - update_hosts
+
+- name: UPDATING ETC_HOSTS
+  blockinfile:
+      dest: /etc/hosts
+      block: |
+          # Service Provider Fabric hosts // OOB IPv6 addresses
+          {% for hostname, ip_address in etc_hosts.items() %}
+          {{ ip_address }} {{ hostname }} 
+          {% endfor %}
+  become: yes
+  tags:
+      - update_hosts
+...

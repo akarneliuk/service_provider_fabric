@@ -14,18 +14,22 @@ Whenever possible OpenConfig YANG modules are used to unify the configuration of
 1) IP VPN for IPV4 and IPV6 between all 3 PE
 2) EVPN (E-LAN fashion) between all 3 PE
 
+# Monitoring
+InfluxData TICK (Telegraf and InfluxDB) + Grafana:
+1) Telegraf is using to collect data over SNMPv3 over IPv6 and store it in InfluxDB
+2) Grafana polls data out of InfluxDB to build graphs of interfaces' utilization
+
 # Development mode
 This repositry is currently being developed, so expect the changes and pull the repository to get the latest version
 
 # To-do list
 1) Add automation for EVPNoSR services
 2) Add SR policies (static and dynamic using BGP-SR-TE)
-3) Add Telemtry using Netflux TICK stack + Grafana
-4) Add automatic chose of connection method use by device depending on its capabilities (CLI, NETCONF/YANG(native), NETCONF/YANG(OpenConfig))
-5) Add GRT routing service (BGP-LU for IPv4/IPv6) for Internet traffic
+3) Add automatic chose of connection method use by device depending on its capabilities (CLI, NETCONF/YANG(native), NETCONF/YANG(OpenConfig))
+4) Add GRT routing service (BGP-LU for IPv4/IPv6) for Internet traffic
 
 # Version
-The current version of the repository is `0.5.2`
+The current version of the repository is `0.6`
 
 # Change log
 Version `0.1`
@@ -43,8 +47,8 @@ Version `0.3`
 1) Added folder `ansible` with automation of Service Provider Fabric configuration. More details in `ansible/README.md`.
 2) Initial configuration files are updated to anticipate minimal requirements for automation.
 3) Underlay topology file `topology/sp_underlay.txt` is updated with link prefixes for IPv4 and IPv6.
-4) Currently only underlay IGP (ISIS) and MPLS data plane (Segment Routing) is automated 
-5) New file with OOB topology is assed in `topology/oob_management.txt`
+4) Currently only underlay IGP (ISIS) and MPLS data plane (Segment Routing) is automated.
+5) New file with OOB topology is assed in `topology/oob_management.txt`.
 
 Version `0.4`
 1) Added LLDP configuration for `underlay_mpls` role. It's configured automatically on all Ethernet interfaces.
@@ -78,3 +82,9 @@ Version `0.5.1`
 Version `0.5.2`
 1) Management IP addresses are changed to IPv6, so from now on the communication between management host and all VNFs is over IPv6.
 2) File `hosts` with actual state of project's `/etc/hosts` is added to `files` folder.
+
+Version `0.6`
+1) Added monitoring using InfluxData TICK and Grafana. Automated installation and operation over `management_cloud.yml` playbook. More details in `ansible\README.md`.
+2) OOB topology `topology/oob_management.txt` is updated with containers' network (Docker bridge).
+3) Mapping of IP to VNF hostname for OOB is stored in `ansible/vars/etc_hosts.yml`.
+4) Added ansible role to update `/etc/hosts` with proper OOB IPv6 addresses of network VNFs. More details in `ansible\README.md`.
