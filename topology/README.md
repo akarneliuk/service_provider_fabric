@@ -5,6 +5,7 @@
 - File `oob_management.txt` contains information about management topology and IP addresses used for automation.
 - File `ip_vpn_overaly.txt` contains the design of the customer IP VPN service including eBGP peering for PE-CE both for IPv4 and IPv6 address families.
 - File `ip_vpn_customer.txt` shows the emulation of customer sites of IP VPN service including IPv4/IPv6 subnets, which customer advertizes over eBGP to PEs of Service Provider Fabric.
+- File `monitoring_architecture.txt` contains explanation how InfluxData TICK + Grafana are used for monitoring health of Service Provider Fabric.
 
 
 # VNF

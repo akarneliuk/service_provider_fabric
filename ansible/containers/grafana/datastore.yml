@@ -1,0 +1,11 @@
+apiVersion: 1
+datasources:
+    - name: InfluxDB
+      type: influxdb
+      access: proxy
+      database: spf 
+      user: spf_workforce
+      password: spf_w0rkf0rc3
+      url: http://172.17.0.2:8086
+      withCredentials: yes
+      isDefault: yes
