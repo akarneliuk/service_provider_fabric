@@ -46,9 +46,11 @@
                 database: {{ var_influxdb.db_name }} 
                 user: {{ var_influxdb.username }}
                 password: {{ var_influxdb.password }}
-                url: http://172.17.0.2:8086
+                url: https://172.17.0.2:8086
                 withCredentials: yes
                 isDefault: yes
+                jsonData:
+                    tlsSkipVerify: yes
       dest: "{{ path_to_containers }}/grafana/datastore.yml"
   tags:
       - tick_install

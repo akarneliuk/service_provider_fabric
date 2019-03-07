@@ -29,7 +29,7 @@ This repositry is currently being developed, so expect the changes and pull the 
 4) Add GRT routing service (BGP-LU for IPv4/IPv6) for Internet traffic
 
 # Version
-The current version of the repository is `0.6`
+The current version of the repository is `0.6.1`
 
 # Change log
 Version `0.1`
@@ -89,3 +89,8 @@ Version `0.6`
 3) Mapping of IP to VNF hostname for OOB is stored in `ansible/vars/etc_hosts.yml`.
 4) Added ansible role to update `/etc/hosts` with proper OOB IPv6 addresses of network VNFs. More details in `ansible\README.md`.
 5) Added `topology/monitoring_architecture.txt` scheme with explanation how the Service Provider Fabric is monitored.
+
+Version `0.6.1`
+1) Added automated generation of self-signed certificate on InfluxDB.
+2) Communication between Telegraf and InfluxDB is moved to HTTPS.
+3) Communication between Grafana and InfluxDB is moved to HTTPS.

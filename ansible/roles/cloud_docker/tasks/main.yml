@@ -12,7 +12,7 @@
       - docker_install
 
 - name: ADDING DOCKER REPOSITORY
-  shell: "sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"
+  shell: "yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"
   become: yes
   tags:
       - docker_install
