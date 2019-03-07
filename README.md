@@ -94,3 +94,4 @@ Version `0.6.1`
 1) Added automated generation of self-signed certificate on InfluxDB.
 2) Communication between Telegraf and InfluxDB is moved to HTTPS.
 3) Communication between Grafana and InfluxDB is moved to HTTPS.
+4) Communication between Grafana and user is moved to HTTPS.

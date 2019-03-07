@@ -61,6 +61,48 @@
   tags:
       - tick_install
 
+- name: CONTAINER GRAFANA // GENERATING SSL CERTIFICATE
+  shell: 'docker exec -i spf_grafana openssl req -x509 -nodes -newkey rsa:2048 -keyout /etc/ssl/grafana-selfsigned.key -out /etc/ssl/grafana-selfsigned.crt -days 365 -subj "/C=DE/ST=NRW/L=DUS/O=karneliuk.com/CN=grafana.karneliuk.com"'
+  become: yes
+  tags:
+      - tick_install
+
+- name: CONTAINER GRAFANA // COPYING INITIAL CONFIGURATION FILE FROM GRAFANA
+  shell: "docker cp spf_grafana:/etc/grafana/grafana.ini {{ path_to_containers }}/grafana/grafana.ini"
+  become: yes
+  tags:
+      - tick_install
+
+- name: CONTAINER GRAFANA // ENABLING HTTPS
+  lineinfile:
+      dest: "{{ path_to_containers }}/grafana/grafana.ini"
+      regexp: ';protocol ='
+      line: 'protocol = https'
+  tags:
+      - tick_install
+
+- name: CONTAINER GRAFANA // PROVIDING CERTIFICATE PATH
+  lineinfile:
+      dest: "{{ path_to_containers }}/grafana/grafana.ini"
+      regexp: '# https certs & key file'
+      line: 'cert_file = /etc/ssl/grafana-selfsigned.crt'
+  tags:
+      - tick_install
+
+- name: CONTAINER GRAFANA // PROVIDING KEY PATH
+  lineinfile:
+      dest: "{{ path_to_containers }}/grafana/grafana.ini"
+      regexp: ';cert_key ='
+      line: 'cert_key = /etc/ssl/grafana-selfsigned.key'
+  tags:
+      - tick_install
+
+- name: CONTAINER GRAFANA // COPYING UPDATED CONFIGURATION FILE BACK TO GRAFANA CONTAINER
+  shell: "docker cp {{ path_to_containers }}/grafana/grafana.ini spf_grafana:/etc/grafana/grafana.ini"
+  become: yes
+  tags:
+      - tick_install
+
 - name: CONTAINER GRAFANA // RESTARTING CONTAINER
   docker_container:
       name: spf_grafana
