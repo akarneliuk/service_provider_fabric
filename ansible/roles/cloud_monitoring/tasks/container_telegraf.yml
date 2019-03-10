@@ -13,6 +13,14 @@
   tags:
       - tick_install
 
+- name: CONTAINER TELEGRAF // GETTING IP OF INFLUXDB
+  docker_container:
+      name: spf_influxdb
+  become: yes
+  register: spf_influxdb_inspect
+  tags:
+      - tick_install
+
 - name: CONTAINER TELEGRAF // TEMPLATING TELEGRAF CONFIG
   template:
       src: telegraf_template.j2

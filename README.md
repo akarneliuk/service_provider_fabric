@@ -29,7 +29,7 @@ This repositry is currently being developed, so expect the changes and pull the 
 4) Add GRT routing service (BGP-LU for IPv4/IPv6) for Internet traffic
 
 # Version
-The current version of the repository is `0.6.1`
+The current version of the repository is `0.6.2`
 
 # Change log
 Version `0.1`
@@ -95,3 +95,6 @@ Version `0.6.1`
 2) Communication between Telegraf and InfluxDB is moved to HTTPS.
 3) Communication between Grafana and InfluxDB is moved to HTTPS.
 4) Communication between Grafana and user is moved to HTTPS.
+
+Version `0.6.2`
+1) Automatical linking of IP addresses between containers.

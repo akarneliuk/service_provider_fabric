@@ -13,6 +13,14 @@
   tags:
       - tick_install
 
+- name: CONTAINER GRAFANA // GETTING IP OF INFLUXDB
+  docker_container:
+      name: spf_influxdb
+  become: yes
+  register: spf_influxdb_inspect
+  tags:
+      - tick_install
+
 - name: CONTAINER GRAFANA // LAUNCHING CONTAINER
   docker_container:
       name: spf_grafana
@@ -46,7 +54,7 @@
                 database: {{ var_influxdb.db_name }} 
                 user: {{ var_influxdb.username }}
                 password: {{ var_influxdb.password }}
-                url: https://172.17.0.2:8086
+                url: https://{{ spf_influxdb_inspect.ansible_facts.docker_container.NetworkSettings.IPAddress }}:8086
                 withCredentials: yes
                 isDefault: yes
                 jsonData:
