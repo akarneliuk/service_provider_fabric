@@ -27,7 +27,6 @@
       command: "-config /etc/influxdb/influxdb.conf"
       ports:
            - "8086:8086"
-           - "8088:8088"
       volumes:
            - "{{ pwd_actual }}/{{ path_to_containers }}/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro"
            - "{{ pwd_actual }}/{{ path_to_containers }}/influxdb/data:/var/lib/influxdb"
@@ -103,7 +102,6 @@
       command: "-config /etc/influxdb/influxdb.conf"
       ports:
            - "8086:8086"
-           - "8088:8088"
       volumes:
            - "{{ pwd_actual }}/{{ path_to_containers }}/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro"
            - "{{ pwd_actual }}/{{ path_to_containers }}/influxdb/data:/var/lib/influxdb"
