@@ -27,6 +27,9 @@
       image: grafana/grafana
       state: started
       user: root
+      networks:
+          - name: "{{ docker_private_network.name }}"
+      purge_networks: yes
       ports:
            - "3000:3000"
       volumes:
@@ -36,27 +39,38 @@
       - tick_install
       - tick_ops
 
-- name: CONTAINER GRAFANA // CREATE TEMP DATASTORE CONFIG
+- name: CONTAINER GRAFANA // CREATE DATASTORE CONFIG FOR PROVISIONING
   file:
       dest: "{{ path_to_containers }}/grafana/datastore.yml"
       state: touch
   tags:
       - tick_install
 
-- name: CONTAINER GRAFANA // TEMPLATING DATASTORE
+- name: CONTAINER GRAFANA // TEMPLATING DATASTORES
   copy:
       content: |
           apiVersion: 1
           datasources:
-              - name: InfluxDB
+              - name: InfluxDB-SNMP
                 type: influxdb
                 access: proxy
-                database: {{ var_influxdb.db_name }} 
+                database: {{ var_influxdb.db_name.snmp }} 
                 user: {{ var_influxdb.username }}
                 password: {{ var_influxdb.password }}
-                url: https://{{ spf_influxdb_inspect.ansible_facts.docker_container.NetworkSettings.IPAddress }}:8086
+                url: https://{{ spf_influxdb_inspect.ansible_facts.docker_container.NetworkSettings.Networks.mon_net.IPAddress }}:8086
                 withCredentials: yes
                 isDefault: yes
+                jsonData:
+                    tlsSkipVerify: yes
+              - name: InfluxDB-SYSLOG
+                type: influxdb
+                access: proxy
+                database: {{ var_influxdb.db_name.syslog }}
+                user: {{ var_influxdb.username }}
+                password: {{ var_influxdb.password }}
+                url: https://{{ spf_influxdb_inspect.ansible_facts.docker_container.NetworkSettings.Networks.mon_net.IPAddress }}:8086
+                withCredentials: yes
+                isDefault: no
                 jsonData:
                     tlsSkipVerify: yes
       dest: "{{ path_to_containers }}/grafana/datastore.yml"
@@ -105,7 +119,7 @@
   tags:
       - tick_install
 
-- name: CONTAINER GRAFANA // COPYING UPDATED CONFIGURATION FILE BACK TO GRAFANA CONTAINER
+- name: CONTAINER GRAFANA // COPYING INITIAL CONFIGURATION FILE FROM GRAFANA
   shell: "docker cp {{ path_to_containers }}/grafana/grafana.ini spf_grafana:/etc/grafana/grafana.ini"
   become: yes
   tags:
@@ -118,6 +132,9 @@
       state: started
       user: root
       restart: yes
+      networks:
+          - name: "{{ docker_private_network.name }}"
+      purge_networks: yes
       ports:
            - "3000:3000"
       volumes:

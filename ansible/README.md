@@ -36,10 +36,10 @@ Currently there are no tag, which allow you to create EVPN overlay service.
 
 There are different tags for installation and operation:
 1) To update your `/etc/hosts` use `ansibple-playbook management_cloud.yml --inventory=hosts --tags=update_hosts`
-2) For the first time installation of Docker and all related tools use `ansibple-playbook management_cloud.yml --inventory=hosts --tags=docker_install`.
-3) For the first time installation of Telegraf + InfluxDB + Grafana use `ansibple-playbook management_cloud.yml --inventory=hosts --tags=tick_install`.
-4) For subsequent launch (2nd and later) of Docker use `ansibple-playbook management_cloud.yml --inventory=hosts --tags=docker_ops`.
-5) For subsequent launch (2nd and later) of Telegraf + InfluxDB + Grafana use `ansibple-playbook management_cloud.yml --inventory=hosts --tags=tick_ops`.
+2) For the first time installation of Docker and all related tools use `ansible-playbook management_cloud.yml --inventory=hosts --tags=docker_install`.
+3) For the first time installation of Telegraf + InfluxDB + Grafana use `ansible-playbook management_cloud.yml --inventory=hosts --tags=tick_install`.
+4) For subsequent launch (2nd and later) of Docker use `ansible-playbook management_cloud.yml --inventory=hosts --tags=docker_ops`.
+5) For subsequent launch (2nd and later) of Telegraf + InfluxDB + Grafana use `ansible-playbook management_cloud.yml --inventory=hosts --tags=tick_ops`.
 
 # How to use YANG tools
 

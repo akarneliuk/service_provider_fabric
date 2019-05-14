@@ -20,20 +20,22 @@
       - tick_install
       - tick_ops
 
-- name: CONTAINER INFLUXDB
-  include_tasks: container_influxdb.yml
+- name: CREATING USER-DEFINED DOCKER NETWORK
+  shell: "docker network create {{ docker_private_network.name }} {% if docker_private_network.ipv6 %}--ipv6{% endif %} {% if docker_private_network.subnet is defined %}--subnet {{ docker_private_network.subnet }}{% endif %} {% if docker_private_network.gateway is defined %}--gateway {{ docker_private_network.gateway }}{% endif %}"
+  ignore_errors: yes
+  become: yes
   tags:
       - tick_install
-      - tick_ops
 
-- name: CONTAINER GRAFANA
-  include_tasks: container_grafana.yml
-  tags:
-      - tick_install
-      - tick_ops
-
-- name: CONTAINER TELEGRAF
-  include_tasks: container_telegraf.yml
+- name: STARTING CONTAINERS
+  include_tasks: container_{{ container_item }}.yml
+  loop:
+      - influxdb
+      - grafana
+      - telegraf_snmp
+      - telegraf_syslog
+  loop_control:
+      loop_var: container_item
   tags:
       - tick_install
       - tick_ops

@@ -11,11 +11,18 @@ l3vpn_defaults:
         start: 10000
         end: 99999
 # Defaults for Docker containers
+docker_private_network: 
+    name: mon_net
+    ipv6: true
+    subnet: fc00:de:1:fffe::/64
+    gateway: fc00:de:1:fffe::1
 path_to_containers: containers
 var_influxdb:
     username: spf_workforce
     password: spf_w0rkf0rc3
-    db_name: spf
+    db_name: 
+        snmp: spf_snmp
+        syslog: spf_syslog
 var_grafana:
 var_telegraf:
 ...

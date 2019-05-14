@@ -25,26 +25,46 @@
       image: influxdb
       state: started
       command: "-config /etc/influxdb/influxdb.conf"
+      networks:
+          - name: "{{ docker_private_network.name }}"
+      purge_networks: yes
       ports:
-           - "8086:8086"
+          - "8086:8086"
       volumes:
-           - "{{ pwd_actual }}/{{ path_to_containers }}/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro"
-           - "{{ pwd_actual }}/{{ path_to_containers }}/influxdb/data:/var/lib/influxdb"
+          - "{{ pwd_actual }}/{{ path_to_containers }}/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro"
+          - "{{ pwd_actual }}/{{ path_to_containers }}/influxdb/data:/var/lib/influxdb"
   become: yes
   tags:
       - tick_install
       - tick_ops
 
-- name: CONTAINER INFLUXDB // CREATING DATABASE
+- name: CONTAINER INFLUXDB // WAITING CONTAINER TO BOOT
+  pause:
+      seconds: 15
+  tags:
+      - tick_install
+      - tick_ops
+
+- name: CONTAINER INFLUXDB // CREATING DATABASE FOR SNMP
   uri:
       url: "http://localhost:8086/query?q={{ db_request | urlencode }}"
       method: POST
   ignore_errors: yes
   vars:
-      db_request: "CREATE DATABASE {{ var_influxdb.db_name }}"
+      db_request: "CREATE DATABASE {{ var_influxdb.db_name.snmp }}"
   tags:
       - tick_install
  
+- name: CONTAINER INFLUXDB // CREATING DATABASE FOR SYSLOG
+  uri:
+      url: "http://localhost:8086/query?q={{ db_request | urlencode }}"
+      method: POST
+  ignore_errors: yes
+  vars:
+      db_request: "CREATE DATABASE {{ var_influxdb.db_name.syslog }}"
+  tags:
+      - tick_install
+
 - name: CONTAINER INFLUXDB // CREATING USERS
   uri:
       url: "http://localhost:8086/query?q={{ db_request | urlencode }}"
@@ -100,6 +120,9 @@
       state: started
       restart: yes
       command: "-config /etc/influxdb/influxdb.conf"
+      networks:
+          - name: "{{ docker_private_network.name }}"
+      purge_networks: yes
       ports:
            - "8086:8086"
       volumes:

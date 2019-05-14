@@ -17,7 +17,8 @@ Whenever possible OpenConfig YANG modules are used to unify the configuration of
 # Monitoring
 InfluxData TICK (Telegraf and InfluxDB) + Grafana:
 1) Telegraf is using to collect data over SNMPv3 over IPv6 and store it in InfluxDB
-2) Grafana polls data out of InfluxDB to build graphs of interfaces' utilization
+2) Another Telegraf insance collects syslog information on UDP port 6514 in RFC5424 format and stores it into another database in InfluxDB 
+3) Grafana polls data out of InfluxDB to build graphs of interfaces' utilization and syslogs information
 
 # Development mode
 This repositry is currently being developed, so expect the changes and pull the repository to get the latest version
@@ -29,7 +30,7 @@ This repositry is currently being developed, so expect the changes and pull the 
 4) Add GRT routing service (BGP-LU for IPv4/IPv6) for Internet traffic
 
 # Version
-The current version of the repository is `0.6.2`
+The current version of the repository is `0.6.3`
 
 # Change log
 Version `0.1`
@@ -98,3 +99,7 @@ Version `0.6.1`
 
 Version `0.6.2`
 1) Automatical linking of IP addresses between containers.
+
+Version `0.6.3`
+1) Rebuild the role of `cloud_monitoring`.
+2) Added `telegraf_syslog` container, which collects the syslog information. BTW, the current limitation that it supports only RFC 5424 format, whereas Cisco, Arista and Nokia send the info in RFC 3164 format, what isn't yet compatible.
